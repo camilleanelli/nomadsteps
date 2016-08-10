@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row text-xs-center">
+    <h1>Ajouter un voyage!</h1>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6 text-xs-center">
+      <%= simple_form_for @trip do |f| %>
+        <%= f.input :start_date, label: "Date de début" %>
+        <%= f.input :end_date, label:"Date de fin"%>
+        <%= f.input :destination %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+    <div class="col-xs-3"></div>
+  </div>
+
+</div>

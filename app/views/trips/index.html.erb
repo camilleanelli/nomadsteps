@@ -1,8 +1,31 @@
 <% if @trips.count > 0 %>
+<div class="row text-xs-center">
   <h1>Mes voyages</h1>
-  <% @trips.each do |trip| %>
-    <%= trip.destination %>
+</div>
+<div class="row">
+  <div class="container">
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Destination</th>
+        <th>Début</th>
+        <th>Fin</th>
+      </tr>
+    </thead>
+    <% @trips.each do |trip| %>
+    <tbody>
+      <tr>
+      <td><%= trip.destination %></td>
+      <td><%= trip.start_date %></td>
+      <td><%= trip.end_date %></td>
+      </tr>
+    </tbody>
   <% end %>
+  </table>
+  </div>
+</div>
+
+
 <% else %>
   <h1>Créer mon premier voyage</h1>
 <% end %>
