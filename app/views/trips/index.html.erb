@@ -1,0 +1,8 @@
+<% if @trips.count > 0 %>
+  <h1>Mes voyages</h1>
+  <% @trips.each do |trip| %>
+    <%= trip.destination %>
+  <% end %>
+<% else %>
+  <h1>Créer mon premier voyage</h1>
+<% end %>
