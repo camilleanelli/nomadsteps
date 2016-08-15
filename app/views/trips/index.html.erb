@@ -2,6 +2,16 @@
 <div class="row text-xs-center">
   <h1>Mes voyages</h1>
 </div>
+<br>
+<br>
+  <div class="row text-xs-right">
+    <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <%= link_to 'Ajouter un voyage', new_trip_path, class:"btn btn-outline-primary" %>
+  </div>
+
+</div>
+<br>
+<br>
 <div class="row">
   <div class="container">
     <table class="table">
@@ -28,4 +38,5 @@
 
 <% else %>
   <h1>Créer mon premier voyage</h1>
+  <%= link_to 'Importer de Nomad List', import_nomad_lists_path %>
 <% end %>
