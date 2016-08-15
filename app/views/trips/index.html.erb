@@ -24,11 +24,14 @@
     </thead>
     <% @trips.each do |trip| %>
     <tbody>
-      <tr>
-      <td><%= trip.destination %></td>
-      <td><%= trip.start_date %></td>
-      <td><%= trip.end_date %></td>
+    <tr class="trips_content">
+        <td><%= trip.destination %></td>
+        <td><%= trip.start_date %></td>
+        <td><%= trip.end_date %></td>
       </tr>
+
+
+
     </tbody>
   <% end %>
   </table>
