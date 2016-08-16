@@ -29,9 +29,14 @@
         <td><%= trip.destination %></td>
         <td><%= trip.start_date %></td>
         <td><%= trip.end_date %></td>
-        <td><% trip.users.each do |user| %>
+        <td>
+        <% if trip.users == [] %>
+          <%= current_user.first_name  %>
+        <% else %>
+          <% trip.users.each do |user| %>
              <%= user.first_name %>
-            <% end %>
+          <% end %>
+        <% end %>
         </td>
       </tr>
 
