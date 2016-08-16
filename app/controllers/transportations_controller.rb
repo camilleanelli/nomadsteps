@@ -2,6 +2,11 @@ class TransportationsController < ApplicationController
   def index
   end
 
+  def show
+    @trip = current_user.trips.find(params[:trip_id])
+    @transportation = @trip.transportations.find(params[:id])
+  end
+
   def new
     @trip = current_user.trips.find(params[:trip_id])
     @transportation = @trip.transportations.new
