@@ -1,0 +1,27 @@
+<div class="row text-xs-center">
+  <h1>Détails de la réservation</h1>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card card-block">
+      <h4 class="card-title">Vous partez en <%= @transportation.transportation_type %> !</h4>
+      <p>Ville de départ : <%= @transportation.departure_city %></p>
+      <p>Départ : <%= (@transportation.departure_datetime).strftime("%d/%m/%Y à %H:%M" ) %></p>
+      <p>Arrivée : <%= (@transportation.arrival_time).to_formatted_s(:time) %> </p>
+      <p>Référence : <%= @transportation.reference_number %></p>
+      <p>La société de tranport : <%= @transportation.company %></p>
+      <p><%= @transportation.link %></p>
+      <div class="row">
+        <div class="col-sm-8">
+          <%= link_to 'Retour', root_path, class:"btn btn-warning" %>
+          <%= link_to 'Modifier', edit_trip_transportation_path(@trip), class:"btn btn-primary" %>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to "<i class='fa fa-trash-o fa-2x' aria-hidden='true'></i> Supprimer".html_safe, trip_transportation_path, method: :delete, data: { confirm: "Confirmez la suppression" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

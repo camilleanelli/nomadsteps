@@ -1,0 +1,28 @@
+<div class="row text-xs-center">
+  <h1>Modifier les données de votre tranport</h1>
+</div>
+<br>
+<br>
+<div class="row">
+    <%= simple_form_for [@trip, @transportation] do |f| %>
+      <div class="col-sm-8 offset-sm-2 card card-block">
+        <div class="text-xs-center">
+          <%= f.input :transportation_type, label: "Type de transport", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+          <div class="col-sm-12">
+            <div class="col-sm-8">
+              <%= f.input :departure_datetime, label: "Départ" %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.input :arrival_time, label: "Arrivée" %>
+            </div>
+          </div>
+          <%= f.input :departure_city, label: "Ville de départ" %>
+          <%= f.input :reference_number, label: "Référence" %>
+          <%= f.input :company, label: "Société de transport" %>
+          <%= f.input :link, label: "Site web" %>
+          <%= f.button :submit, "Valider", class:"btn btn-success" %>
+          <%= link_to 'Annuler', trip_transportation_path, class:"btn btn-warning" %>
+        </div>
+      </div>
+      <% end %>
+  </div>
