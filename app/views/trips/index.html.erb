@@ -20,6 +20,7 @@
         <th>Destination</th>
         <th>Début</th>
         <th>Fin</th>
+        <th>Participant(s)</th>
       </tr>
     </thead>
     <% @trips.each do |trip| %>
@@ -28,6 +29,10 @@
         <td><%= trip.destination %></td>
         <td><%= trip.start_date %></td>
         <td><%= trip.end_date %></td>
+        <td><% trip.users.each do |user| %>
+             <%= user.first_name %>
+            <% end %>
+        </td>
       </tr>
 
 
