@@ -20,6 +20,7 @@
         <th>Destination</th>
         <th>Début</th>
         <th>Fin</th>
+        <th>Transport</th>
         <th>Participant(s)</th>
       </tr>
     </thead>
@@ -30,7 +31,28 @@
         <td><%= trip.start_date %></td>
         <td><%= trip.end_date %></td>
         <td>
-        <% if trip.users == [] %>
+          <% if trip.transportations.empty? %>
+              <%= link_to 'Ajouter', new_trip_transportation_path(trip) %>
+            <% else %>
+              <% trip.transportations.each do |transport| %>
+                <% if transport.transportation_type == "Avion" %>
+                  <i class="fa fa-plane" aria-hidden="true"></i>
+                <% elsif transport.transportation_type == "Train" %>
+                  <i class="fa fa-train" aria-hidden="true"></i>
+                <% elsif transport.transportation_type == "Voiture" %>
+                  <i class="fa fa-car" aria-hidden="true"></i>
+                <% elsif transport.transportation_type == "Bateau" %>
+                  <i class="fa fa-ship" aria-hidden="true"></i>
+                <% elsif transport.transportation_type == "Bus" %>
+                  <i class="fa fa-bus" aria-hidden="true"></i>
+                <% else %>
+                  <%= transport.transportation_type %>
+                <% end  %>
+              <% end %>
+            <% end %>
+        </td>
+        <td>
+        <% if trip.users.empty? %>
           <%= current_user.first_name  %>
         <% else %>
           <% trip.users.each do |user| %>

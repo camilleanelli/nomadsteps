@@ -1,0 +1,20 @@
+<div class="row text-xs-center">
+    <h1>Ajouter un moyen de transport pour <%= @trip.destination %></h1>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="col-xs-2"></div>
+  <div class="col-xs-8 text-xs-center">
+    <%= simple_form_for [@trip, @transportation] do |f| %>
+        <%= f.input :transportation_type, label: "Type de transport", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+        <%= f.input :reference_number, label: "Référence" %>
+        <%= f.input :link, label: "Lien" %>
+        <%= f.input :departure_datetime, label: "Départ" %><%= f.input :arrival_time, label: "Arrivée" %>
+        <%= f.input :departure_city, label: "Ville de départ" %>
+        <%= f.input :company, label: "Société de transport" %>
+        <%= f.button :submit, "Valider" %>
+    <% end %>
+  </div>
+  <div class="col-xs-2"></div>
+</div>
