@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  reference_number: MyString
+  link: MyString
+  departure_datetime: 2016-08-16 09:53:20
+  arrival_time: 2016-08-16 09:53:20
+  departure_city: MyString
+  company: MyString
+
+two:
+  type: 
+  reference_number: MyString
+  link: MyString
+  departure_datetime: 2016-08-16 09:53:20
+  arrival_time: 2016-08-16 09:53:20
+  departure_city: MyString
+  company: MyString

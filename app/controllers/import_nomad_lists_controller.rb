@@ -10,7 +10,7 @@ class ImportNomadListsController < ApplicationController
   def index
     @url = ImportTrip.new(current_user.nomadlist_username)
     @trips = @url.table_import.each do |hash|
-      Trip.find_or_create_by(start_date: hash["start_date"],
+      current_user.trips.find_or_create_by(start_date: hash["start_date"],
         end_date: hash["end_date"],
         destination: hash["city"],
         longitude: hash["longitude"],
