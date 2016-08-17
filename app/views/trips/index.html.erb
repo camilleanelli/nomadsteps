@@ -21,6 +21,7 @@
         <th>Début</th>
         <th>Fin</th>
         <th class="text-xs-center">Transport</th>
+        <th>Logement</th>
         <th>Participant(s)</th>
       </tr>
     </thead>
@@ -57,6 +58,16 @@
             <% end %>
         </td>
         <td>
+          <% if trip.accomodations.empty? %>
+            <%= link_to 'Ajouter', new_trip_accomodation_path(trip) %>
+          <% else %>
+            <% trip.accomodations.each do |acmd| %>
+                <%= acmd.accomodation_type %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+
         <% if trip.users.empty? %>
           <%= current_user.first_name  %>
         <% else %>

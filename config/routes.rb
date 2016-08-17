@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :trips, only: [:index, :edit, :update, :new, :create, :destroy] do
     resources :transportations
+    resources :accomodations, only: [:new, :create, :edit, :udpate]
   end
   resources :import_nomad_lists
 
