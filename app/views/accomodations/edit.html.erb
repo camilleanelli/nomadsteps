@@ -15,7 +15,6 @@
   </div>
   <div class="col-sm-6">
     <div class="card card-block width-card">
-      <%= link_to 'Consulter le site', @accomodation.link %>
       <%= f.input :link, label: "Lien utile", placeholder: "Ex:  https://www.airbnb.fr/" %>
       <%= f.input :price, label: "<i class='fa fa-usd' aria-hidden='true'></i> Tarif".html_safe, input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
