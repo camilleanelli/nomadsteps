@@ -41,15 +41,15 @@
             <% else %>
               <% trip.transportations.each do |transport| %>
                 <% if transport.transportation_type == "Avion" %>
-                  <%= link_to "<i class='fa fa-plane color-link' aria-hidden='true'></i>".html_safe, trip_transportation_path(trip, transport) %>
+                  <%= link_to "<i class='fa fa-plane color-plane' aria-hidden='true'></i>".html_safe, trip_transportation_path(trip, transport) %>
                 <% elsif transport.transportation_type == "Train" %>
-                  <%= link_to "<i class='fa fa-train color-link' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <%= link_to "<i class='fa fa-train color-train' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
                 <% elsif transport.transportation_type == "Voiture" %>
-                  <%= link_to "<i class='fa fa-car color-link' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <%= link_to "<i class='fa fa-car color-car' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
                 <% elsif transport.transportation_type == "Bateau" %>
-                  <%= link_to "<i class='fa fa-ship color-link' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <%= link_to "<i class='fa fa-ship color-boat' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
                 <% elsif transport.transportation_type == "Bus" %>
-                  <%= link_to "<i class='fa fa-bus color-link' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <%= link_to "<i class='fa fa-bus color-bus' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
                 <% else %>
                   <%= link_to transport.transportation_type, trip_transportation_path(trip, transport), class:"color-link" %>
                 <% end  %>
@@ -67,7 +67,7 @@
         </td>
         <td class="text-xs-center">
           <%= link_to trip, method: :delete, data: { confirm: "Confirmez la suppression du voyage"} do %>
-            <i class="fa fa-times-circle fa-2x cancel-red" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Supprimer"></i>
+            <i class="fa fa-times-circle fa-2x cancel-red" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Supprimer ce voyage"></i>
           <% end %>
         </td>
       </tr>

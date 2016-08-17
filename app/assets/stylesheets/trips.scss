@@ -6,12 +6,24 @@
 //   border-radius: 5px;
 // }
 
-.color-link {
-    color: black;
-    &:hover {
-      text-decoration: none;
-      color: black;
-    }
+.color-plane {
+  color: gray;
+}
+
+.color-train {
+  color: green;
+}
+
+.color-bus {
+  color: orange;
+}
+
+.color-car {
+  color: red;
+}
+
+.color-boat {
+  color: blue;
 }
 
 .color-link-city:hover {
