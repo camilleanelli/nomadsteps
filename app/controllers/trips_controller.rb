@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
-    @trips = current_user.trips.all
+    @trips = current_user.trips.order(:start_date).reverse
   end
 
   def edit
@@ -18,8 +18,10 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = current_user.trips.new(params_trips)
+    @trip = Trip.new(params_trips)
+
     if @trip.save
+      current_user.trips << @trip
       redirect_to trips_path
     end
   end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accomodation_type: 
+  start_date: 
+  end_date: 
+  price: 
+  link: 
+  number_of_persons: 1
+
+two:
+  accomodation_type: 
+  start_date: 
+  end_date: 
+  price: 
+  link: 
+  number_of_persons: 1
