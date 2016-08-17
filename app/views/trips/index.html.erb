@@ -62,7 +62,7 @@
             <%= link_to 'Ajouter', new_trip_accomodation_path(trip) %>
           <% else %>
             <% trip.accomodations.each do |acmd| %>
-                <%= acmd.accomodation_type %>
+                <%= link_to acmd.accomodation_type, edit_trip_accomodation_path(trip, acmd) %>
             <% end %>
           <% end %>
         </td>

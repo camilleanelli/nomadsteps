@@ -10,7 +10,11 @@ class TripsController < ApplicationController
 
   def update
     @trip.update(params_trips)
-    redirect_to root_path
+    if @trip.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def new
