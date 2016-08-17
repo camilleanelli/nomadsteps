@@ -1,0 +1,19 @@
+<div class="row text-xs-center">
+  <h1>Votre voyage à <%= @trip.destination %></h1>
+</div>
+<br>
+<br>
+<div class="col-sm-6 offset-sm-3">
+  <div class="card card-block text-xs-center">
+      <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de début".html_safe %>
+          <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> Date de fin".html_safe %>
+          <%= f.input :destination, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination".html_safe %>
+          <br>
+          <br>
+          <%= link_to 'Retour', root_path, class:"btn btn-warning" %>
+          <%= f.button :submit, "Modifier", class: "btn btn-success" %>
+        <% end %>
+    </div>
+
+  </div>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'trips#index'
 
-  resources :trips, only: [:index, :new, :create] do
+  resources :trips, only: [:index, :edit, :update, :new, :create, :destroy] do
     resources :transportations
   end
   resources :import_nomad_lists
