@@ -1,15 +1,14 @@
 class TripsController < ApplicationController
+  before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
     @trips = current_user.trips.all
   end
 
   def edit
-    @trip = current_user.trips.find(params[:id])
   end
 
   def update
-    @trip = current_user.trips.find(params[:id])
     @trip.update(params_trips)
     redirect_to root_path
   end
@@ -26,12 +25,15 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @trip = current_user.trips.find(params[:id])
     @trip.destroy
     redirect_to root_path
   end
 
   private
+
+  def get_trip
+    @trip = current_user.trips.find(params[:id])
+  end
 
   def params_trips
     params[:trip].permit(:start_date, :end_date, :destination, :longitude, :latitude)
