@@ -32,6 +32,13 @@ class AccomodationsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @trip = current_user.trips.find(params[:trip_id])
+    @accomodation = @trip.accomodations.find(params[:id])
+    @accomodation.destroy
+    redirect_to root_path
+  end
+
   private
 
   def accomodation_params
