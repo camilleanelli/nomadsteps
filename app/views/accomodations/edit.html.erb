@@ -1,0 +1,30 @@
+<div class="row text-xs-center">
+  <h1>Consulter ou modifier votre logement <%= @accomodation.accomodation_type %></h1>
+</div>
+<br>
+<br>
+<%= simple_form_for [@trip, @accomodation] do |f| %>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card card-block width-card">
+        <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
+        Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Famille/amis", "Location", "Autre..."] %>
+        <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date d'arrivée".html_safe, default:  @trip.start_date %>
+        <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de départ".html_safe, default:  @trip.end_date %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card card-block width-card">
+      <%= f.input :link, label: "Lien utile", placeholder: "Ex:  https://www.airbnb.fr/" %>
+      <%= f.input :price, label: "<i class='fa fa-usd' aria-hidden='true'></i> Tarif".html_safe, input_html: { style: 'width:100px' } %>
+      <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="row text-xs-center">
+  <%= link_to 'Annuler', root_path, class:"btn btn-warning" %> |
+  <%= f.button :submit, "Modifier", class: "btn btn-primary" %>
+</div>
+<% end %>

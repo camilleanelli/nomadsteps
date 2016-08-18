@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'trips#index'
 
-  resources :trips, only: [:index, :edit, :update, :new, :create, :destroy] do
+  resources :trips, except: [:show] do
     resources :transportations
-    resources :accomodations, only: [:new, :create, :edit, :udpate]
+    resources :accomodations, only: [:new, :create, :edit, :update]
   end
   resources :import_nomad_lists
 
