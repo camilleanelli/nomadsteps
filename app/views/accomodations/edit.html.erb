@@ -1,11 +1,11 @@
 <div class="row text-xs-center">
-  <h1>Consulter ou modifier votre logement <%= @accomodation.accomodation_type %></h1>
+  <h1>Votre logement à <%= @accomodation.trip.destination %></h1>
 </div>
 <br>
 <br>
 <%= simple_form_for [@trip, @accomodation] do |f| %>
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div class="card card-block width-card">
         <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
         Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Famille/amis", "Location", "Autre..."] %>
@@ -13,19 +13,31 @@
         <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de départ".html_safe, default:  @trip.end_date %>
     </div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div class="card card-block width-card">
       <%= f.input :link, label: "Lien utile", placeholder: "Ex:  https://www.airbnb.fr/" %>
       <%= f.input :price, label: "<i class='fa fa-usd' aria-hidden='true'></i> Tarif".html_safe, input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
+
     </div>
   </div>
+  <div class="col-sm-4">
+    <div class="card card-block width-card">
+      <h4 class="card-title">C'est confirmé!</h4>
+      <br>
+    <h3><span class="tag tag-pill tag-primary">Vous séjournerez <%= @accomodation.count_night %> nuités</span></h3>
+    <p>Pour un total de: </p>
+    <h3><span class="tag tag-pill tag-primary"><%= number_to_currency(@accomodation.price_per_personne, :unit => "€ ") %> /personne</span></p></h3>
+    <p>Soit: </p>
+    <h3><span class="tag tag-pill tag-primary"><%= number_to_currency(@accomodation.price_per_person_per_night, :unit => "€ ") %> /nuit</span></p></h3>
+  </div>
+</div>
 </div>
 <br>
 <br>
 <div class="row text-xs-center">
   <%= link_to 'Annuler', root_path, class:"btn btn-warning" %> |
-  <%= f.button :submit, "Modifier", class: "btn btn-primary" %> |
+  <%= f.button :submit, "Valider", class: "btn btn-success" %> |
   <%= link_to 'Supprimer', trip_accomodation_path, method: :delete, data: { confirm: "Confirmer la suppression" }, class:"btn btn-danger" %>
 </div>
 <% end %>
