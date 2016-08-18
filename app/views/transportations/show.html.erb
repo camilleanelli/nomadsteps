@@ -10,12 +10,16 @@
       <p><i class="fa fa-globe" aria-hidden="true"></i> Ville de départ : <%= @transportation.departure_city %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Départ : <%= (@transportation.departure_datetime).strftime("%d/%m/%Y à %H:%M" ) %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrivée : <%= (@transportation.arrival_time).to_formatted_s(:time) %> </p>
-      <p>Référence n°: <%= @transportation.reference_number %></p>
-      <p>Réservé via: <%= @transportation.company %></p>
-      <% if @transportation.link? %>
-        <%= link_to 'Consulter le site', @transportation.link %>
-      <% end %>
-      <div class="row">
+      <p>Réservation n°: <%= @transportation.reference_number %></p>
+      <p>
+        <% if @transportation.link? %>
+          <%= link_to @transportation.link, class:"btn btn-secondary btn-sm active" do %>
+            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Voir ou s'enregistrer sur <%= @transportation.company %>
+          <% end %>
+        <% end %>
+      </p>
+
+      <div class="col-sm-12">
         <div class="col-sm-8">
           <%= link_to 'Retour', root_path, class:"btn btn-warning" %>
           <%= link_to 'Modifier', edit_trip_transportation_path(@trip), class:"btn btn-primary" %>
@@ -28,7 +32,7 @@
   </div>
   <div class="col-sm-6">
     <div class="card card-block">
-        <h4 class="card-title">Votre billet</h4>
+        <h4 class="card-title">Télécharger le(s) billet(s)</h4>
         <!-- todo : ajouter upload d'image
         numero de resa + prix -->
     </div>
