@@ -1,28 +1,31 @@
 <div class="row text-xs-center">
-  <h1>Modifier les données de votre tranport</h1>
+  <h1>Votre voyage à <%= @transportation.trip.destination %></h1>
+</div>
+<div class="row">
+  <%= simple_form_for [@trip, @transportation] do |f| %>
+  <div class="col-sm-5 offset-sm-1">
+    <div class="card card-inverse card-info text-xs-center width-card-acmd">
+      <div class="card-block">
+        <%= f.input :transportation_type, label: "<strong>Transport</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+        <%= f.input :departure_datetime, label: "<strong>Départ</strong>".html_safe, default: @transportation.trip.start_date %>
+        <%= f.input :arrival_time, label: "<strong>Heure d'arrivée</strong>".html_safe %>
+        <%= f.input :departure_city, label: "<strong>Ville de départ</strong>".html_safe %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="card card-inverse card-info text-xs-center width-card-acmd">
+      <div class="card-block">
+        <%= f.input :reference_number, label: "<strong>Numéro de réservation</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
+        <%= f.input :company, label: "<strong>Société de transport</strong>".html_safe, placeholder: "Ex: THAI Arways" %>
+        <%= f.input :link, label: "<strong>Site correspondant</strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
+      </div>
+    </div>
+  </div>
 </div>
 <br>
-<br>
-<div class="row">
-    <%= simple_form_for [@trip, @transportation] do |f| %>
-      <div class="col-sm-8 offset-sm-2 card card-block">
-        <div class="text-xs-center">
-          <%= f.input :transportation_type, label: "Type de transport", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
-          <div class="col-sm-12">
-            <div class="col-sm-8">
-              <%= f.input :departure_datetime, label: "Départ" %>
-            </div>
-            <div class="col-sm-4">
-              <%= f.input :arrival_time, label: "Arrivée" %>
-            </div>
-          </div>
-          <%= f.input :departure_city, label: "Ville de départ" %>
-          <%= f.input :reference_number, label: "Référence" %>
-          <%= f.input :company, label: "Société de transport" %>
-          <%= f.input :link, label: "Site web" %>
-          <%= f.button :submit, "Valider", class:"btn btn-success" %>
-          <%= link_to 'Annuler', trip_transportation_path, class:"btn btn-warning" %>
-        </div>
-      </div>
-      <% end %>
+  <div class="row text-xs-center">
+    <%= link_to 'Annuler', root_path, class:"btn btn-warning" %>
+    <%= f.button :submit, "Valider", class:"btn btn-success" %>
   </div>
+<% end %>
