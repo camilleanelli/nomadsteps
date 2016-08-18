@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
-    @trips = current_user.trips.order(:start_date).reverse
+    @trips = current_user.trips.order(start_date: :desc)
   end
 
   def edit
