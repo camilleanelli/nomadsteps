@@ -4,17 +4,30 @@
 <br>
 <br>
 <div class="row">
-  <div class="col-xs-2"></div>
-  <div class="col-xs-8 text-xs-center">
-    <%= simple_form_for [@trip, @transportation] do |f| %>
-        <%= f.input :transportation_type, label: "Type de transport", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
-        <%= f.input :reference_number, label: "Référence" %>
-        <%= f.input :link, label: "Lien" %>
-        <%= f.input :departure_datetime, label: "Départ" %><%= f.input :arrival_time, label: "Arrivée" %>
-        <%= f.input :departure_city, label: "Ville de départ" %>
-        <%= f.input :company, label: "Société de transport" %>
-        <%= f.button :submit, "Valider" %>
-    <% end %>
+  <%= simple_form_for [@trip, @transportation] do |f| %>
+  <div class="col-sm-5 offset-sm-1">
+    <div class="card card-inverse card-info text-xs-center width-card-acmd">
+      <div class="card-block">
+        <%= f.input :transportation_type, label: "<strong>Transport</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+        <%= f.input :departure_datetime, label: "<strong>Départ</strong>".html_safe, default: @transportation.trip.start_date %>
+        <%= f.input :arrival_time, label: "<strong>Heure d'arrivée</strong>".html_safe %>
+        <%= f.input :departure_city, label: "<strong>Ville de départ</strong>".html_safe %>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-2"></div>
+  <div class="col-sm-5">
+    <div class="card card-inverse card-info text-xs-center width-card-acmd">
+      <div class="card-block">
+        <%= f.input :reference_number, label: "<strong>Numéro de réservation</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
+        <%= f.input :company, label: "<strong>Société de transport</strong>".html_safe, placeholder: "Ex: THAI Arways" %>
+        <%= f.input :link, label: "<strong>Site correspondant</strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
+      </div>
+    </div>
+  </div>
 </div>
+<br>
+  <div class="row text-xs-center">
+    <%= link_to 'Annuler', root_path, class:"btn btn-warning" %>
+    <%= f.button :submit, "Valider", class:"btn btn-success" %>
+  </div>
+<% end %>

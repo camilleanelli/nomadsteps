@@ -16,7 +16,7 @@ class TransportationsController < ApplicationController
     @trip = current_user.trips.find(params[:trip_id])
     @transportation = @trip.transportations.find(params[:id])
     @transportation.update(params_transportation)
-    redirect_to trip_transportation_path
+    redirect_to root_path
   end
 
   def new
