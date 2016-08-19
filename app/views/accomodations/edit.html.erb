@@ -15,10 +15,17 @@
   </div>
   <div class="col-sm-4">
     <div class="card card-block width-card">
-      <%= f.input :link, label: "Lien utile", placeholder: "Ex:  https://www.airbnb.fr/" %>
+      <div class="col-sm-12">
+        <div class="col-sm-10"><%= f.input :link, label: false, placeholder: "Ex:  https://www.airbnb.fr/" %></div>
+        <div class="col-sm-2">
+          <%= link_to @accomodation.link do %>
+            <span class="tag tag-pill tag-info">Voir</span>
+            <% end %>
+        </div>
+      </div>
+
       <%= f.input :price, label: "<i class='fa fa-usd' aria-hidden='true'></i> Tarif".html_safe, input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
-
     </div>
   </div>
   <div class="col-sm-4">
