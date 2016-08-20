@@ -22,6 +22,7 @@
         <th>Fin</th>
         <th class="text-xs-center">Transport</th>
         <th>Logement</th>
+        <th></th>
         <th>Participant(s)</th>
       </tr>
     </thead>
@@ -64,8 +65,11 @@
             <% trip.accomodations.each do |acmd| %>
                 <li><%= link_to acmd.accomodation_type, edit_trip_accomodation_path(trip, acmd) %></li>
             <% end %>
-            <%= link_to '+', new_trip_accomodation_path(trip), class:"tag tag-pill tag-primary" %>
+
           <% end %>
+        </td>
+        <td>
+          <%= link_to '+', new_trip_accomodation_path(trip), class:"tag tag-pill tag-primary" unless trip.accomodations.empty? %>
         </td>
         <td>
 
