@@ -1,12 +1,21 @@
 <div class="row text-xs-center">
-  <h1>Détails de la réservation</h1>
+  <h1>Votre tranport pour <%= @transportation.trip.destination %></h1>
 </div>
 <br>
 <br>
 <div class="row">
   <div class="col-sm-6">
     <div class="card card-block">
-      <h4 class="card-title">Vous partez en <%= @transportation.transportation_type %> !</h4>
+      <div class="row">
+        <div class="col-sm-8">
+          <h4 class="card-title">Vous partez en <%= @transportation.transportation_type %> !</h4>
+        </div>
+        <div class="col-sm-4 text-xs-right">
+          <%= link_to 'Ajouter', new_trip_transportation_path, class:"btn btn-primary" %>
+        </div>
+      </div>
+
+
       <p><i class="fa fa-globe" aria-hidden="true"></i> Ville de départ : <%= @transportation.departure_city %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Départ : <%= (@transportation.departure_datetime).strftime("%d/%m/%Y à %H:%M" ) %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrivée : <%= (@transportation.arrival_time).to_formatted_s(:time) %> </p>
@@ -23,12 +32,12 @@
         <% end %>
       </p>
 
-      <div class="col-sm-12">
+      <div class="row">
         <div class="col-sm-8">
           <%= link_to 'Retour', root_path, class:"btn btn-warning" %>
           <%= link_to 'Modifier', edit_trip_transportation_path(@trip), class:"btn btn-primary" %>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-xs-right">
           <%= link_to "<i class='fa fa-trash-o fa-2x' aria-hidden='true'></i> Supprimer".html_safe, trip_transportation_path, method: :delete, data: { confirm: "Confirmez la suppression" } %>
         </div>
       </div>
