@@ -8,7 +8,7 @@
   <div class="col-sm-4">
     <div class="card card-block width-card">
         <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
-        Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Famille/amis", "Location", "Autre..."] %>
+        Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Guest House", "Famille/amis", "Location", "Autre..."] %>
         <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date d'arrivée".html_safe, default:  @trip.start_date %>
         <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de départ".html_safe, default:  @trip.end_date %>
     </div>
