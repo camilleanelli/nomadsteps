@@ -1,6 +1,11 @@
 class Accomodation < ApplicationRecord
   belongs_to :trip
 
+  validates :price, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates :number_of_persons, presence: true
+
   def count_night
     (self.end_date - self.start_date).to_i
   end
