@@ -18,6 +18,7 @@
   <div class="col-sm-5">
     <div class="card card-inverse card-info text-xs-center width-card-acmd">
       <div class="card-block">
+        <%= f.input :price, label: "<strong>Prix Total</strong>".html_safe, input_html: { value: "00" } %>
         <%= f.input :reference_number, label: "<strong>Numéro de réservation</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
         <%= f.input :company, label: "<strong>Société de transport</strong>".html_safe, placeholder: "Ex: THAI Arways" %>
         <%= f.input :link, label: "<strong>Site correspondant</strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>

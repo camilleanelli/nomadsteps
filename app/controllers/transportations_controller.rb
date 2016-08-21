@@ -44,6 +44,6 @@ class TransportationsController < ApplicationController
   private
 
   def params_transportation
-    params[:transportation].permit(:transportation_type, :reference_number, :link, :departure_datetime, :arrival_time, :departure_city, :company)
+    params[:transportation].permit(:transportation_type, :reference_number, :link, :departure_datetime, :arrival_time, :departure_city, :company, :price)
   end
 end
