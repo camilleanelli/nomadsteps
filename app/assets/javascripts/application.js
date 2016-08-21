@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require tether
-//= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
+//= require bootstrap
 //= require jquery_ujs
 //= require_tree .

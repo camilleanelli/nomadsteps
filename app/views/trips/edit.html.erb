@@ -6,6 +6,7 @@
 <div class="col-sm-6 offset-sm-3">
   <div class="card card-block text-xs-center">
       <%= simple_form_for @trip do |f| %>
+          <%= f.input :person_number, label: "Nombre de participants", input_html: { style: "width:50"} %>
           <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de début".html_safe %>
           <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> Date de fin".html_safe %>
           <%= f.input :destination, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination".html_safe %>

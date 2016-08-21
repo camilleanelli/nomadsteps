@@ -1,20 +1,18 @@
-<div class="container">
-  <div class="row text-xs-center">
+<div class="row text-xs-center">
     <h1>Ajouter un voyage!</h1>
-  </div>
+</div>
   <br>
   <br>
   <div class="row">
     <div class="col-xs-3"></div>
-    <div class="col-xs-6 text-xs-center">
-      <%= simple_form_for @trip do |f| %>
-        <%= f.input :start_date, label: "Date de début" %>
-        <%= f.input :end_date, label:"Date de fin"%>
-        <%= f.input :destination %>
-        <%= f.button :submit, "Valider", class: "btn btn-success" %> <%= link_to 'Annuler', root_path, class:"btn btn-warning" %>
-      <% end %>
-    </div>
+      <div class="col-sm-6 card card-block">
+          <%= simple_form_for @trip do |f| %>
+            <%= f.input :start_date, label: "Date de début" %>
+            <%= f.input :end_date, label:"Date de fin" %>
+            <%= f.input :destination  %>
+            <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, input_html: { value: 1, style: "width:50px" } %>
+            <%= f.button :submit, "Valider", class: "btn btn-success" %> <%= link_to 'Annuler', root_path, class:"btn btn-warning" %>
+          <% end %>
+        </div>
     <div class="col-xs-3"></div>
   </div>
-
-</div>
