@@ -7,8 +7,8 @@
     <div class="card card-inverse card-info text-xs-center width-card-acmd">
       <div class="card-block">
         <%= f.input :transportation_type, label: "<strong>Transport</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
-        <%= f.input :departure_datetime, label: "<strong>Départ</strong>".html_safe, default: @transportation.trip.start_date %>
-        <%= f.input :arrival_time, label: "<strong>Heure d'arrivée</strong>".html_safe %>
+        <%= f.input :departure_datetime, label: "<strong>Départ</strong>".html_safe %>
+        <%= f.input :arrival_datetime, label: "<strong>Heure d'arrivée</strong>".html_safe %>
         <%= f.input :departure_city, label: "<strong>Ville de départ</strong>".html_safe %>
       </div>
     </div>
@@ -16,6 +16,7 @@
   <div class="col-sm-5">
     <div class="card card-inverse card-info text-xs-center width-card-acmd">
       <div class="card-block">
+        <%= f.input :price, label: "<strong>Prix</strong>".html_safe %>
         <%= f.input :reference_number, label: "<strong>Numéro de réservation</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
         <%= f.input :company, label: "<strong>Société de transport</strong>".html_safe, placeholder: "Ex: THAI Arways" %>
         <%= f.input :link, label: "<strong>Site correspondant</strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>

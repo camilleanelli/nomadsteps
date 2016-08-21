@@ -14,17 +14,18 @@
           <%= link_to 'Ajouter', new_trip_transportation_path, class:"btn btn-primary" %>
         </div>
       </div>
-
-
       <p><i class="fa fa-globe" aria-hidden="true"></i> Ville de départ : <%= @transportation.departure_city %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Départ : <%= (@transportation.departure_datetime).strftime("%d/%m/%Y à %H:%M" ) %></p>
-      <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrivée : <%= (@transportation.arrival_time).to_formatted_s(:time) %> </p>
+      <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrivée : <%= (@transportation.arrival_datetime).strftime("%d/%m/%Y à %H:%M" ) %> </p>
+      <% if @transportation.price? %>
+        <p><i class="fa fa-eur" aria-hidden="true"></i> Prix : <%= number_to_currency(@transportation.price_per_personne, unit: "€") %> / par personne</p>
+      <% end %>
       <p>Réservation n°: <%= @transportation.reference_number %></p>
       <p>
         <% if @transportation.link? %>
-          <%= link_to @transportation.link, class:"btn btn-secondary btn-sm active" do %>
+          <%= link_to @transportation.link, target: "_blank", class:"btn btn-secondary btn-sm active" do %>
             <% if @transportation.company? %>
-              <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Voir ou s'enregistrer sur <%= @transportation.company %>
+              <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Voir ou s'enregistrer sur <%= (@transportation.company).capitalize %>
             <% else %>
               <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> S'enregistrer ou consulter le site
             <% end %>
