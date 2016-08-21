@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821090325) do
+ActiveRecord::Schema.define(version: 20160821113253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 20160821090325) do
     t.string   "reference_number"
     t.string   "link"
     t.datetime "departure_datetime"
-    t.time     "arrival_time"
     t.string   "departure_city"
     t.string   "company"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "trip_id"
     t.decimal  "price"
+    t.datetime "arrival_datetime"
     t.index ["trip_id"], name: "index_transportations_on_trip_id", using: :btree
   end
 

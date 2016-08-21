@@ -16,7 +16,7 @@
       </div>
       <p><i class="fa fa-globe" aria-hidden="true"></i> Ville de départ : <%= @transportation.departure_city %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Départ : <%= (@transportation.departure_datetime).strftime("%d/%m/%Y à %H:%M" ) %></p>
-      <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrivée : <%= (@transportation.arrival_time).to_formatted_s(:time) %> </p>
+      <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrivée : <%= (@transportation.arrival_datetime).strftime("%d/%m/%Y à %H:%M" ) %> </p>
       <% if @transportation.price? %>
         <p><i class="fa fa-eur" aria-hidden="true"></i> Prix : <%= number_to_currency(@transportation.price_per_personne, unit: "€") %> / par personne</p>
       <% end %>

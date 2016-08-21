@@ -27,7 +27,8 @@ class TransportationsController < ApplicationController
   def create
     @trip = current_user.trips.find(params[:trip_id])
     @transportation = @trip.transportations.new(params_transportation)
-    if @transportation.save
+
+    if @transportation.save!
       redirect_to root_path
     else
       redirect_to new_trip_transportation_path
@@ -44,6 +45,6 @@ class TransportationsController < ApplicationController
   private
 
   def params_transportation
-    params[:transportation].permit(:transportation_type, :reference_number, :link, :departure_datetime, :arrival_time, :departure_city, :company, :price)
+    params[:transportation].permit(:transportation_type, :reference_number, :link, :departure_datetime, :departure_city, :company, :price, :arrival_datetime)
   end
 end
