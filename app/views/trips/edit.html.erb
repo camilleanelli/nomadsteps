@@ -1,19 +1,29 @@
 <div class="row text-xs-center">
   <h1>Votre voyage à <%= @trip.destination %></h1>
+  <%= image_tag(@trip.image_trip) %>
 </div>
 <br>
 <br>
 <div class="col-sm-6 offset-sm-3">
   <div class="card card-block text-xs-center">
       <%= simple_form_for @trip do |f| %>
-          <%= f.input :person_number, label: "Nombre de participants", input_html: { style: "width:50"} %>
+
           <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de début".html_safe %>
           <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> Date de fin".html_safe %>
-          <%= f.input :destination, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination".html_safe %>
+          <div class="row">
+            <div class="col-sm-6">
+              <%= f.input :destination, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination".html_safe %>
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i> Participants".html_safe, input_html: { style: "width:50"} %>
+            </div>
+          </div>
           <br>
           <br>
-          <%= link_to 'Retour', root_path, class:"btn btn-warning" %>
-          <%= f.button :submit, "Modifier", class: "btn btn-success" %>
+          <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Retour".html_safe, root_path, class:"btn btn-warning" %>
+          <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
+          <% end %>
         <% end %>
     </div>
 
