@@ -42,6 +42,6 @@ class TripsController < ApplicationController
   end
 
   def params_trips
-    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude, :cloudinary_id, :person_number)
+    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip)
   end
 end
