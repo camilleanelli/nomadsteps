@@ -9,9 +9,12 @@
           <%= simple_form_for @trip do |f| %>
             <%= f.input :start_date, label: "Date de début" %>
             <%= f.input :end_date, label:"Date de fin" %>
-            <%= f.input :destination  %>
+            <%= f.input :destination, label: "Où allez vous?"  %>
             <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, input_html: { value: 1, style: "width:50px" } %>
-            <%= f.button :submit, "Valider", class: "btn btn-success" %> <%= link_to 'Annuler', root_path, class:"btn btn-warning" %>
+            <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
+            <% end %>
+            <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Annuler".html_safe, root_path, class:"btn btn-warning" %>
           <% end %>
         </div>
     <div class="col-xs-3"></div>
