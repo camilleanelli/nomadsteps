@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'trips#index'
 
   resources :trips, except: [:show] do
-    resources :transportations
+    resources :transportations do
+      resources :tickets, only: [:new, :create]
+    end
     resources :accomodations, only: [:new, :create, :edit, :update, :destroy]
   end
   resources :import_nomad_lists
