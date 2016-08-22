@@ -39,9 +39,10 @@ gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'ma
 # gem 'capistrano-rails', group: :development
 gem 'nokogiri'
 
-gem 'rails-assets-tether', '>= 1.1.0'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
-gem 'simple-form-datepicker', '~> 0.1.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
