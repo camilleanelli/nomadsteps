@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
-    @trips = current_user.trips.includes(:transportations, :accomodations, :users).order(start_date: :desc)
+    @trips = current_user.trips.includes(:transportations, :accomodations, :users).order(start_date: :desc).page(params[:page])
   end
 
   def edit
@@ -42,6 +42,6 @@ class TripsController < ApplicationController
   end
 
   def params_trips
-    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude)
+    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude, :cloudinary_id, :person_number)
   end
 end

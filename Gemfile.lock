@@ -1,5 +1,15 @@
+GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: be3a2c9a2182fae145e7ff88223feb4d55ed539d
+  branch: master
+  specs:
+    kaminari (1.0.0.alpha)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.0)
       actionpack (= 5.0.0)
@@ -182,7 +192,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (~> 4.0.0.alpha3)
+  bootstrap (~> 4.0.0.alpha3.1)
   bullet
   byebug
   coffee-rails (~> 4.2)
@@ -190,12 +200,13 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari!
   listen (~> 3.0.5)
   nokogiri
   pg
   puma (~> 3.0)
   rails (~> 5.0.0)
-  rails-assets-tether (>= 1.1.0)
+  rails-assets-tether (>= 1.1.0)!
   sass-rails (~> 5.0)
   simple_form
   spring

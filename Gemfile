@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
 gem 'devise'
 
@@ -28,6 +28,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem "font-awesome-rails"
+
+gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -37,7 +39,9 @@ gem "font-awesome-rails"
 # gem 'capistrano-rails', group: :development
 gem 'nokogiri'
 
-gem 'rails-assets-tether', '>= 1.1.0'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 
 group :development, :test do

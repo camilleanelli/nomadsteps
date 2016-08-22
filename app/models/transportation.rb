@@ -8,6 +8,6 @@ class Transportation < ApplicationRecord
   validates :price, presence: true
 
   def price_per_personne
-    self.price / 2
+    self.price / self.trip.person_number
   end
 end
