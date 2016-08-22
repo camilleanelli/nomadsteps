@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821133600) do
+ActiveRecord::Schema.define(version: 20160822112542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160821133600) do
     t.string   "country"
     t.string   "cloudinary_id"
     t.integer  "person_number"
+    t.string   "image_trip"
   end
 
   create_table "trips_users", id: false, force: :cascade do |t|
