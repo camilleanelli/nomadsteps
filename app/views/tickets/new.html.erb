@@ -1,1 +1,11 @@
-hello
+<%= simple_form_for [@trip, @transportation, @ticket] do |f|  %>
+  <%= f.input :cloudinary_id %>
+  <%= f.cl_image_upload(:cloudinary_id, folder: 'lenours') %>
+  <%= f.button :submit, "Valider" %>
+<% end %>
+
+<%= cloudinary_js_config %>
+<script>
+
+
+</script>

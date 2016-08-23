@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
     @transportation = @trip.transportations.find(params[:transportation_id])
     @ticket = @transportation.tickets.new(params_tickets)
     if @ticket.save!
-      redirect_to trip_transportation_path(@transportation)
+      redirect_to trip_transportation_path(@trip, @transportation)
     else
       render :new
     end

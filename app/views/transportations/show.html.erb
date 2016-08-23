@@ -46,8 +46,15 @@
   </div>
   <div class="col-sm-6">
     <div class="card card-block">
+      <% if @transportation.tickets.empty? %>
         <h4 class="card-title">Télécharger le(s) billet(s)</h4>
-          <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+        <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+      <% else %>
+      <% @transportation.tickets.each do |ticket| %>
+         <%= cl_image_tag(ticket.cloudinary_id) %>
+      <% end %>
+      <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+    <% end %>
     </div>
   </div>
 </div>

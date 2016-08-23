@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dflfpf6ka
+  api_key: '112971144857256'
+  api_secret: nrVUxbGNr_BACeLLi3P_Ga8HQzQ
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dflfpf6ka
+  api_key: '112971144857256'
+  api_secret: nrVUxbGNr_BACeLLi3P_Ga8HQzQ
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dflfpf6ka
+  api_key: '112971144857256'
+  api_secret: nrVUxbGNr_BACeLLi3P_Ga8HQzQ
+  enhance_image_tag: true
+  static_image_support: false
