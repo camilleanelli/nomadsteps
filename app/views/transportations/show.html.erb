@@ -50,11 +50,17 @@
         <h4 class="card-title">Télécharger le(s) billet(s)</h4>
         <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
       <% else %>
+      <div class="col-sm-8">
+        <h4 class="card-title">Billet(s)</h4>
+      </div>
+      <div class="col-sm-4 text-xs-right">
+        <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+      </div>
       <% @transportation.tickets.each do |ticket| %>
-         <%= cl_image_tag(ticket.cloudinary_id) %>
+        <div class="col-sm-6">
+        </div>
+
       <% end %>
-      <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
-    <% end %>
     </div>
   </div>
 </div>

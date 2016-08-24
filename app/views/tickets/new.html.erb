@@ -1,10 +1,14 @@
 <%= simple_form_for [@trip, @transportation, @ticket] do |f|  %>
-  <%= f.input :cloudinary_id %>
-  <%= f.cl_image_upload(:cloudinary_id, folder: 'lenours') %>
+  <progress class="progress" value="0" max="100" aria-describedby="example-caption-6">
+  <div class="progress">
+    <span class="progress-bar" style="width: 25%;">
+    </span>
+  </div>
+</progress>
+
   <%= f.button :submit, "Valider" %>
 <% end %>
 
-<%= cloudinary_js_config %>
 <script>
 
 
