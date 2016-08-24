@@ -11,8 +11,30 @@
 // about supported directives.
 //
 //= require jquery
-//= require tether
-
-//= require bootstrap
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require tether
+//= require bootstrap
 //= require_tree .
+
+// $(document).on('ready', function() {
+//   console.log(" jQuery Ready!");
+//
+//   $('.cloudinary-fileupload').bind('cloudinarysend', function(e, data) {
+//   console.log(e,data);
+//   });
+//   $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+//   console.log(e,data);
+//   });
+//   $(function() {
+//     if ($.fn.cloudinary_fileupload !== undefined) {
+//       if ($("input.cloudinary-fileupload[type=file]").length) {
+//         $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+//       } else {
+//         console.warn("`input.cloudinary-fileupload[type=file]` Not found.");
+//       }
+//     } else {
+//       console.warn("`$.fn.cloudinary_fileupload` is undefined");
+//     }
+//   });
+// });

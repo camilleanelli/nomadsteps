@@ -46,9 +46,21 @@
   </div>
   <div class="col-sm-6">
     <div class="card card-block">
+      <% if @transportation.tickets.empty? %>
         <h4 class="card-title">Télécharger le(s) billet(s)</h4>
-        <!-- todo : ajouter upload d'image
-        numero de resa + prix -->
+        <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+      <% else %>
+      <div class="col-sm-8">
+        <h4 class="card-title">Billet(s)</h4>
+      </div>
+      <div class="col-sm-4 text-xs-right">
+        <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+      </div>
+      <% @transportation.tickets.each do |ticket| %>
+        <div class="col-sm-6">
+        </div>
+
+      <% end %>
     </div>
   </div>
 </div>
