@@ -4,3 +4,17 @@
 .width-card-acmd {
   height: 400px;
 }
+
+.card-box {
+  background-color: #BDC3C7;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.box-files {
+  border-radius: 5px;
+  padding: 3px;
+  &:hover {
+    background-color: pink;
+  }
+}

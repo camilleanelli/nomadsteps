@@ -1,15 +1,4 @@
 <%= simple_form_for [@trip, @transportation, @ticket] do |f|  %>
-  <progress class="progress" value="0" max="100" aria-describedby="example-caption-6">
-  <div class="progress">
-    <span class="progress-bar" style="width: 25%;">
-    </span>
-  </div>
-</progress>
-
-  <%= f.button :submit, "Valider" %>
-<% end %>
-
-<script>
-
-
-</script>
+  <%= f.filepicker_field :filepicker_url, button_text: "Télécharger", button_class:"btn btn-warning", extensions: ".png, .pdf", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
+  <%= f.submit "Valider", class:"btn btn-primary" %>
+  <% end %>

@@ -23,7 +23,7 @@ class TicketsController < ApplicationController
   private
 
   def params_tickets
-    params[:ticket].permit(:cloudinary_id, :transportation_id)
+    params[:ticket].permit(:cloudinary_id, :transportation_id, :filepicker_url)
   end
 
 end

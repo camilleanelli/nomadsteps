@@ -45,17 +45,27 @@
     </div>
   </div>
   <div class="col-sm-6">
-    <div class="card card-block">
+<div class="col-sm-12 card-box text-xs-center">
       <% if @transportation.tickets.empty? %>
-        <h4 class="card-title">Télécharger le(s) billet(s)</h4>
-        <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+        <h4>Télécharger le(s) billet(s)</h4>
+        <%= simple_form_for [@trip, @transportation, @transportation.tickets.new] do |f|  %>
+          <%= f.filepicker_field :filepicker_url, button_text: "Télécharger", button_class:"btn btn-warning", extensions: ".png, .pdf", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
+          <%= f.submit "Valider", class:"btn btn-primary" %>
+        <% end %>
       <% else %>
       <div class="col-sm-8">
-        <h4 class="card-title">Billet(s)</h4>
+        <h4>Vos billets</h4>
       </div>
-      <div class="col-sm-4 text-xs-right">
-        <%= link_to "Ajouter", new_trip_transportation_ticket_path(@trip, @transportation) %>
+      <div class="col-sm-4">
+        <%= link_to 'Ajouter', new_trip_transportation_ticket_path(@trip, @transportation) %>
       </div>
+      <% @transportation.tickets.each do |ticket| %>
+          <div class="col-sm-6 box-files">
+          <%= link_to ticket.filepicker_url do %>
+            <%= filepicker_image_tag ticket.filepicker_url, w: 300, h: 300, fit: 'clip' %>
+          <%  end %>
+        </div>
+      <% end %>
     <% end %>
     </div>
   </div>
