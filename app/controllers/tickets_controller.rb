@@ -20,6 +20,14 @@ class TicketsController < ApplicationController
     end
   end
 
+  def destroy
+    @trip = current_user.trips.find(params[:trip_id])
+    @transportation = @trip.transportations.find(params[:transportation_id])
+    @ticket = @transportation.tickets.find(params[:id])
+    @ticket.destroy
+    redirect_to trip_transportation_path(@trip, @transportation)
+  end
+
   private
 
   def params_tickets

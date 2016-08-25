@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :trips, except: [:show] do
     resources :transportations do
-      resources :tickets, only: [:new, :create]
+      resources :tickets, only: [:new, :create, :destroy]
     end
     resources :accomodations, only: [:new, :create, :edit, :update, :destroy]
   end
