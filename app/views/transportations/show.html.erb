@@ -4,6 +4,8 @@
 <br>
 <br>
 <div class="row">
+
+  <!-- details of transportation -->
   <div class="col-sm-6">
     <div class="card card-block">
       <div class="row">
@@ -44,45 +46,44 @@
       </div>
     </div>
   </div>
+
+  <!-- Billets -->
   <div class="col-sm-6">
-  <div class="col-sm-12 card-box text-xs-center">
-    <div class="row">
-      <div class="col-sm-8">
-        <h4><%= title_upload %></h4>
-      </div>
-      <br>
-      <br>
-      <% if @transportation.tickets.empty? %>
-      <div class="col-sm-12">
+    <div class="col-sm-12 card-box text-xs-center">
+      <div class="row">
+        <div class="col-sm-8">
+          <h4><%= title_upload %></h4>
+        </div>
+        <% if @transportation.tickets.empty? %>
+        <div class="col-sm-12">
         <%= simple_form_for [@trip, @transportation, @transportation.tickets.new] do |f|  %>
-          <%= f.filepicker_field :filepicker_url, button_text: "Télécharger", button_class:"btn btn-warning", extensions: ".png, .pdf", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
+          <%= f.filepicker_field :filepicker_url, button_text: "Télécharger", button_class:"btn btn-warning", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
           <%= f.submit "Valider", class:"btn btn-primary" %>
         <% end %>
-      </div>
-      <% else %>
+        </div>
+        <% else %>
         <div class="col-sm-4">
           <%= link_to 'Ajouter', new_trip_transportation_ticket_path(@trip, @transportation), class:"btn btn-primary" %>
         </div>
       </div>
       <br>
       <br>
-
-      <% @transportation.tickets.each do |ticket| %>
-      <div class="col-sm-6">
-        <div class="box-files">
-          <%= link_to ticket.filepicker_url do %>
-          <%= filepicker_image_tag ticket.filepicker_url, w: 300, h: 300, fit: 'clip' %>
-        <% end %>
+      <div class="col-sm-12">
+        <% @transportation.tickets.each do |ticket| %>
+        <div class="col-sm-6">
+          <div class="box-files">
+            <%= link_to ticket.filepicker_url do %>
+              <%= filepicker_image_tag ticket.filepicker_url, w: 300, h: 300, fit: 'clip' %>
+            <% end %>
+          </div>
+          <%= link_to trip_transportation_ticket_path(@trip, @transportation, ticket), method: :delete do %>
+            <i class='fa fa-trash-o fa-2x' aria-hidden='true'></i>
+            <% end %>
         </div>
-        <%= link_to trip_transportation_ticket_path(@trip, @transportation, ticket), method: :delete do %>
-          <i class='fa fa-trash-o fa-2x' aria-hidden='true'></i>
-          <% end %>
-      </div>
-
-
-
+        <% end %>
       <% end %>
-    <% end %>
+      </div>
     </div>
   </div>
+
 </div>

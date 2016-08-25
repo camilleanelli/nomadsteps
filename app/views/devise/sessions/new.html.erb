@@ -1,15 +1,20 @@
-<h2>Log in</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="col-sm-6 offset-sm-3">
+  <div class="card card-outline-primary">
+    <div class="card-block">
+      <h3 class="card-title">Connection</h3>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email, class:"card-text", required: false, autofocus: true %>
+          <%= f.input :password, label: "Mot de passe", required: false %>
+          <%= f.input :remember_me, label: "Mémoriser le mot de passe", as: :boolean if devise_mapping.rememberable? %>
+        </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Valider", class:"btn btn-primary" %>
+      </div>
+    <% end %>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Mot de passe oublié?", new_password_path(resource_name) %><br />
+    <% end -%>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

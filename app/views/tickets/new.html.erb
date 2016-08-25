@@ -1,4 +1,4 @@
 <%= simple_form_for [@trip, @transportation, @ticket] do |f|  %>
-  <%= f.filepicker_field :filepicker_url, button_text: "Télécharger", button_class:"btn btn-warning", extensions: ".png, .pdf", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
+  <%= f.filepicker_field :filepicker_url, button_text: "Télécharger", button_class:"btn btn-warning", extensions: ".pdf, .png", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
   <%= f.submit "Valider", class:"btn btn-primary" %>
   <% end %>
