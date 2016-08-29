@@ -16,7 +16,7 @@
           <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> Date de fin".html_safe %>
           <div class="row">
             <div class="col-sm-6">
-              <%= f.input :destination, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination".html_safe %>
+              <%= f.input :destination, input_html: {id: :autocomplete}, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination".html_safe %>
             </div>
             <div class="col-sm-6">
               <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i> Participants".html_safe, input_html: { style: "width:50"} %>
@@ -30,5 +30,22 @@
           <% end %>
         <% end %>
     </div>
-
   </div>
+<script>
+  var autocomplete;
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      {types: ['geocode']});
+      autocomplete.addListener('place_changed', function(){
+        var place = autocomplete.getPlace();
+        var longitude = place.geometry.location.lng()
+        var latitude = place.geometry.location.lat()
+        console.log(longitude);
+        console.log(latitude);
+      });
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete"
+    async defer>
+    </script>
