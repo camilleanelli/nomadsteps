@@ -8,12 +8,13 @@
     <%= link_to "<i class='fa fa-upload'></i> Importer de Nomad List".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
     <%= link_to "<i class='fa fa-plus'></i> Ajouter un voyage".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
   </div>
-
 </div>
 <br>
 <br>
 <div class="row">
   <div class="container">
+    <div class="card card-outline-primary text-xs-center">
+      <div class="card-block">
     <table class="table table-hover">
     <thead>
       <tr>
@@ -33,7 +34,7 @@
         <td>
           <%= link_to edit_trip_path(trip), class:"color-link-city" do %>
             <div  data-toggle="tooltip" data-placement="left" title="Voir ou modifier">
-              <%= trip.destination %>
+              <%= trip.destination %>, <%= trip.country %>
             </div>
           <% end %>
         <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
@@ -94,15 +95,16 @@
   </table>
   </div>
 </div>
+</div>
+</div>
 <% else %>
-<div class="row">
-  <div class="col-sm-6">
+<div class="col-sm-6 offset-sm-3">
+  <div class="card card-outline-primary text-xs-center">
+    <div class="card-block">
     <%= link_to 'Ajouter mon premier voyage', new_trip_path, class: "btn btn-outline-primary" %>
-  </div>
-  <div class="col-sm-6 text-xs-right">
     <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class: "btn btn-outline-primary" %>
   </div>
-
+  </div>
 </div>
 <% end %>
 <div class="row text-xs-center">
