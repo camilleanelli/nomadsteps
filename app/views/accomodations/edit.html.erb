@@ -9,12 +9,14 @@
     <div class="card card-block width-card">
         <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
         Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Guest House", "Famille/amis", "Location", "Autre..."] %>
+        <%= f.input :address, label: "Adresse", input_html: { id: :autocomplete } %>
         <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date d'arrivée".html_safe, default:  @trip.start_date %>
         <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de départ".html_safe, default:  @trip.end_date %>
     </div>
   </div>
   <div class="col-sm-4">
     <div class="card card-block width-card">
+      <%= f.input :contact %>
       <div class="col-sm-12">
         <div class="col-sm-10"><%= f.input :link, label: false, placeholder: "Ex:  https://www.airbnb.fr/" %></div>
         <div class="col-sm-2">
@@ -24,7 +26,7 @@
         </div>
       </div>
 
-      <%= f.input :price, label: "<i class='fa fa-usd' aria-hidden='true'></i> Tarif".html_safe, input_html: { style: 'width:100px' } %>
+      <%= f.input :price, label: "Coût de la réservation", input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
     </div>
   </div>
@@ -48,3 +50,24 @@
   <%= link_to 'Supprimer', trip_accomodation_path, method: :delete, data: { confirm: "Confirmer la suppression" }, class:"btn btn-danger" %>
 </div>
 <% end %>
+<script>
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+
+var autocomplete;
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+    {types: ['geocode']});
+    autocomplete.addListener('place_changed', function(){
+      var place = autocomplete.getPlace();
+      var longitude = place.geometry.location.lng()
+      var latitude = place.geometry.location.lat()
+      console.log(longitude);
+      console.log(latitude);
+    });
+  }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete"
+  async defer>
+  </script>

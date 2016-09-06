@@ -42,6 +42,6 @@ class AccomodationsController < ApplicationController
   private
 
   def accomodation_params
-    params[:accomodation].permit(:accomodation_type, :start_date, :end_date, :price, :link, :number_of_persons, :trip_id)
+    params[:accomodation].permit(:accomodation_type, :start_date, :end_date, :price, :link, :number_of_persons, :trip_id, :contact, :address, :longitude, :latitude )
   end
 end
