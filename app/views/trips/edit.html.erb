@@ -1,5 +1,8 @@
 <div class="row text-xs-center">
   <h1>Votre voyage à <%= @trip.destination %></h1>
+  <p>
+    <%= @place.info.weather.type %>
+  </p>
   <% if @trip.image_trip == nil %>
     <%= image_tag("image_trip.svg", width:100, height:100) %>
   <% else %>

@@ -3,9 +3,11 @@ class TripsController < ApplicationController
 
   def index
     @trips = current_user.trips.includes(:transportations, :accomodations, :users).order(start_date: :desc).page(params[:page])
+
   end
 
   def edit
+    @place = Nomadlist::City.find(params[@trip.city_details]).result[0]
   end
 
   def update
@@ -42,6 +44,6 @@ class TripsController < ApplicationController
   end
 
   def params_trips
-    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip)
+    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details)
   end
 end
