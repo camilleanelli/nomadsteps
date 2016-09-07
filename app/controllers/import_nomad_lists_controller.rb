@@ -8,7 +8,8 @@ class ImportNomadListsController < ApplicationController
                                              image_trip: "https://nomadlist.com" + hash["place_photo"],
                                              country: hash["country"],
                                              longitude: hash["longitude"],
-                                             latitude: hash["latitude"]
+                                             latitude: hash["latitude"],
+                                             person_number: 1
                                              )
       end
       redirect_to root_path

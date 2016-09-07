@@ -32,11 +32,50 @@
     <tbody>
     <tr class="trips_content">
         <td>
-          <%= link_to edit_trip_path(trip), class:"color-link-city" do %>
-            <div  data-toggle="tooltip" data-placement="left" title="Voir ou modifier">
-              <%= trip.destination %>, <%= trip.country %>
+          <a href="#" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
+            <%= trip.destination %>, <%= trip.country %>
+          </a>
+          <!-- modal  -->
+          <div class="modal fade" id="myModal-<%= trip.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">Mon voyage à <%= trip.destination %></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <% if trip.image_trip == nil %>
+                        <%= image_tag("image_trip.svg", width:100, height:100) %>
+                      <% else %>
+                      <%= image_tag(trip.image_trip, class:"img-circle", width:100, height:100) %>
+                      <% end %>
+                    </div>
+                    <div class="col-xs-8 text-xs-left">
+                      <p>
+                        <i class="fa fa-calendar" aria-hidden="true"></i> Date de début : <%= (trip.start_date).strftime('%d/%m/%Y') %>
+                      </p>
+                      <p>
+                        <i class="fa fa-calendar" aria-hidden="true"></i> Date de fin : <%= (trip.end_date).strftime('%d/%m/%Y') %>
+                      </p>
+                      <p>
+                        <i class="fa fa-suitcase" aria-hidden="true"></i> Voyageur(s) : <%= trip.person_number %>
+                      </p
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                  <%= link_to "Modifier", edit_trip_path(trip), class:"btn btn-primary" %>
+                </div>
+              </div>
             </div>
-          <% end %>
+          </div>
+          
+        </td>
         <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
         <td><%= trip.days_number %></td>
         <td><%= (trip.end_date).strftime('%d/%m/%Y') %></td>
