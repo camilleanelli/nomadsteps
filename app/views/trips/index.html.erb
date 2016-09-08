@@ -33,7 +33,7 @@
     <tr class="trips_content">
         <td>
           <a href="#" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
-            <%= trip.destination %>, <%= trip.country %>
+            <%= trip.destination %>
           </a>
           <!-- modal  -->
           <div class="modal fade" id="myModal-<%= trip.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,7 +74,7 @@
               </div>
             </div>
           </div>
-          
+
         </td>
         <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
         <td><%= trip.days_number %></td>

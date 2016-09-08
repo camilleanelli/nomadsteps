@@ -6,7 +6,6 @@ class ImportNomadListsController < ApplicationController
                                              end_date: hash["date_end"],
                                              destination: hash["place"],
                                              image_trip: "https://nomadlist.com" + hash["place_photo"],
-                                             country: hash["country"],
                                              longitude: hash["longitude"],
                                              latitude: hash["latitude"],
                                              person_number: 1,
