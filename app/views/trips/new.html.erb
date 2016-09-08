@@ -10,9 +10,10 @@
     <%= f.input :start_date, label: "Date de début" %>
     <%= f.input :end_date, label:"Date de fin" %>
     <%= f.input :destination, label: "Où allez vous?", input_html: {id: :autocomplete}, placeholder: "Indiquer une ville"  %>
-    <%= f.input :country, as: :hidden, input_html: { id: :autocomplete} %>
-    <%= f.input :longitude, input_html: {id: :autocomplete}, as: :hidden %>
-    <%= f.input :latitude, input_html: {id: :autocomplete}, as: :hidden %>
+    <%= f.input :country, as: :hidden %>
+    <%= f.input :longitude %>
+    <%= f.input :latitude %>
+     <%= text_field_tag(:google_info) %>
     <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, input_html: { value: 1, style: "width:50px" } %>
     <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
     <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
@@ -35,10 +36,13 @@ function initAutocomplete() {
     {types: ['geocode']});
     autocomplete.addListener('place_changed', function(){
       var place = autocomplete.getPlace();
-      var longitude = place.geometry.location.lng()
-      var latitude = place.geometry.location.lat()
-      console.log(longitude);
-      console.log(latitude);
+      var longitude = place.geometry.location.lng();
+      var latitude = place.geometry.location.lat();
+      var country = place.country_name
+      $('#trip_longitude').val(longitude);
+      $('#trip_latitude').val(latitude);
+      $('#trip_country').val(country);
+      $('#google_info').val(JSON.stringify(place));
     });
   }
   </script>
