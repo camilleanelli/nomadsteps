@@ -13,7 +13,7 @@ class TripsController < ApplicationController
   def update
     @trip.update(params_trips)
     if @trip.save
-      redirect_to root_path
+      redirect_to trips_path
     else
       render :new
     end
@@ -24,6 +24,7 @@ class TripsController < ApplicationController
   end
 
   def create
+  
     @trip = Trip.new(params_trips)
 
     if @trip.save
@@ -34,7 +35,7 @@ class TripsController < ApplicationController
 
   def destroy
     @trip.destroy
-    redirect_to root_path
+    redirect_to trips_path
   end
 
   private
@@ -44,6 +45,6 @@ class TripsController < ApplicationController
   end
 
   def params_trips
-    params[:trip].permit(:start_date, :end_date, :destination, :country, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details, :google_info)
+    params[:trip].permit(:start_date, :end_date, :destination, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details, :google_info)
   end
 end

@@ -30,5 +30,37 @@
   text-decoration: none;
 }
 .cancel-red {
-  color: #D24D57;
+  color: #F62459;
+}
+
+.link-add a {
+  color: #55595c;
+  &:hover {
+    text-decoration: none;
+    color: black;
+    }
+}
+
+.link-add:hover {
+  padding: 2px;
+  color: #55595c;
+  background-color: #F62459;
+  border-radius: 5px;
+}
+
+.link-trip {
+  color: #55595c;
+  &:hover {
+    text-decoration: none;
+    color: #F62459;
+  }
+}
+
+.li-menu a{
+  color: white;
+  margin-left: 10px;
+  &:hover {
+    color: #F62459;
+    text-decoration: none;
+  }
 }

@@ -1,5 +1,5 @@
 <div class="row text-xs-center">
-    <h1>Où allez vous dormir à <%= @trip.destination %> ?</h1>
+    <h1>Where did you sleep in <%= @trip.destination %> ?</h1>
 </div>
 <br>
 <br>
@@ -10,6 +10,8 @@
           <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
  Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Guest House", "Famille/amis", "Location", "Autre..."] %>
           <%= f.input :address, label: "Adresse", input_html: {id: :autocomplete} %>
+          <%= f.input :longitude, as: :hidden %>
+          <%= f.input :latitude, as: :hidden %>
           <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date d'arrivée".html_safe, default:  @trip.start_date %>
           <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de départ".html_safe, default:  @trip.end_date %>
         </div>
@@ -24,8 +26,8 @@
       </div>
     </div>
       <div class="row text-xs-center">
-        <%= link_to 'Annuler', root_path, class:"btn btn-warning" %> |
-        <%= f.button :submit, "Valider", class: "btn btn-success" %>
+        <%= link_to 'Cancel', trips_path, class:"btn btn-warning" %> |
+        <%= f.button :submit, "Submit", class: "btn btn-success" %>
       </div>
       <% end %>
       <script>
@@ -41,8 +43,9 @@
             var place = autocomplete.getPlace();
             var longitude = place.geometry.location.lng()
             var latitude = place.geometry.location.lat()
-            console.log(longitude);
-            console.log(latitude);
+            $('#accomodation_longitude').val(longitude);
+            $('#accomodation_latitude').val(latitude);
+            $('#google_info').val(JSON.stringify(place));
           });
         }
         </script>

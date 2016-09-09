@@ -10,14 +10,19 @@
     <%= f.input :start_date, label: "Date de début" %>
     <%= f.input :end_date, label:"Date de fin" %>
     <%= f.input :destination, label: "Où allez vous?", input_html: {id: :autocomplete}, placeholder: "Indiquer une ville"  %>
-    <%= f.input :country, as: :hidden, input_html: { id: :autocomplete} %>
-    <%= f.input :longitude, input_html: {id: :autocomplete}, as: :hidden %>
-    <%= f.input :latitude, input_html: {id: :autocomplete}, as: :hidden %>
+    <%= f.input :longitude, as: :hidden %>
+    <%= f.input :latitude, as: :hidden %>
+      <div class="hidden-xs-up">
+        <input type="text" name="trip[google_info]" id="google_info" value="">
+      </div>
+
+
+
     <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, input_html: { value: 1, style: "width:50px" } %>
     <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
     <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
     <% end %>
-    <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Annuler".html_safe, root_path, class:"btn btn-warning" %>
+    <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Annuler".html_safe, trips_path, class:"btn btn-warning" %>
     <% end %>
   </div>
   <div class="col-xs-3"></div>
@@ -35,10 +40,12 @@ function initAutocomplete() {
     {types: ['geocode']});
     autocomplete.addListener('place_changed', function(){
       var place = autocomplete.getPlace();
-      var longitude = place.geometry.location.lng()
-      var latitude = place.geometry.location.lat()
-      console.log(longitude);
-      console.log(latitude);
+      var longitude = place.geometry.location.lng();
+      var latitude = place.geometry.location.lat();
+      var country = place.country_name
+      $('#trip_longitude').val(longitude);
+      $('#trip_latitude').val(latitude);
+      $('#google_info').val(JSON.stringify(place));
     });
   }
   </script>
