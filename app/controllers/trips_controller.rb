@@ -13,7 +13,7 @@ class TripsController < ApplicationController
   def update
     @trip.update(params_trips)
     if @trip.save
-      redirect_to root_path
+      redirect_to trips_path
     else
       render :new
     end
@@ -35,7 +35,7 @@ class TripsController < ApplicationController
 
   def destroy
     @trip.destroy
-    redirect_to root_path
+    redirect_to trips_path
   end
 
   private

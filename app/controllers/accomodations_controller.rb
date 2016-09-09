@@ -14,7 +14,7 @@ class AccomodationsController < ApplicationController
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.new(accomodation_params)
     if @accomodation.save
-      redirect_to root_path
+      redirect_to trips_path
     else
       render :new
     end
@@ -23,20 +23,22 @@ class AccomodationsController < ApplicationController
   def edit
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
+    @lat = @accomodation.latitude
+    @lon = @accomodation.longitude
   end
 
   def update
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
     @accomodation.update(accomodation_params)
-    redirect_to root_path
+    redirect_to trips_path
   end
 
   def destroy
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
     @accomodation.destroy
-    redirect_to root_path
+    redirect_to trips_path
   end
 
   private

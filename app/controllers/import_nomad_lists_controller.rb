@@ -12,6 +12,6 @@ class ImportNomadListsController < ApplicationController
                                              city_details: hash["place"] + "-" + hash["country"]
                                              )
       end
-      redirect_to root_path
+      redirect_to trips_path
   end
 end
