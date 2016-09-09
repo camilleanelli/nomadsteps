@@ -1,9 +1,10 @@
+
+<% if @trips.count > 0 %>
 <div class="row text-xs-center">
   <h1>Mes voyages</h1>
 </div>
 <br>
 <br>
-<% if @trips.count > 0 %>
   <div class="row text-xs-right">
     <%= link_to "<i class='fa fa-upload'></i> Importer de Nomad List".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
     <%= link_to "<i class='fa fa-plus'></i> Ajouter un voyage".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
@@ -13,26 +14,31 @@
 <br>
 <div class="row">
   <div class="container">
-    <div class="card card-outline-primary text-xs-center">
+    <div class="card card-inverse text-xs-center">
       <div class="card-block">
     <table class="table table-hover">
     <thead>
       <tr>
         <th>Destination</th>
-        <th>Début</th>
-        <th>Jours</th>
-        <th>Fin</th>
-        <th class="text-xs-center">Transport</th>
-        <th>Logement</th>
-        <th></th>
-        <th>Participant(s)</th>
+        <th>Start</th>
+        <th>Days</th>
+        <th>End</th>
+        <th>Transportation</th>
+        <th>Accomodation</th>
+        <th>Traveler(s)</th>
+        <th>
+          Total price
+        </th>
+        <th>
+          Delete
+        </th>
       </tr>
     </thead>
     <% @trips.each do |trip| %>
     <tbody>
     <tr class="trips_content">
         <td>
-          <a href="#" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
+          <a href="#", class="link-trip" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
             <%= trip.destination %>
           </a>
           <!-- modal  -->
@@ -56,20 +62,20 @@
                     </div>
                     <div class="col-xs-8 text-xs-left">
                       <p>
-                        <i class="fa fa-calendar" aria-hidden="true"></i> Date de début : <%= (trip.start_date).strftime('%d/%m/%Y') %>
+                        <i class="fa fa-calendar" aria-hidden="true"></i> Start date : <%= (trip.start_date).strftime('%d/%m/%Y') %>
                       </p>
                       <p>
-                        <i class="fa fa-calendar" aria-hidden="true"></i> Date de fin : <%= (trip.end_date).strftime('%d/%m/%Y') %>
+                        <i class="fa fa-calendar" aria-hidden="true"></i> End date : <%= (trip.end_date).strftime('%d/%m/%Y') %>
                       </p>
                       <p>
-                        <i class="fa fa-suitcase" aria-hidden="true"></i> Voyageur(s) : <%= trip.person_number %>
+                        <i class="fa fa-suitcase" aria-hidden="true"></i> Travelers) : <%= trip.person_number %>
                       </p
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                  <%= link_to "Modifier", edit_trip_path(trip), class:"btn btn-primary" %>
+                  <%= link_to "Edit trip", edit_trip_path(trip), class:"btn btn-primary" %>
                 </div>
               </div>
             </div>
@@ -77,11 +83,11 @@
 
         </td>
         <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
-        <td><%= trip.days_number %></td>
+        <td><strong><%= trip.days_number %></strong> <i class="fa fa-heart" aria-hidden="true" style="color:#F62459"></i></td>
         <td><%= (trip.end_date).strftime('%d/%m/%Y') %></td>
-        <td class="text-xs-center">
+        <td>
           <% if trip.transportations.empty? %>
-              <%= link_to 'Ajouter', new_trip_transportation_path(trip) %>
+              <%= link_to 'Add', new_trip_transportation_path(trip) %>
             <% else %>
               <% trip.transportations.each do |transport| %>
                 <% if transport.transportation_type == "Avion" %>
@@ -102,19 +108,17 @@
         </td>
         <td>
           <% if trip.accomodations.empty? %>
-            <%= link_to 'Ajouter', new_trip_accomodation_path(trip) %>
+          <div class="link-add">
+            <%= link_to ' + Add', new_trip_accomodation_path(trip) %>
+          </div>
+
           <% else %>
             <% trip.accomodations.each do |acmd| %>
-                <li><%= link_to acmd.accomodation_type, edit_trip_accomodation_path(trip, acmd) %></li>
+                <li class="list-unstyled"><%= link_to acmd.accomodation_type, edit_trip_accomodation_path(trip, acmd) %></li>
             <% end %>
-
           <% end %>
         </td>
         <td>
-          <%= link_to '+', new_trip_accomodation_path(trip), class:"tag tag-pill tag-primary" unless trip.accomodations.empty? %>
-        </td>
-        <td>
-
         <% if trip.users.empty? %>
           <%= current_user.first_name  %>
         <% else %>
@@ -122,6 +126,9 @@
              <%= user.first_name %>
           <% end %>
         <% end %>
+        </td>
+        <td>
+          Total price
         </td>
         <td class="text-xs-center">
           <%= link_to trip, method: :delete, data: { confirm: "Confirmez la suppression du voyage"} do %>
@@ -137,11 +144,20 @@
 </div>
 </div>
 <% else %>
-<div class="col-sm-6 offset-sm-3">
-  <div class="card card-outline-primary text-xs-center">
-    <div class="card-block">
+<div class="row text-xs-center">
+  <h2>You don't have any trips for the moment. </h2>
+  <h3>Add your first trip!</h3>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-6 text-xs-right">
     <%= link_to 'Ajouter mon premier voyage', new_trip_path, class: "btn btn-outline-primary" %>
-    <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class: "btn btn-outline-primary" %>
+  </div>
+    <div class="col-md-6">
+      <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class: "btn btn-outline-primary" %>
+    </div>
+
   </div>
   </div>
 </div>

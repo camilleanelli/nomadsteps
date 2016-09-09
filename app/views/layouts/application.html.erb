@@ -11,16 +11,20 @@
   <body>
     <header>
       <nav class="navbar navbar-fixed-top navbar-full navbar-dark bg-inverse">
-        <ul>
-          <li class="nav-item">
+
+
             <%= link_to 'NomadTrip', trips_path, class:"navbar-brand" %>
-          </li>
+          <ul class="nav navbar-nav pull-xs-right">
+
           <% if user_signed_in? %>
-          <li class="nav-item pull-xs-right">
-            <%= link_to 'Se déconnecter', destroy_user_session_path, :method => :delete, class:"btn btn-outline-primary" %>
+          <li class="nav-item li-menu">
+            <%= link_to "My trips", trips_path %>
+          </li>
+          <li class="nav-item li-menu">
+            <%= link_to 'Se déconnecter', destroy_user_session_path, :method => :delete %>
           </li>
           <% else %>
-          <li class="nav-item pull-xs-right">
+          <li class="nav-item li-menu"
             <%= link_to "Créer un compte", new_user_registration_path, class:"btn btn-outline-primary" %>
           </li>
         <% end %>
