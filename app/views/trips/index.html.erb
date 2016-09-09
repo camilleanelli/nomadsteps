@@ -16,31 +16,32 @@
   <div class="container">
     <div class="card card-inverse text-xs-center">
       <div class="card-block">
-    <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Destination</th>
-        <th>Start</th>
-        <th>Days</th>
-        <th>End</th>
-        <th>Transportation</th>
-        <th>Accomodation</th>
-        <th>Traveler(s)</th>
-        <th>
-          Total price
-        </th>
-        <th>
-          Delete
-        </th>
-      </tr>
-    </thead>
-    <% @trips.each do |trip| %>
-    <tbody>
-    <tr class="trips_content">
-        <td>
-          <a href="#", class="link-trip" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
-            <%= trip.destination %>
-          </a>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Destination</th>
+                <th>Start</th>
+                <th>Days</th>
+                <th>End</th>
+                <th>Transportation</th>
+                <th>Accomodation</th>
+                <th>Traveler(s)</th>
+                <th>
+                  Total price
+                </th>
+                <th>
+                  Delete
+                </th>
+              </tr>
+            </thead>
+            <% @trips.each do |trip| %>
+            <tbody>
+              <tr class="trips_content">
+                <td>
+                  <a href="#", class="link-trip" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
+                    <%= trip.destination %>
+                  </a>
           <!-- modal  -->
           <div class="modal fade" id="myModal-<%= trip.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -139,6 +140,7 @@
     </tbody>
   <% end %>
   </table>
+</div>
   </div>
 </div>
 </div>

@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     resources :transportations do
       resources :tickets, only: [:new, :create, :destroy]
     end
-    resources :accomodations, only: [:new, :create, :edit, :update, :destroy]
-  end
+    resources :accomodations, except: [:index]
+    end
   resources :import_nomad_lists
 
 
