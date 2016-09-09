@@ -2,9 +2,9 @@ module TransportationsHelper
 
 def title_upload
     if @transportation.tickets.empty?
-      "Télécharger vos billets"
+      "Upload Invoice Tickets Boarding pass"
     else
-      "Vos billets"
+      "Check your travel's documents "
     end
   end
 end
