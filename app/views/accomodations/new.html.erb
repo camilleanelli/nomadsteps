@@ -1,5 +1,5 @@
 <div class="row text-xs-center">
-    <h1>Where did you sleep in <%= @trip.destination %> ?</h1>
+    <h1>Where did you stay in <%= @trip.destination %> ?</h1>
 </div>
 <br>
 <br>
@@ -8,7 +8,7 @@
     <div class="card card-block width-card">
       <%= simple_form_for [@trip, @accomodation] do |f| %>
           <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
- Type de logement".html_safe, collection: ["AirBnB", "Hotel", "Guest House", "Famille/amis", "Location", "Autre..."] %>
+ Type de logement".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Guest House", "Famille/amis", "House Rental", "Other..."] %>
           <%= f.input :address, label: "Adresse", input_html: {id: :autocomplete} %>
           <%= f.input :longitude, as: :hidden %>
           <%= f.input :latitude, as: :hidden %>

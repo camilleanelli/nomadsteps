@@ -2,8 +2,8 @@
 <div id="edit-accomodation" class="row">
   <div class="col-sm-4 offset-sm-2">
     <div class="card card-block width-card">
-        <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
-        Accomodation type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel", "Friends/family", "House Rental", "Guest House", "Other..."] %>
+        <%= f.input :accomodation_type, label: "<i class='fa fa-home' aria-hidden='true'></i>
+        Accomodation type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Friends/family", "House Rental", "Guest House", "Other..."] %>
         <%= f.input :address, label: "<i class='fa fa-map-marker' aria-hidden='true'></i> Address :".html_safe, input_html: { id: :autocomplete } %>
         <%= f.input :longitude, as: :hidden %>
         <%= f.input :latitude, as: :hidden %>
@@ -14,21 +14,13 @@
   <div class="col-sm-4">
     <div class="card card-block width-card">
       <%= f.input :contact, label: "<i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Contact :".html_safe %>
-      <div class="col-sm-12">
-        <div class="col-sm-10"><%= f.input :link, label: "Link :", placeholder: "Ex:  https://www.airbnb.fr/" %></div>
-        <div class="col-sm-2">
-          <%= link_to @accomodation.link do %>
-            <span class="tag tag-pill tag-info">Open</span>
-            <% end %>
-        </div>
-      </div>
-
+      <%= f.input :link, label: "Link :", placeholder: "Ex:  https://www.airbnb.fr/" %>
       <%= f.input :price, label: "Cost of booking :", input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
     </div>
   </div>
-
 </div>
+
 <br>
 <br>
 <div class="row text-xs-center">
