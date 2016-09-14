@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Your accomodation(s) in <%= @trip.destination %></h1>
+  </div>
+  <div class="col-sm-4 text-xs-right">
+    <%= link_to  new_trip_accomodation_path, class:"btn btn-outline-primary" do %>
+    <i class="fa fa-plus" aria-hidden="true"></i> Add an accomodation
+    <% end %>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+
+    <div class="col-md-6">
+      <% @accomodations.each do |accomodation| %>
+      <div class="card card-block">
+        <h4 class="card-title"> <i class="fa fa-home" aria-hidden="true"></i> You will stay in <%= accomodation.accomodation_type %> !</h4>
+        <br>
+      <p>
+        <i class="fa fa-calendar" aria-hidden="true"></i> From : <%= (accomodation.start_date).strftime("%b - %d - %Y" ) %><br>
+        <i class="fa fa-calendar" aria-hidden="true"></i> Until : <%= (accomodation.end_date).strftime("%b - %d - %Y") %><br>
+        <%= accomodation.count_night %> nights
+      </p>
+      <br>
+      <p>
+        <i class="fa fa-map-marker" aria-hidden="true"></i> Address : <%= accomodation.address %>
+      </p>
+      <p>
+        <i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Contact : <%= accomodation.contact %>
+      </p>
+      <p>
+        <%= link_to accomodation.link, target: "_blank", class:"btn btn-outline-primary btn-sm"  do %>
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Web site
+        <% end %>
+      </p>
+      <br>
+    <p>Price per traveler : <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_personne, :unit => "€ ") %></span> </p>
+    <p>Price per night : <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_person_per_night, :unit => "€ ") %></span> </p>
+    <div class="col-xs-6">
+      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Edit accomodation'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
+    </div>
+    <div class="col-xs-6 text-xs-right">
+      <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i> Delete".html_safe, trip_accomodation_path(@trip, accomodation), method: :delete, data: { confirm: "Confirmez la suppression" } %>
+    </div>
+
+    </div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <div class="card card-block">
+      <h4 class="card-title">Itinerary</h4>
+      <div id="map" class="card card-block width-card">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+function initMap() {
+  var myLatLng = { lat: <%= @lat %>, lng: <%= @long %> };
+  console.log(myLatLng)
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+ </script>
+ <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&callback=initMap">
+ </script>

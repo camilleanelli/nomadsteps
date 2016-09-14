@@ -1,8 +1,10 @@
 class AccomodationsController < ApplicationController
 
-  def show
+  def index
     @trip = current_user.trips.find(params[:trip_id])
-    @accomodation = @trip.accomodations.find(params[:id])
+    @accomodations = @trip.accomodations
+    @lat = @accomodations.first.latitude
+    @long = @accomodations.first.longitude
   end
 
   def new
@@ -23,8 +25,7 @@ class AccomodationsController < ApplicationController
   def edit
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
-    @lat = @accomodation.latitude
-    @lon = @accomodation.longitude
+
   end
 
   def update
