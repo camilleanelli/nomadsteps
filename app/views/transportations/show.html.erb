@@ -26,7 +26,7 @@
       <p>Booking n°: <%= @transportation.reference_number %></p>
       <p>
         <% if @transportation.link? %>
-          <%= link_to @transportation.link, target: "_blank", class:"btn btn-secondary btn-sm active" do %>
+          <%= link_to @transportation.link, target: "_blank", class:"btn btn-primary btn-sm active" do %>
             <% if @transportation.company? %>
               <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Open the link  <%= (@transportation.company).capitalize %>
             <% else %>

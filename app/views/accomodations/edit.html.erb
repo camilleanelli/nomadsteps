@@ -1,47 +1,12 @@
-
-<div class="row">
-  <div class="col-sm-8">
-    <h1>Your accomodation in <%= @accomodation.trip.destination %></h1>
-  </div>
-  <div class="col-sm-4 text-xs-right">
-    <%= link_to  new_trip_accomodation_path, class:"btn btn-outline-primary" do %>
-    <i class="fa fa-plus" aria-hidden="true"></i> Add an accomodation
-    <% end %>
-  </div>
-</div>
-<hr>
-<br>
-<br>
-<div class="row text-xs-center">
-  <div class="col-xs-12 col-md-5 offset-md-1">
-    <div class="card card-block width-card">
-      <h4 class="card-title">You will stay in <%= @accomodation.accomodation_type %> !</h4>
-      <br>
-    <h3><span class="tag tag-pill tag-primary"><%= @accomodation.count_night %> nights</span></h3>
-    <p>Price :</p>
-    <h3><span class="tag tag-pill tag-primary"><%= number_to_currency(@accomodation.price_per_personne, :unit => "€ ") %> /traveler</span></p></h3>
-    <p>Price per night per traveler: </p>
-    <h3><span class="tag tag-pill tag-primary"><%= number_to_currency(@accomodation.price_per_person_per_night, :unit => "€ ") %> /night</span></p></h3>
-    <a href="#edit-accomodation"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-    </div>
-  </div>
-  <div class="col-xs-12 col-md-5">
-    <div id="map" class="card card-block width-card">
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<hr>
-<br>
-
 <%= simple_form_for [@trip, @accomodation] do |f| %>
 <div id="edit-accomodation" class="row">
   <div class="col-sm-4 offset-sm-2">
     <div class="card card-block width-card">
-        <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
-        Accomodation type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel", "Friends/family", "House Rental", "Guest House", "Other..."] %>
+        <%= f.input :accomodation_type, label: "<i class='fa fa-home' aria-hidden='true'></i>
+        Accomodation type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Friends/family", "House Rental", "Guest House", "Other..."] %>
         <%= f.input :address, label: "<i class='fa fa-map-marker' aria-hidden='true'></i> Address :".html_safe, input_html: { id: :autocomplete } %>
+        <%= f.input :longitude, as: :hidden %>
+        <%= f.input :latitude, as: :hidden %>
         <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-in :".html_safe, default:  @trip.start_date %>
         <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-out :".html_safe, default:  @trip.end_date %>
     </div>
@@ -49,21 +14,13 @@
   <div class="col-sm-4">
     <div class="card card-block width-card">
       <%= f.input :contact, label: "<i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Contact :".html_safe %>
-      <div class="col-sm-12">
-        <div class="col-sm-10"><%= f.input :link, label: "Link :", placeholder: "Ex:  https://www.airbnb.fr/" %></div>
-        <div class="col-sm-2">
-          <%= link_to @accomodation.link do %>
-            <span class="tag tag-pill tag-info">Open</span>
-            <% end %>
-        </div>
-      </div>
-
+      <%= f.input :link, label: "Link :", placeholder: "Ex:  https://www.airbnb.fr/" %>
       <%= f.input :price, label: "Cost of booking :", input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
     </div>
   </div>
-
 </div>
+
 <br>
 <br>
 <div class="row text-xs-center">
@@ -72,6 +29,8 @@
   <%= link_to 'Delete', trip_accomodation_path, method: :delete, data: { confirm: "Confirmer la suppression" }, class:"btn btn-danger" %>
 </div>
 <% end %>
+
+
 <script>
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -83,29 +42,14 @@ function initAutocomplete() {
     {types: ['geocode']});
     autocomplete.addListener('place_changed', function(){
       var place = autocomplete.getPlace();
-      var longitude = place.geometry.location.lng()
-      var latitude = place.geometry.location.lat()
-      console.log(longitude);
-      console.log(latitude);
+      var longitude = place.geometry.location.lng();
+      var latitude = place.geometry.location.lat();
+      $('#accomodation_longitude').val(longitude);
+      $('#accomodation_latitude').val(latitude);
+      $('#google_info').val(JSON.stringify(place));
     });
   }
-
-
-  function initMap() {
-    var myLatLng = {lat: <%= @lat %>, lng: <%= @lon %>};
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 14,
-      center: myLatLng
-    });
-
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: 'Hello World!'
-    });
-  }
-</script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&callback=initMap">
- </script>
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete"
+  async defer>
+  </script>
