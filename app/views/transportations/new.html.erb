@@ -6,13 +6,25 @@
 <div class="row">
   <%= simple_form_for [@trip, @transportation] do |f| %>
   <div class="col-sm-5 offset-sm-1">
-    <div class="card card-outline-primary width-card-acmd text-xs-center">
+    <div class="card card-outline-primary">
       <div class="card-block">
         <%= f.input :transportation_type, label: "<strong>Transportation type</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
         <%= f.input :departure_datetime, label: "<strong>Departure :</strong>".html_safe, default: @transportation.trip.start_date %>
         <%= f.input :arrival_datetime, label: "<strong>Arrival : </strong>".html_safe, default: @transportation.trip.start_date %>
         <%= f.input :departure_city, label: "<strong>City of the airport</strong>".html_safe, input_html: {id: :autocomplete}, placeholder: "Ex: Paris" %>
-      </div>
+        <p>
+          <p>
+            <button class="btn btn-primary collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Including return ?
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-block">
+              <%= f.input :return_date_departure, label: "Departure" %>
+              <%= f.input :return_date_arrival, label: "Arrival" %>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
   <div class="col-sm-5">
@@ -32,10 +44,16 @@
     <%= f.button :submit, "Confirm", class:'btn btn-primary' %>
   </div>
 <% end %>
+<script type="text/javascript">
+$(document).on('click','.collapsed-button',function() {
+        $('.collapse').collapse('hide');
+    });
 
+</script>
 <script>
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
+
 
 var autocomplete;
 function initAutocomplete() {
