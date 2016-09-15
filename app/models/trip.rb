@@ -13,11 +13,27 @@ class Trip < ApplicationRecord
    "#{destination}, #{country}"
  end
 
- def full_destination_changed?
-   destination_changed? || country_changed?
- end
-
   def days_number
     (self.end_date - self.start_date).to_i
+  end
+
+  def total_transportation
+    sum = 0
+    self.transportations.each do |transportation|
+      sum += transportation.price
+    end
+    sum
+  end
+
+  def total_accomodation
+    sum = 0
+    self.accomodations.each do |acmd|
+      sum += acmd.price
+    end
+    sum
+  end
+
+  def total_cost
+    self.total_accomodation + self.total_transportation
   end
 end
