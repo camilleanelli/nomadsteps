@@ -20,8 +20,17 @@
       <p><i class="fa fa-globe" aria-hidden="true"></i> City of departure : <%= transportation.departure_city %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Departure : <%= (transportation.departure_datetime).strftime("%d/%m/%Y at %H:%M" ) %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrival : <%= (transportation.arrival_datetime).strftime("%d/%m/%Y at %H:%M" ) %> </p>
+        <% if transportation.return_date_departure? %>
+          <p>
+            <strong><i class="fa fa-undo" aria-hidden="true"></i> Return date : </strong>
+            <br>
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <%= (transportation.return_date_departure).strftime("%d/%m/%Y at %H:%M" ) %><br>
+            Arrival : <%= (transportation.return_date_arrival).strftime("%d/%m/%Y at %H:%M" ) %>
+          </p>
+        <% end %>
+      </p>
       <% if transportation.price? %>
-        <p><i class="fa fa-eur" aria-hidden="true"></i> Price : <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / par personne</p>
+        <p><i class="fa fa-eur" aria-hidden="true"></i> Price : <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / per traveler </p>
       <% end %>
       <p>Booking n°: <%= transportation.reference_number %></p>
       <p>

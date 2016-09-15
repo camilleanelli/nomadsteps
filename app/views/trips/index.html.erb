@@ -131,7 +131,7 @@
         <% end %>
         </td>
         <td>
-          Total price
+          <%= trip.total_cost %> €
         </td>
         <td class="text-xs-center">
           <%= link_to trip, method: :delete, data: { confirm: "Confirmez la suppression du voyage"} do %>

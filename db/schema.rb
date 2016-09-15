@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908141907) do
+ActiveRecord::Schema.define(version: 20160915112638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,13 @@ ActiveRecord::Schema.define(version: 20160908141907) do
     t.datetime "departure_datetime"
     t.string   "departure_city"
     t.string   "company"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "trip_id"
     t.decimal  "price"
     t.datetime "arrival_datetime"
+    t.datetime "return_date_departure"
+    t.datetime "return_date_arrival"
     t.index ["trip_id"], name: "index_transportations_on_trip_id", using: :btree
   end
 
