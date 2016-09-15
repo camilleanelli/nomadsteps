@@ -20,8 +20,8 @@
           </p>
           <div class="collapse" id="collapseExample">
             <div class="card card-block">
-              <%= f.input :return_date_departure, label: "Departure" %>
-              <%= f.input :return_date_arrival, label: "Arrival" %>
+              <%= f.input :return_date_departure, label: "Departure", default: @transportation.trip.end_date %>
+              <%= f.input :return_date_arrival, label: "Arrival", default: @transportation.trip.end_date %>
             </div>
           </div>
         </div>
@@ -45,8 +45,8 @@
   </div>
 <% end %>
 <script type="text/javascript">
-$(document).on('click','.collapsed-button',function() {
-        $('.collapse').collapse('hide');
+$(document).on('click',function() {
+        $('.collapse').collapse('toggle'));
     });
 
 </script>
