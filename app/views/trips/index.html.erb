@@ -83,7 +83,7 @@
 
         </td>
         <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
-        <td><strong><%= trip.days_number %></strong> <i class="fa fa-heart" aria-hidden="true" style="color:#F62459"></i></td>
+        <td><strong><%= trip.days_number %></strong> <span class="dday">d</span></td>
         <td><%= (trip.end_date).strftime('%d/%m/%Y') %></td>
         <td>
           <% if trip.transportations.empty? %>
@@ -131,7 +131,7 @@
         <% end %>
         </td>
         <td>
-          <%= trip.total_cost %> €
+          <strong><%= trip.total_cost %> € </strong>
         </td>
         <td class="text-xs-center">
           <%= link_to trip, method: :delete, data: { confirm: "Confirmez la suppression du voyage"} do %>
