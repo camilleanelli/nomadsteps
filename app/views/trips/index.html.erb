@@ -1,16 +1,18 @@
 <% if @trips.count > 0 %>
-<div class="row text-xs-center">
-  <h1>All trips</h1>
-</div>
-<br>
-<br>
-  <div class="row text-xs-right">
-    <%= link_to "<i class='fa fa-upload'></i> Importer de Nomad List".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
-    <%= link_to "<i class='fa fa-plus'></i> Ajouter un voyage".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
+<div class="row">
+  <div class="col-xs-6">
+    <h2>All trips</h2>
   </div>
+  <div class="col-xs-6 text-xs-right">
+    <%= link_to "<i class='fa fa-upload'></i> Import from Nomad List".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <%= link_to "<i class='fa fa-plus'></i> Add a travel".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
+  </div>
+
 </div>
+<hr>
 <br>
 <br>
+
 <div class="row">
   <div class="container">
     <div class="card card-inverse text-xs-center">
