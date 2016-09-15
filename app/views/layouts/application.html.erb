@@ -20,10 +20,13 @@
 
           <% if user_signed_in? %>
           <li class="nav-item li-menu">
-            <%= link_to "My trips", trips_path %>
+            <%= link_to "See all my travels", trips_path %>
           </li>
           <li class="nav-item li-menu">
-            <%= link_to 'Se déconnecter', destroy_user_session_path, :method => :delete %>
+            <%= link_to 'My account',  edit_user_registration_path(current_user) %>
+          </li>
+          <li class="nav-item li-menu">
+            <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
           </li>
           <% else %>
           <li class="nav-item li-menu"
