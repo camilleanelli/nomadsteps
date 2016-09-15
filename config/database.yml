@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: nomadtrip_dev
+  database: nomadtrip_dev2
   username: postgres
   password: postgres
   host: localhost
@@ -11,7 +11,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: nomadtrip_test
+  database: nomadtrip_test2
   username: postgres
   password: postgres
   host: localhost

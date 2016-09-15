@@ -89,22 +89,24 @@
           <% if trip.transportations.empty? %>
               <%= link_to 'Add', new_trip_transportation_path(trip) %>
             <% else %>
+            <%= link_to trip_transportations_path(trip) do %>
               <% trip.transportations.each do |transport| %>
                 <% if transport.transportation_type == "Avion" %>
-                  <%= link_to "<i class='fa fa-plane color-plane' aria-hidden='true'></i>".html_safe, trip_transportation_path(trip, transport) %>
+                  <i class='fa fa-plane color-plane' aria-hidden='true'></i>
                 <% elsif transport.transportation_type == "Train" %>
-                  <%= link_to "<i class='fa fa-train color-train' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <i class='fa fa-train color-train' aria-hidden='true'></i>
                 <% elsif transport.transportation_type == "Voiture" %>
-                  <%= link_to "<i class='fa fa-car color-car' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <i class='fa fa-car color-car' aria-hidden='true'></i>
                 <% elsif transport.transportation_type == "Bateau" %>
-                  <%= link_to "<i class='fa fa-ship color-boat' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <i class='fa fa-ship color-boat' aria-hidden='true'></i>
                 <% elsif transport.transportation_type == "Bus" %>
-                  <%= link_to "<i class='fa fa-bus color-bus' aria-hidden='true'>".html_safe, trip_transportation_path(trip, transport) %></i>
+                  <i class='fa fa-bus color-bus' aria-hidden='true'></i>
                 <% else %>
                   <%= link_to transport.transportation_type, trip_transportation_path(trip, transport), class:"color-link" %>
                 <% end  %>
               <% end %>
             <% end %>
+          <% end %>
         </td>
         <td>
           <% if trip.accomodations.empty? %>

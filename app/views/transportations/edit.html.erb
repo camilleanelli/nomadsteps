@@ -1,25 +1,27 @@
 <div class="row text-xs-center">
-  <h1>Votre voyage à <%= @transportation.trip.destination %></h1>
+  <h1>Your travel in <%= @transportation.trip.destination %></h1>
 </div>
+<br>
+<br>
 <div class="row">
   <%= simple_form_for [@trip, @transportation] do |f| %>
   <div class="col-sm-5 offset-sm-1">
-    <div class="card card-inverse card-info text-xs-center width-card-acmd">
+    <div class="card card-outline-primary text-xs-center width-card-acmd">
       <div class="card-block">
-        <%= f.input :transportation_type, label: "<strong>Transport</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
-        <%= f.input :departure_datetime, label: "<strong>Départ</strong>".html_safe %>
-        <%= f.input :arrival_datetime, label: "<strong>Heure d'arrivée</strong>".html_safe %>
-        <%= f.input :departure_city, label: "<strong>Ville de départ</strong>".html_safe %>
+        <%= f.input :transportation_type, label: "<strong>Transportation type</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+        <%= f.input :departure_datetime, label: "<strong>Départure</strong>".html_safe %>
+        <%= f.input :arrival_datetime, label: "<strong>Arrival</strong>".html_safe %>
+        <%= f.input :departure_city, label: "<strong>Departure city</strong>".html_safe %>
       </div>
     </div>
   </div>
   <div class="col-sm-5">
-    <div class="card card-inverse card-info text-xs-center width-card-acmd">
+    <div class="card card-outline-primary text-xs-center width-card-acmd">
       <div class="card-block">
-        <%= f.input :price, label: "<strong>Prix</strong>".html_safe %>
-        <%= f.input :reference_number, label: "<strong>Numéro de réservation</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
-        <%= f.input :company, label: "<strong>Société de transport</strong>".html_safe, placeholder: "Ex: THAI Arways" %>
-        <%= f.input :link, label: "<strong>Site correspondant</strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
+        <%= f.input :price, label: "<strong>Cost of booking : </strong>".html_safe %>
+        <%= f.input :reference_number, label: "<strong>Booking number : </strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
+        <%= f.input :company, label: "<strong>Company : </strong>".html_safe, placeholder: "Ex: THAI Arways" %>
+        <%= f.input :link, label: "<strong>Link to the company web site : </strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
       </div>
     </div>
   </div>
