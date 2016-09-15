@@ -3,7 +3,6 @@ class TripsController < ApplicationController
 
   def index
     @trips = current_user.trips.includes(:transportations, :accomodations, :users).order(start_date: :desc).page(params[:page])
-
   end
 
   def edit
@@ -24,7 +23,7 @@ class TripsController < ApplicationController
   end
 
   def create
-  
+ params_trips["google_info"] = JSON.parse(params_trips["google_info"]) if params_trips["google_info"] 
     @trip = Trip.new(params_trips)
 
     if @trip.save

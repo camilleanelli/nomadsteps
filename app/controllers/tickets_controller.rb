@@ -1,6 +1,9 @@
 class TicketsController < ApplicationController
 
   def index
+    @trip = current_user.trips.find(params[:trip_id])
+    @transportation = @trip.transportations.find(params[:transportation_id])
+    @tickets = @transportation.tickets
   end
 
   def new
@@ -14,7 +17,7 @@ class TicketsController < ApplicationController
     @transportation = @trip.transportations.find(params[:transportation_id])
     @ticket = @transportation.tickets.new(params_tickets)
     if @ticket.save!
-      redirect_to trip_transportation_path(@trip, @transportation)
+      redirect_to trip_transportations_path
     else
       render :new
     end
@@ -25,7 +28,7 @@ class TicketsController < ApplicationController
     @transportation = @trip.transportations.find(params[:transportation_id])
     @ticket = @transportation.tickets.find(params[:id])
     @ticket.destroy
-    redirect_to trip_transportation_path(@trip, @transportation)
+    redirect_to trip_transportations_path
   end
 
   private

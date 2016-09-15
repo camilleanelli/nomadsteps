@@ -10,10 +10,12 @@
     <%= f.input :start_date, label: "Date de début" %>
     <%= f.input :end_date, label:"Date de fin" %>
     <%= f.input :destination, label: "Où allez vous?", input_html: {id: :autocomplete}, placeholder: "Indiquer une ville"  %>
-    <%= f.input :longitude, as: :hidden %>
-    <%= f.input :latitude, as: :hidden %>
-      <div class="hidden-xs-up">
-        <input type="text" name="trip[google_info]" id="google_info" value="">
+    <%= f.input :longitude %>
+    <%= f.input :latitude %>
+      <div class="">
+        <textarea name="trip[google_info]" id="google_info">
+        </textarea>
+
       </div>
 
 
