@@ -54,13 +54,19 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+          api_key: 'key-aa033f061f4d6baeba94e832b582b0fd',
+          domain: 'sandboxf03341ea101d46da8b8b053501228eef.mailgun.org'
+  }
+
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true
     Bullet.bullet_logger = true
     Bullet.console = true
     Bullet.rails_logger = true
-    Bullet.add_footer = true  
+    Bullet.add_footer = true
 
   end
 end

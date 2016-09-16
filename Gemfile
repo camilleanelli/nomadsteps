@@ -20,6 +20,8 @@ gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'devise'
 gem 'devise_invitable'
 
+gem 'mailgun_rails'
+
 gem 'simple_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
