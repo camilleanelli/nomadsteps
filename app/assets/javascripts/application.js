@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require_tree .
 
+
 // $(document).on('ready', function() {
 //   console.log(" jQuery Ready!");
 //
