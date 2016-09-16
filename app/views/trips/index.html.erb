@@ -154,15 +154,17 @@
   <h2>You don't have any trips for the moment. </h2>
   <h3>Add your first trip!</h3>
 </div>
-<br>
-<br>
+
 <div class="row">
-  <div class="col-md-6 text-xs-right">
-    <%= link_to 'Ajouter mon premier voyage', new_trip_path, class: "btn btn-outline-primary" %>
-  </div>
-    <div class="col-md-6">
-      <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class: "btn btn-outline-primary" %>
+  <div class="col-md-8 offset-md-2">
+    <div class="col-md-6 text-xs-center padding-button">
+      <%= link_to 'Ajouter mon premier voyage', new_trip_path, class: "btn btn-outline-primary" %>
     </div>
+      <div class="col-md-6 text-xs-center padding-button">
+        <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class: "btn btn-outline-primary" %>
+      </div>
+
+  </div>
 
   </div>
   </div>
