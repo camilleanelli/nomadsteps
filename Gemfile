@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'simple_form'
 # Use jquery as the JavaScript library
