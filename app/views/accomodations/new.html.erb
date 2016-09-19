@@ -40,7 +40,9 @@
     <br>
     <br>
       <div class="row text-xs-center">
-        <%= f.button :submit, "<i class='fa fa-thumbs-o-up' aria-hidden='true'></i> Submit".html_safe, class: "btn btn-primary" %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i> Validate
+        <% end %>
       </div>
       <% end %>
       <script>
