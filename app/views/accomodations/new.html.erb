@@ -8,26 +8,39 @@
     <div class="card card-block width-card">
       <%= simple_form_for [@trip, @accomodation] do |f| %>
           <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
- Type de logement".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Guest House", "Famille/amis", "House Rental", "Other..."] %>
-          <%= f.input :address, label: "Adresse", input_html: {id: :autocomplete} %>
+ Accomodation type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Guest House", "Famille/amis", "House Rental", "Other..."] %>
+          <%= f.input :address, label: "<i class='fa fa-globe' aria-hidden='true'></i> Location :".html_safe, input_html: {id: :autocomplete}, placeholder: "Type an address" %>
           <%= f.input :longitude, as: :hidden %>
           <%= f.input :latitude, as: :hidden %>
-          <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date d'arrivée".html_safe, default:  @trip.start_date %>
-          <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Date de départ".html_safe, default:  @trip.end_date %>
+          <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-in".html_safe, default:  @trip.start_date %>
+          <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-out".html_safe, default:  @trip.end_date %>
         </div>
       </div>
       <div class="col-sm-6">
-        <div class="card card-block width-card">
-          <%= f.input :contact, placeholder: "Email ou téléphone" %>
-          <%= f.input :link, label: "Lien utile", placeholder: "Ex:  https://www.airbnb.fr/" %>
-          <%= f.input :price, label: "Coût de la réservation", input_html: { style: 'width:100px', value: "00" } %>
-          <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de voyageurs".html_safe, input_html: { style: 'width:100px', value: @trip.person_number } %>
+        <div class="card card-block">
+          <p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Add contact
+          </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-block">
+              <%= f.input :contact_name, label: "Name" %>
+              <%= f.input :contact_email, label: "Email" %>
+              <%= f.input :contact_phone, label: "Phone number" %>
+            </div>
+          </div>
+
+          <%= f.input :link, label: "<i class='fa fa-link' aria-hidden='true'></i> Link".html_safe, placeholder: "Ex:  https://www.airbnb.fr/" %>
+          <%= f.input :price, label: "<i class='fa fa-money' aria-hidden='true'></i> Total Cost".html_safe, input_html: { style: 'width:100px', value: "00" } %>
+          <%= f.input :number_of_persons, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Travelers".html_safe, input_html: { style: 'width:100px', value: @trip.person_number } %>
         </div>
       </div>
     </div>
+    <br>
+    <br>
       <div class="row text-xs-center">
-        <%= link_to 'Cancel', trips_path, class:"btn btn-warning" %> |
-        <%= f.button :submit, "Submit", class: "btn btn-success" %>
+        <%= f.button :submit, "<i class='fa fa-thumbs-o-up' aria-hidden='true'></i> Submit".html_safe, class: "btn btn-primary" %>
       </div>
       <% end %>
       <script>

@@ -13,7 +13,12 @@
   </div>
   <div class="col-sm-4">
     <div class="card card-block width-card">
-      <%= f.input :contact, label: "<i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Contact :".html_safe %>
+      <p>
+        <i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Contact :
+      </p>
+      <%= f.input :contact_name %>
+      <%= f.input :contact_email %>
+      <%= f.input :contact_phone %> 
       <%= f.input :link, label: "Link :", placeholder: "Ex:  https://www.airbnb.fr/" %>
       <%= f.input :price, label: "Cost of booking :", input_html: { style: 'width:100px' } %>
       <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
