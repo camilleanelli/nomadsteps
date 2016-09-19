@@ -17,8 +17,8 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
-gem 'devise'
-gem 'devise_invitable'
+gem 'devise',           '~> 4.2'
+gem 'devise_invitable', '~> 1.7.0'
 
 gem 'mailgun_rails'
 
