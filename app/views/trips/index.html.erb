@@ -160,10 +160,14 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
     <div class="col-md-6 text-xs-center padding-button">
-      <%= link_to 'Ajouter mon premier voyage', new_trip_path, class: "btn btn-outline-primary" %>
+      <%= link_to new_trip_path, class: "btn btn-outline-primary" do %>
+        <i class="fa fa-plus" aria-hidden="true"></i> Add my first travel
+      <% end %>
     </div>
       <div class="col-md-6 text-xs-center padding-button">
-        <%= link_to 'Importer de Nomad List', import_nomad_lists_path, class: "btn btn-outline-primary" %>
+        <%= link_to import_nomad_lists_path, class: "btn btn-outline-primary" do %>
+        <i class="fa fa-upload" aria-hidden="true"></i> Import NomadList
+        <% end %>
       </div>
 
   </div>
