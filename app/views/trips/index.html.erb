@@ -89,7 +89,9 @@
         <td><%= (trip.end_date).strftime('%d/%m/%Y') %></td>
         <td>
           <% if trip.transportations.empty? %>
-              <%= link_to 'Add', new_trip_transportation_path(trip) %>
+              <%= link_to new_trip_transportation_path(trip), class:"btn btn-outline-primary btn-sm" do %>
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+              <% end %>
             <% else %>
             <%= link_to trip_transportations_path(trip) do %>
               <% trip.transportations.each do |transport| %>
@@ -112,11 +114,11 @@
         </td>
         <td>
           <% if trip.accomodations.empty? %>
-            <div class="link-add">
-              <%= link_to ' + Add', new_trip_accomodation_path(trip) %>
-            </div>
+              <%= link_to new_trip_accomodation_path(trip), class:"btn btn-outline-primary btn-sm" do %>
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+              <% end %>
             <% else %>
-              <%= link_to trip_accomodations_path(trip) do %>
+              <%= link_to trip_accomodations_path(trip), class:"link-trip" do %>
                 <% trip.accomodations.each do |acmd| %>
                   <li class="list-unstyled"><%= acmd.accomodation_type %></li>
                 <% end %>
