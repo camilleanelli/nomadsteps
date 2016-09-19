@@ -228,8 +228,8 @@ DEPENDENCIES
   bullet
   byebug
   coffee-rails (~> 4.2)
-  devise
-  devise_invitable
+  devise (~> 4.2)
+  devise_invitable (~> 1.7.0)
   filepicker-rails
   font-awesome-rails
   geocoder
