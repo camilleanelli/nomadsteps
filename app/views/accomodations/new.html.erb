@@ -55,10 +55,11 @@
             var latitude = place.geometry.location.lat()
             $('#accomodation_longitude').val(longitude);
             $('#accomodation_latitude').val(latitude);
+
             $('#google_info').val(JSON.stringify(place));
           });
         }
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete&language=en"
         async defer>
         </script>

@@ -23,7 +23,7 @@ class TripsController < ApplicationController
   end
 
   def create
- params_trips["google_info"] = JSON.parse(params_trips["google_info"]) if params_trips["google_info"] 
+ params_trips["google_info"] = JSON.parse(params_trips["google_info"]) if params_trips["google_info"]
     @trip = Trip.new(params_trips)
 
     if @trip.save
@@ -44,6 +44,6 @@ class TripsController < ApplicationController
   end
 
   def params_trips
-    params[:trip].permit(:start_date, :end_date, :destination, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details, :google_info)
+    params[:trip].permit(:start_date, :end_date, :destination, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details, :google_info, :country_name)
   end
 end
