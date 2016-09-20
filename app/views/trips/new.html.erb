@@ -13,6 +13,7 @@
     <%= f.input :longitude, as: :hidden %>
     <%= f.input :latitude, as: :hidden %>
     <%= f.input :country_name, as: :hidden %>
+    <%= f.input :city_name, as: :hidden %>
       <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, input_html: { value: 1, style: "width:50px" } %>
     <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
     <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
@@ -36,12 +37,13 @@ function initAutocomplete() {
     autocomplete.addListener('place_changed', function(){
       var place = autocomplete.getPlace();
       var country = place.address_components[place.address_components.length - 1].long_name;
-      console.log(place)
+      var city = place.address_components[0].long_name;
       var longitude = place.geometry.location.lng();
       var latitude = place.geometry.location.lat();
       $('#trip_longitude').val(longitude);
       $('#trip_latitude').val(latitude);
       $('#trip_country_name').val(country);
+      $('#trip_city_name').val(city);
       $('#google_info').val(JSON.stringify(place));
     });
   }

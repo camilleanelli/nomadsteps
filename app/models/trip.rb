@@ -1,6 +1,6 @@
 class Trip < ApplicationRecord
   before_create :set_city_details
-  
+
   has_many :transportations, dependent: :destroy
   has_many :accomodations, dependent: :destroy
   has_and_belongs_to_many :users
@@ -10,7 +10,7 @@ class Trip < ApplicationRecord
   validates :destination, presence: true
 
   def set_city_details
-    self.city_details = self.destination + '-' + self.country_name
+    self.city_details = self.city_name + '-' + self.country_name
   end
 
 
