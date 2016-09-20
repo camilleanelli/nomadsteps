@@ -51,13 +51,13 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title" id="myModalLabel">Mon voyage à <%= trip.destination %></h4>
+                  <h4 class="modal-title" id="myModalLabel"> <%= trip.destination %></h4>
                 </div>
                 <div class="modal-body">
                   <div class="row">
                     <div class="col-xs-4">
                       <% if trip.image_trip == nil %>
-                        <%= image_tag("image_trip.svg", width:100, height:100) %>
+                        <%= image_tag("image_trip.svg", class:"img-circle", width:100, height:100) %>
                       <% else %>
                       <%= image_tag(trip.image_trip, class:"img-circle", width:100, height:100) %>
                       <% end %>
@@ -71,7 +71,10 @@
                       </p>
                       <p>
                         <i class="fa fa-suitcase" aria-hidden="true"></i> Travelers) : <%= trip.person_number %>
-                      </p
+                      </p>
+                      <p>
+                        Total price per traveler : <%= trip.total_cost_per_traveler %>
+                      </p>
                     </div>
                   </div>
                 </div>

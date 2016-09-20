@@ -31,7 +31,7 @@
           <% end %>
       </p>
       <p>
-        Contact : <%= accomodation.contact_name %><br>
+        Contact : <%= accomodation.contact_name %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %><br>
          <i class='fa fa-mobile' aria-hidden='true'></i>  <%=  accomodation.contact_phone %><br>
         <i class='fa fa-at' aria-hidden='true'></i> <%= accomodation.contact_email %>
       </p>
