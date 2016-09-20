@@ -1,5 +1,5 @@
 class Transportation < ApplicationRecord
-  belongs_to :trip, dependent: :destroy
+  belongs_to :trip
   has_many :tickets, dependent: :destroy
 
   validates :transportation_type, presence: true
