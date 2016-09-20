@@ -35,9 +35,8 @@
 <br>
 <br>
 <div class="row text-xs-center">
-  <%= link_to 'Cancel', trips_path, class:"btn btn-warning" %> |
-  <%= f.button :submit, "validate", class: "btn btn-primary" %> |
-  <%= link_to 'Delete', trip_accomodation_path, method: :delete, data: { confirm: "Confirmer la suppression" }, class:"btn btn-danger" %>
+  <%= link_to 'Back', :back, class:"btn btn-warning" %> |
+  <%= f.button :submit, "validate", class: "btn btn-primary" %>
 </div>
 <% end %>
 
