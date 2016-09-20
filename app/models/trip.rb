@@ -36,4 +36,8 @@ class Trip < ApplicationRecord
   def total_cost
     self.total_accomodation + self.total_transportation
   end
+
+  def total_cost_per_traveler
+    self.total_cost / self.person_number
+  end
 end

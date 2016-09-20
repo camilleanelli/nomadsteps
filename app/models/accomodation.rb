@@ -1,7 +1,7 @@
 class Accomodation < ApplicationRecord
-  belongs_to :trip, dependent: :destroy
+  belongs_to :trip
 
-  validates :price, presence: true
+  validates :accomodation_type, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :number_of_persons, presence: true

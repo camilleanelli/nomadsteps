@@ -2,7 +2,7 @@ class AccomodationsController < ApplicationController
 
   def index
     @trip = current_user.trips.find(params[:trip_id])
-    @accomodations = @trip.accomodations
+    @accomodations = @trip.accomodations.order(:start_date)
     @lat = @accomodations.first.latitude
     @long = @accomodations.first.longitude
   end
@@ -32,7 +32,7 @@ class AccomodationsController < ApplicationController
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
     @accomodation.update(accomodation_params)
-    redirect_to trips_path
+    redirect_to trip_accomodation_path
   end
 
   def destroy
@@ -45,6 +45,6 @@ class AccomodationsController < ApplicationController
   private
 
   def accomodation_params
-    params[:accomodation].permit(:accomodation_type, :start_date, :end_date, :price, :link, :number_of_persons, :trip_id, :contact, :address, :longitude, :latitude )
+    params[:accomodation].permit(:accomodation_type, :start_date, :end_date, :price, :link, :number_of_persons, :trip_id, :contact, :address, :longitude, :latitude, :contact_phone, :contact_email, :contact_name)
   end
 end
