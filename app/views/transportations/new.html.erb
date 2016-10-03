@@ -6,7 +6,7 @@
 <div class="row">
   <%= simple_form_for [@trip, @transportation] do |f| %>
   <div class="col-sm-5 offset-sm-1">
-    <div class="card card-outline-primary">
+    <div class="card">
       <div class="card-block">
         <%= f.input :transportation_type, label: "<strong>Transportation type</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
         <%= f.input :departure_datetime, label: "<strong>Departure :</strong>".html_safe, default: @transportation.trip.start_date %>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="col-sm-5">
-    <div class="card card-outline-primary text-xs-center width-card-acmd">
+    <div class="card width-card-acmd">
       <div class="card-block">
         <%= f.input :price, label: "<strong>Total price :</strong>".html_safe, input_html: { value: "00" } %>
         <%= f.input :reference_number, label: "<strong>Reservation number :</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
