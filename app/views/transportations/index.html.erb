@@ -11,9 +11,10 @@
 <hr>
 <br>
 <br>
-<div class="row">
+
 <% @transportations.each do |transportation| %>
   <!-- details of transportation -->
+  <div class="row">
   <div class="col-sm-6">
     <div class="card card-block">
           <h4 class="card-title">Details :</h4>
@@ -59,35 +60,30 @@
 
   <!-- Billets -->
   <div class="col-md-6">
-
-
-        <% if transportation.tickets.empty? %>
-        <%= simple_form_for [@trip, transportation, transportation.tickets.new] do |f|  %>
-          <%= f.filepicker_field :filepicker_url, button_text: "<i class='fa fa-upload' aria-hidden='true'></i> Upload a document".html_safe, button_class:"btn btn-warning", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
-          <br>
-          <br>
-          <%= f.submit "Click here to confirm", class:"btn btn-primary" %>
-        <% end %>
-
-        <% else %>
-        <% transportation.tickets.each do |ticket| %>
-          <div class="col-xs-12 col-md-6 text-xs-center card-doc">
-              <%= link_to ticket.filepicker_url do %>
-                <%= filepicker_image_tag ticket.filepicker_url, w: 300, h: 300, fit: 'clip' %>
-              <% end %>
-            <div class="col-xs-12 text-xs-center">
-              <%= link_to new_trip_transportation_ticket_path(@trip, transportation) do %>
-                <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
-              <% end %>
-              <%= link_to trip_transportation_ticket_path(@trip, transportation, ticket), method: :delete do %>
-                <i class='fa fa-trash-o fa-2x' aria-hidden='true'></i>
-                <% end %>
-            </div>
-          </div>
-
-        <% end %>
+    <% if transportation.tickets.empty? %>
+      <%= simple_form_for [@trip, transportation, transportation.tickets.new] do |f|  %>
+        <%= f.filepicker_field :filepicker_url, button_text: "<i class='fa fa-upload' aria-hidden='true'></i> Upload a document".html_safe, button_class:"btn btn-warning", services: "COMPUTER, GMAIL, GOOGLE_DRIVE, DROPBOX" %>
+        <br>
+        <br>
+        <%= f.submit "Click here to confirm", class:"btn btn-primary" %>
       <% end %>
+    <% else %>
+    <% transportation.tickets.each do |ticket| %>
+      <div class="col-xs-12 col-md-6 text-xs-center card-doc">
+        <%= link_to ticket.filepicker_url do %>
+          <%= filepicker_image_tag ticket.filepicker_url, w: 300, h: 300, fit: 'clip' %>
+        <% end %>
+      <div class="col-xs-12 text-xs-center">
+        <%= link_to new_trip_transportation_ticket_path(@trip, transportation) do %>
+          <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to trip_transportation_ticket_path(@trip, transportation, ticket), method: :delete do %>
+          <i class='fa fa-trash-o fa-2x' aria-hidden='true'></i>
+        <% end %>
       </div>
     </div>
     <% end %>
+  <% end %>
   </div>
+</div>
+<% end %>
