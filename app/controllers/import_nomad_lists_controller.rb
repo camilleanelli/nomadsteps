@@ -9,7 +9,8 @@ class ImportNomadListsController < ApplicationController
                                              longitude: hash["longitude"],
                                              latitude: hash["latitude"],
                                              person_number: 1,
-                                             city_details: hash["place"] + "-" + hash["country"]
+                                             city_name: hash["place"],
+                                             country_name: hash["country"]
                                              )
       end
       redirect_to trips_path
