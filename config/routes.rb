@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   root "trips#index"
 
-  devise_for :users, :controllers => { :invitations => 'invitations' }
+  devise_for :users
 
   resources :trips, except: [:show] do
     resources :transportations do
