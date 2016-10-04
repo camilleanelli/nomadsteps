@@ -17,8 +17,8 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
-gem 'devise',           '~> 4.2'
-gem 'devise_invitable', '~> 1.7.0'
+gem 'devise'
+gem 'devise_invitable'
 
 gem 'mailgun_rails'
 
@@ -73,4 +73,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-ruby '2.2.3'
+ruby '2.3.0'
