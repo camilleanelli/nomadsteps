@@ -1,23 +1,26 @@
-<div class="row text-xs-center">
+<div class="row text-xs-center title-pages">
   <h1>Welcome to NomadTrip</h1>
 </div>
-<br>
-<br>
 <div class="col-sm-6 offset-sm-3">
-  <div class="card card-outline-primary fadeIn">
+  <div class="card fadeIn">
     <div class="card-block">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
-        <%= f.input :first_name, label: "<strong><p style='color:#F62459'>FIRST NAME</p></strong>".html_safe, required: true, autofocus: true %>
-        <%= f.input :last_name, label: "<strong><p style='color:#F62459'>LAST NAME</p></strong>".html_safe, required: true, autofocus: true %>
-        <%= f.input :nomadlist_username, label: ("<strong>Do you have a #{link_to 'NOMADLIST', 'https://nomadlist.com'} account? </strong> ").html_safe, placeholder: "UserNameAccount" %>
-        <%= f.input :email, label:"<p style='color:#F62459;font-weight:bold'>EMAIL</p>".html_safe, required: true, autofocus: true %>
-        <%= f.input :password, label: "<p style='color:#F62459;font-weight:bold'>PASSWORD</p>".html_safe, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%= f.input :password_confirmation, label: "<p style='color:#F62459;font-weight:bold'>PASSWORD CONFIRMATION</p>".html_safe, required: true %>
+          <div class="col-sm-6">
+            <%= f.input :first_name, required: true, autofocus: true %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :last_name, required: true, autofocus: true %>
+          </div>
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :nomadlist_username, label: ("Do you have a #{link_to 'NOMADLIST', 'https://nomadlist.com'} account?").html_safe, placeholder: "ex: Johndoe" %>
+
+        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password_confirmation, required: true %>
       </div>
       <div class="form-actions">
-        <%= f.button :submit, "Valider", class:"btn btn-primary" %>
+        <%= f.button :submit, "Validate", class:"btn btn-primary" %>
       </div>
     <% end %>
    </div>
