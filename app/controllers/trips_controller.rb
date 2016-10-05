@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
-    @trips = current_user.trips.includes(:transportations, :accomodations, :users).paginate(:page => params[:page], :per_page => 5).order(start_date: :desc)
+    @trips = current_user.trips.includes(:transportations, :accomodations, :users).order(start_date: :desc).page(params[:page])
   end
 
   def edit
