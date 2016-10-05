@@ -1,5 +1,4 @@
 class Trip < ApplicationRecord
-  self.per_page = 5
   before_create :set_city_details
 
   has_many :transportations, dependent: :destroy
