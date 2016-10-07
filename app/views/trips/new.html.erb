@@ -1,27 +1,37 @@
 <div class="row text-xs-center">
-  <h1>Ajouter un voyage!</h1>
+  <h1>Add a trip!</h1>
 </div>
 <br>
 <br>
 <div class="row">
-  <div class="col-xs-3"></div>
-  <div class="col-sm-6 card card-block">
+  <div class="col-sm-6 offset-sm-3 card card-block">
     <%= simple_form_for @trip do |f| %>
-    <%= f.input :start_date, label: "Date de début" %>
-    <%= f.input :end_date, label:"Date de fin" %>
-    <%= f.input :destination, label: "Où allez vous?", input_html: {id: :autocomplete}, placeholder: "Indiquer une ville"  %>
+    <div class="col-sm-12">
+      <%= f.input :start_date %>
+    </div>
+    <div class="col-sm-12">
+      <%= f.input :end_date %>
+    </div>
+
     <%= f.input :longitude, as: :hidden %>
     <%= f.input :latitude, as: :hidden %>
     <%= f.input :country_name, as: :hidden %>
     <%= f.input :city_name, as: :hidden %>
+    <div class="col-sm-8">
+      <%= f.input :destination, label: "Where do you go ?", input_html: {id: :autocomplete} %>
+    </div>
+    <div class="col-sm-4">
       <%= f.input :person_number, label: "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, input_html: { value: 1, style: "width:50px" } %>
-    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
-    <% end %>
-    <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Annuler".html_safe, trips_path, class:"btn btn-warning" %>
-    <% end %>
+    </div>
+    <div class="col-sm-12">
+      <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i> Validate
+      <% end %>
+      <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Back".html_safe, trips_path, class:"btn btn-warning" %>
+      <% end %>
+    </div>
+
   </div>
-  <div class="col-xs-3"></div>
 </div>
 
 
