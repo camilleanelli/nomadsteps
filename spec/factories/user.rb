@@ -5,3 +5,4 @@ FactoryGirl.define do
     email "johndoe@email.com"
     admin false
   end
+end
