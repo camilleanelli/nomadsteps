@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :check_profile_user
+
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
@@ -12,5 +14,13 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nomadlist_username])
+  end
+
+  def check_profile_user
+    if current_user
+      if current_user.first_name == nil || current_user.last_name == nil
+        redirect_to complete_profile_path
+      end
+    end
   end
 end
