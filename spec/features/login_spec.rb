@@ -14,11 +14,10 @@ RSpec.describe "login page", :type => :feature do
   end
 
   it 'login with valid user info' do
-    User.create(email: 'johndoe@email.com', password: 'password', confirmed_at: 1.day.ago)
+    User.create(first_name: "john", last_name: "doe", email: 'johndoe@email.com', password: 'password', confirmed_at: 1.day.ago)
     visit "/"
 
     click_link "Login"
-
     fill_in "Email", with: "johndoe@email.com"
     fill_in "Password", with: "password"
     click_button "Validate"
