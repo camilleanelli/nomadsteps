@@ -1,4 +1,4 @@
-class TransportationsController < ApplicationController
+class TransportationsController < AuthenticatedController
 
   def index
     @trip = current_user.trips.find(params[:trip_id])

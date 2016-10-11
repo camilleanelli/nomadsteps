@@ -1,4 +1,4 @@
-class ImportNomadListsController < ApplicationController
+class ImportNomadListsController < AuthenticatedController
   def index
       @url = ImportJsonTrip.new(current_user.nomadlist_username)
       @trips = @url.nomadlist_table.each do |hash|

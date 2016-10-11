@@ -1,4 +1,4 @@
-class TripsController < ApplicationController
+class TripsController < AuthenticatedController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
