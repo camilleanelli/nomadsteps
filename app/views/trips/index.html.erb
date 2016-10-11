@@ -4,16 +4,15 @@
     <h2>All trips</h2>
   </div>
   <div class="col-xs-12 col-md-6 text-xs-right">
-    <%= link_to "<i class='fa fa-upload'></i> Import from Nomad List".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <% unless current_user.nomadlist_username == "" %>
+      <%= link_to "<i class='fa fa-upload'></i> Import from NomadList".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <% end %>
     <%= link_to "<i class='fa fa-plus'></i> Add a travel".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
   </div>
 
 </div>
 <hr>
-<br>
-<br>
-
-<div class="row">
+<div class="row spacer-margin">
   <div class="container">
     <div class="card card-inverse text-xs-center">
       <div class="card-block">
@@ -155,29 +154,30 @@
 </div>
 </div>
 <% else %>
-<div class="row text-xs-center">
-  <h2>You don't have any trips for the moment. </h2>
-  <h3>Add your first trip!</h3>
-</div>
-
 <div class="row">
+  <h2>You don't have any trips for the moment. </h2>
+</div>
+<hr>
+<div class="row spacer-margin">
   <div class="col-md-8 offset-md-2">
     <div class="col-md-6 text-xs-center padding-button">
       <%= link_to new_trip_path, class: "btn btn-outline-primary" do %>
-        <i class="fa fa-plus" aria-hidden="true"></i> Add my first travel
+        <i class="fa fa-plus" aria-hidden="true"></i> ADD MY FIRST TRIP
       <% end %>
     </div>
       <div class="col-md-6 text-xs-center padding-button">
-        <%= link_to import_nomad_lists_path, class: "btn btn-outline-primary" do %>
-        <i class="fa fa-upload" aria-hidden="true"></i> Import NomadList
+        <% if current_user.nomadlist_username == "" %>
+          Create a <a href="https://nomadlist.com/">NOMADLIST</a> account, and <%= link_to "add your username", edit_profile_path(current_user) %> by cliquing on your profile.
+        <% else %>
+          <%= link_to import_nomad_lists_path, class: "btn btn-outline-primary" do %>
+            <i class="fa fa-upload" aria-hidden="true"></i> IMPORT from NOMADLIST
+          <% end %>
         <% end %>
       </div>
+    </div>
 
   </div>
 
-  </div>
-  </div>
-</div>
 <% end %>
 <div class="row text-xs-center">
     <%= paginate @trips %>

@@ -25,7 +25,9 @@
                   <%= link_to "Trips", trips_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
-                  <%= link_to 'Account',  edit_user_registration_path(current_user), class:"link-menu" %>
+                  <%= link_to edit_profile_path(current_user), class:"link-menu" do %>
+                    <%= current_user.first_name.capitalize %>
+                  <% end %>
                 </li>
                 <li class="nav-item li-menu">
                   <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class:"link-menu" %>

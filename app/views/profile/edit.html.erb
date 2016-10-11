@@ -1,0 +1,30 @@
+<div class="row">
+  <h1>Update your profile </h1>
+</div>
+<hr>
+<div class="col-sm-6 offset-sm-3 spacer-margin">
+  <div class="card fadeIn">
+    <div class="card-block">
+      <%= simple_form_for @user, :url => edit_complete_profile_path, :method => :patch do |f| %>
+      <div class="form-inputs">
+        <%= f.input :first_name, required: true %>
+        <%= f.input :last_name, required: true %>
+        <%= f.input :nomadlist_username, label: "NomadList Username", placeholder: "ex: #{current_user.first_name}#{current_user.last_name}" %>
+        <%= f.input :email %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Validate", class:"btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-6 offset-sm-3">
+  <div class="card fadeIn">
+    <div class="card-block">
+      <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
+
+    </div>
+  </div>
+</div>

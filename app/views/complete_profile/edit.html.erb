@@ -9,6 +9,7 @@
         <%= f.input :first_name, required: true %>
         <%= f.input :last_name, required: true %>
         <%= f.input :nomadlist_username, label: "Do you have a #{link_to 'NOMADLIST', 'https://nomadlist.com'} account ?".html_safe %>
+        <%= f.input :email %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "Validate", class:"btn btn-primary" %>
