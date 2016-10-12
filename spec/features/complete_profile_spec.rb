@@ -13,8 +13,8 @@ RSpec.describe "redirection of user", :type => :feature do
 
     fill_in 'First', with: "John"
     fill_in 'Last', with: "Doe"
-    click_button 'Update'
-    
+    click_button 'Validate'
+
     expect(current_path).to eq trips_path
   end
 end

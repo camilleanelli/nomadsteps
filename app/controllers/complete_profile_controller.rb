@@ -1,4 +1,4 @@
-class CompleteProfileController < ApplicationController
+class CompleteProfileController < AuthenticatedController
 skip_before_action :check_profile_user
 
   def edit
