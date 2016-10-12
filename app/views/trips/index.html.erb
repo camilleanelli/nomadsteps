@@ -5,7 +5,7 @@
   </div>
   <div class="col-xs-12 col-md-6 text-xs-right">
     <% unless current_user.nomadlist_username == "" %>
-      <%= link_to "<i class='fa fa-upload'></i> Import from NomadList".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <%= link_to "<i class='fa fa-upload'></i> Import from NomadList".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
     <% end %>
     <%= link_to "<i class='fa fa-plus'></i> Add a travel".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
   </div>
@@ -42,117 +42,117 @@
                   <a href="#", class="link-trip" data-toggle="modal" data-target="#myModal-<%= trip.id %>">
                     <%= trip.destination %>
                   </a>
-          <!-- modal  -->
-          <div class="modal fade" id="myModal-<%= trip.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel"> <%= trip.destination %></h4>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <% if trip.image_trip == nil %>
-                        <%= image_tag("image_trip.svg", class:"img-circle", width:100, height:100) %>
-                      <% else %>
-                      <%= image_tag(trip.image_trip, class:"img-circle", width:100, height:100) %>
-                      <% end %>
-                    </div>
-                    <div class="col-xs-8 text-xs-left">
-                      <p>
-                        <i class="fa fa-calendar" aria-hidden="true"></i> Start date : <%= (trip.start_date).strftime('%d/%m/%Y') %>
-                      </p>
-                      <p>
-                        <i class="fa fa-calendar" aria-hidden="true"></i> End date : <%= (trip.end_date).strftime('%d/%m/%Y') %>
-                      </p>
-                      <p>
-                        <i class="fa fa-suitcase" aria-hidden="true"></i> Travelers) : <%= trip.person_number %>
-                      </p>
-                      <p>
-                        Total price per traveler : <%= trip.total_cost_per_traveler %>
-                      </p>
+                  <!-- modal  -->
+                  <div class="modal fade" id="myModal-<%= trip.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel"> <%= trip.destination %></h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-xs-4">
+                              <% if trip.image_trip == nil %>
+                              <%= image_tag("image_trip.svg", class:"img-circle", width:100, height:100) %>
+                              <% else %>
+                              <%= image_tag(trip.image_trip, class:"img-circle", width:100, height:100) %>
+                              <% end %>
+                            </div>
+                            <div class="col-xs-8 text-xs-left">
+                              <p>
+                                <i class="fa fa-calendar" aria-hidden="true"></i> Start date : <%= (trip.start_date).strftime('%d/%m/%Y') %>
+                              </p>
+                              <p>
+                                <i class="fa fa-calendar" aria-hidden="true"></i> End date : <%= (trip.end_date).strftime('%d/%m/%Y') %>
+                              </p>
+                              <p>
+                                <i class="fa fa-suitcase" aria-hidden="true"></i> Travelers) : <%= trip.person_number %>
+                              </p>
+                              <p>
+                                Total price per traveler : <%= trip.total_cost_per_traveler %>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                          <%= link_to "Edit trip", edit_trip_path(trip), class:"btn btn-primary" %>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                  <%= link_to "Edit trip", edit_trip_path(trip), class:"btn btn-primary" %>
-                </div>
-              </div>
-            </div>
-          </div>
 
-        </td>
-        <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
-        <td><strong><%= trip.days_number %></strong> <span class="dday">d</span></td>
-        <td><%= (trip.end_date).strftime('%d/%m/%Y') %></td>
-        <td>
-          <% if trip.transportations.empty? %>
-              <%= link_to new_trip_transportation_path(trip), class:"btn btn-outline-primary btn-sm" do %>
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
-              <% end %>
-            <% else %>
-            <%= link_to trip_transportations_path(trip) do %>
-              <% trip.transportations.each do |transport| %>
-                <% if transport.transportation_type == "Avion" %>
-                  <i class='fa fa-plane color-plane' aria-hidden='true'></i>
-                <% elsif transport.transportation_type == "Train" %>
-                  <i class='fa fa-train color-train' aria-hidden='true'></i>
-                <% elsif transport.transportation_type == "Voiture" %>
-                  <i class='fa fa-car color-car' aria-hidden='true'></i>
-                <% elsif transport.transportation_type == "Bateau" %>
-                  <i class='fa fa-ship color-boat' aria-hidden='true'></i>
-                <% elsif transport.transportation_type == "Bus" %>
-                  <i class='fa fa-bus color-bus' aria-hidden='true'></i>
+                </td>
+                <td><%= (trip.start_date).strftime('%d/%m/%Y') %></td>
+                <td><strong><%= trip.days_number %></strong> <span class="dday">d</span></td>
+                <td><%= (trip.end_date).strftime('%d/%m/%Y') %></td>
+                <td>
+                  <% if trip.transportations.empty? %>
+                    <%= link_to new_trip_transportation_path(trip), class:"btn btn-outline-primary btn-sm" do %>
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+                    <% end %>
+                  <% else %>
+                    <%= link_to trip_transportations_path(trip) do %>
+                      <% trip.transportations.each do |transport| %>
+                        <% if transport.transportation_type == "Avion" %>
+                          <i class='fa fa-plane color-plane' aria-hidden='true'></i>
+                        <% elsif transport.transportation_type == "Train" %>
+                          <i class='fa fa-train color-train' aria-hidden='true'></i>
+                        <% elsif transport.transportation_type == "Voiture" %>
+                          <i class='fa fa-car color-car' aria-hidden='true'></i>
+                        <% elsif transport.transportation_type == "Bateau" %>
+                          <i class='fa fa-ship color-boat' aria-hidden='true'></i>
+                        <% elsif transport.transportation_type == "Bus" %>
+                          <i class='fa fa-bus color-bus' aria-hidden='true'></i>
+                        <% else %>
+                          <%= link_to transport.transportation_type, trip_transportation_path(trip, transport), class:"color-link" %>
+                        <% end  %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if trip.accomodations.empty? %>
+                    <%= link_to new_trip_accomodation_path(trip), class:"btn btn-outline-primary btn-sm" do %>
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+                    <% end %>
                 <% else %>
-                  <%= link_to transport.transportation_type, trip_transportation_path(trip, transport), class:"color-link" %>
-                <% end  %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% if trip.accomodations.empty? %>
-              <%= link_to new_trip_accomodation_path(trip), class:"btn btn-outline-primary btn-sm" do %>
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
-              <% end %>
-            <% else %>
-              <%= link_to trip_accomodations_path(trip), class:"link-trip" do %>
-                <% trip.accomodations.each do |acmd| %>
-                  <li class="list-unstyled"><%= acmd.accomodation_type %></li>
+                  <%= link_to trip_accomodations_path(trip), class:"link-trip" do %>
+                    <% trip.accomodations.each do |acmd| %>
+                      <li class="list-unstyled"><%= acmd.accomodation_type %></li>
+                    <% end %>
+                  <% end %>
                 <% end %>
-              <% end %>
+                </td>
+                <td>
+                <% trip.users.each do |us| %>
+                  <%= us.first_name %>
+                <% end %>
+                <%= link_to  new_trip_invitation_path(trip) do %>
+                  <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Invite"></i>
+                <% end %>
+                </td>
+                <td>
+                  <strong><%= trip.total_cost %> € </strong>
+                </td>
+                <td class="text-xs-center">
+                  <%= link_to trip, method: :delete, data: { confirm: "Confirmez la suppression du voyage"} do %>
+                    <i class="fa fa-times-circle fa-2x cancel-red" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete the trip"></i>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
             <% end %>
-        </td>
-        <td>
-        <% if trip.users.empty? %>
-          <%= current_user.first_name  %>
-        <% else %>
-          <% trip.users.each do |user| %>
-             <%= user.first_name %>
-          <% end %>
-        <% end %>
-        </td>
-        <td>
-          <strong><%= trip.total_cost %> € </strong>
-        </td>
-        <td class="text-xs-center">
-          <%= link_to trip, method: :delete, data: { confirm: "Confirmez la suppression du voyage"} do %>
-            <i class="fa fa-times-circle fa-2x cancel-red" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Supprimer ce voyage"></i>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  <% end %>
-  </table>
-</div>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
+
 <% else %>
 <div class="row">
   <h2>You don't have any trips for the moment. </h2>
@@ -179,6 +179,7 @@
   </div>
 
 <% end %>
+
 <div class="row text-xs-center">
     <%= paginate @trips %>
 </div>
