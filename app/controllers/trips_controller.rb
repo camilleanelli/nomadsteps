@@ -2,7 +2,7 @@ class TripsController < AuthenticatedController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
-    @trips = current_user.trips.includes(:transportations, :accomodations).order(start_date: :desc).page(params[:page])
+    @trips = current_user.trips.includes(:transportations, :accomodations, :users, :trips_users).order(start_date: :desc).page(params[:page])
   end
 
   def edit
@@ -12,6 +12,7 @@ class TripsController < AuthenticatedController
   def update
     @trip.update(params_trips)
     if @trip.save
+      flash[:notice] = "Your trip has been successfully updated"
       redirect_to trips_path
     else
       render :new
@@ -28,6 +29,7 @@ class TripsController < AuthenticatedController
 
     if @trip.save
       current_user.trips << @trip
+      flash[:notice] = "Your trip has been successfully created"
       redirect_to trips_path
     end
   end
