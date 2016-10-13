@@ -26,7 +26,7 @@
                 </li>
                 <li class="nav-item li-menu">
                   <%= link_to edit_profile_path(current_user), class:"link-menu" do %>
-                    <%= current_user.first_name.capitalize %>
+                    <%= current_user.first_name %>
                   <% end %>
                 </li>
                 <li class="nav-item li-menu">
@@ -44,15 +44,22 @@
       </div>
       </nav>
     </header>
-    <div class="container">
-      <br>
-      <br>
+    <div class="container spacer-margin">
       <% if notice %>
-      <div class="alert alert-info" role="alert">
-        <%= notice %>
+      <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong><%= notice %></strong>
+      </div>
+      <% elsif alert %>
+      <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= alert %>
       </div>
       <% end %>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
   </body>

@@ -8,6 +8,7 @@ class InvitationsController < ApplicationController
     @user = User.invite!(params_invitation)
     @trip = current_user.trips.find(params[:trip_id])
     @trip.users << @user
+    flash[:notice] = "An invitation has been successfully send"
     redirect_to trips_path
   end
 

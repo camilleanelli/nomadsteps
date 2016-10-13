@@ -1,8 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "edit a trip",  :type => :feature do
+RSpec.describe "edit a trip", @javascript, :type => :feature do
   it 'redirect to index of trips' do
-    User.create(first_name: "John", last_name: "Doe", email: 'johndoe@email.com', password: 'password', confirmed_at: 1.day.ago)
+    user = User.create(first_name: "John", last_name: "Doe", email: 'johndoe@email.com', password: 'password', confirmed_at: 1.day.ago)
+    trip =  Trip.create(destination: "Paris", start_date: "24/11/2016", end_date: "30/11/2016", city_name: "Paris", country_name: "France", person_number: 2)
+    user.trips << trip
     visit "/"
 
     click_link "Login"
@@ -11,7 +13,10 @@ RSpec.describe "edit a trip",  :type => :feature do
     click_button "Validate"
 
     visit '/trips'
-    click_button 'Edit trip'
-    
+    click_link 'Paris'
+
+
+
+
   end
 end
