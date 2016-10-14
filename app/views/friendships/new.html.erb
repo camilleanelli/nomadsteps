@@ -1,0 +1,6 @@
+<%= simple_form_for @friend, url: friendships_path do |f| %>
+  <%= f.input :email %>
+  <div class="form-actions">
+    <%= f.button :submit, "Validate", class:"btn btn-primary" %>
+  </div>
+<% end %>

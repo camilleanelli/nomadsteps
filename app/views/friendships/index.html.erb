@@ -1,0 +1,11 @@
+<h1>My friends</h1>
+<hr>
+<% @friends.each do |friend| %>
+  <%= friend.first_name %>
+  <%= friend.last_name %>
+<% end %>
+
+<% @inverse_friends.each do |friend| %>
+  <%= friend.first_name %>
+  <%= friend.last_name %>
+<% end %>
