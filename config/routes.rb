@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :friendships, only: [:index, :new, :create, :destroy]
+
   root :controller => 'static', :action => '/'
 
   devise_for :users

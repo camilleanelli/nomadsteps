@@ -13,7 +13,7 @@ RSpec.describe "edit a trip", @javascript, :type => :feature do
     click_button "Validate"
 
     visit '/trips'
-    click_link 'Paris'
+    click_link 'Paris '
 
 
 
