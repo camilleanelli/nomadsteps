@@ -26,7 +26,14 @@
               <%= f.input :destination, input_html: {id: :autocomplete}, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination :".html_safe %>
             </div>
             <div class="col-sm-6">
+              <% if current_user.friends.empty? %>
+                <p><i class='fa fa-user-plus' aria-hidden='true'></i> Add a traveler : </p>
+                <p>
+                  <%= link_to "You have to add friends to your account", new_friendship_path %>
+                </p>
+              <% else %>
                 <%= f.input :user_ids, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Add a traveler :".html_safe, collection: current_user.friends, label_method: :first_name, input_html: { multiple: true }, default: current_user %>
+                <% end %>
             </div>
           </div>
           <br>
