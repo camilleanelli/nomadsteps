@@ -1,6 +1,14 @@
-<%= simple_form_for @friend, url: friendships_path do |f| %>
-  <%= f.input :email %>
-  <div class="form-actions">
-    <%= f.button :submit, "Validate", class:"btn btn-primary" %>
+<div class="row">
+  <h1>Add a friend to your application</h1>
+</div>
+<hr>
+<div class="row spacer-margin">
+  <div class="col-sm-6">
+    <%= simple_form_for @friend, url: friendships_path do |f| %>
+      <%= f.input :email %>
+      <div class="form-actions">
+        <%= f.button :submit, "Validate", class:"btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
