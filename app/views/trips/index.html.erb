@@ -1,9 +1,10 @@
 <% if @trips.count > 0 %>
 <div class="row">
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-4">
     <h2>All trips</h2>
   </div>
-  <div class="col-xs-12 col-md-6 text-xs-right">
+  <div class="col-xs-12 col-md-8 text-xs-right">
+    <%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i> Add friends to invite them in trips".html_safe, new_friendship_path, class:"btn btn-outline-primary" %>
     <% unless current_user.nomadlist_username == "" %>
     <%= link_to "<i class='fa fa-upload'></i> Import from NomadList".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
     <% end %>
@@ -131,9 +132,11 @@
                 <% trip.users.each do |us| %>
                   <%= us.first_name %>
                 <% end %>
-                <%= link_to  new_trip_invitation_path(trip) do %>
+                <% if current_user.friends %>
+                <%= link_to edit_trip_path(trip) do %>
                   <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Invite"></i>
                 <% end %>
+              <% end %>
                 </td>
                 <td>
                   <strong><%= trip.total_cost %> € </strong>

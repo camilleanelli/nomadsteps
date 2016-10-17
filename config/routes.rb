@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :friendships, only: [:index, :new, :create, :destroy]
+  resources :friendships, except: [:show, :edit, :update]
 
   root :controller => 'static', :action => '/'
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   patch 'profile', to: "profile#update", as: "profile"
 
   resources :trips, except: [:show] do
-    resources :invitations, only: [:new, :create]
+  
 
     resources :transportations do
       resources :tickets, only: [:new, :create, :destroy]
