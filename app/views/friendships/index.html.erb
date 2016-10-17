@@ -1,20 +1,37 @@
-<h1>My friends</h1>
+<div class="row">
+  <div class="col-sm-4">
+    <h1>My friends</h1>
+  </div>
+    <div class="col-sm-8 text-xs-right">
+      <%= link_to new_friendship_path, class:"btn btn-outline-primary" do %>
+        <i class='fa fa-user-plus' aria-hidden='true'></i> Add a friend
+      <% end %>
+    </div>
+</div>
+
 <hr>
-<% if current_user.friends %>
-  <% @friends.each do |friend| %>
-    <li><%= friend.first_name %> <%= friend.last_name %></li>
-    <%= link_to "Delete", friendship_path(friend), method: :delete, data: { confirm: "Confirm you want to delete your friend"} %>
-    <hr>
-  <% end %>
-<!--
-  <% @inverse_friends.each do |friend| %>
-    <li><%= friend.first_name %> <%= friend.last_name %></li>
-    <hr>
-  <% end %> -->
+<% if current_user.friends.empty? %>
+<h2>You don't have any friends to share your trips !</h2>
+  <div class="row spacer-margin">
+    <div class="row spacer-margin">
+      <h4>1. <%= link_to "Add friend(s)", new_friendship_path %> to your account</h4>
+    </div>
+    <div class="row spacer-margin">
+      <h4>2. Invite a friend to share your <%= link_to "trip(s)", trips_path %></h4>
+    </div>
+  </div>
 <% else %>
-  <p>
-    You don't have any friends to share your trips !
-  </p>
-  <%= link_to "INVITE A FRIEND", new_friendship_path %>
+  <div class="row spacer-margin">
+    <% @friends.each do |friend| %>
+      <li><%= friend.first_name %> <%= friend.last_name %></li>
+      <%= link_to "Delete", friendship_path(friend), method: :delete, data: { confirm: "Confirm you want to delete your friend"} %>
+    <% end %>
+    <% @inverse_friends.each do |friend| %>
+      <li><%= friend.first_name %> <%= friend.last_name %></li>
+      <hr>
+    <% end %>
+      <hr>
+
+  </div>
 
 <% end %>

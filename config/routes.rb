@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   patch 'profile', to: "profile#update", as: "profile"
 
   resources :trips, except: [:show] do
-  
-
     resources :transportations do
       resources :tickets, only: [:new, :create, :destroy]
     end

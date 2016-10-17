@@ -132,7 +132,7 @@
                 <% trip.users.each do |us| %>
                   <%= us.first_name %>
                 <% end %>
-                <% if current_user.friends %>
+                <% if !current_user.friends.empty? %>
                 <%= link_to edit_trip_path(trip) do %>
                   <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Invite"></i>
                 <% end %>
