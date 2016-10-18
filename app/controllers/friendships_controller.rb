@@ -23,9 +23,18 @@ class FriendshipsController < AuthenticatedController
 
   def destroy
     @friendships = current_user.friendships.where(friend_id: params[:id])
+    @trips = current_user.trips
     @friendships.each do |friendship|
       friendship.destroy
+      @trips.each do |trip|
+         trip.users.each do |user|
+           if user.id == friendship.friend.id
+             trip.users.delete(user.id)
+           end
+         end
+      end
     end
+
     redirect_to friendships_path(current_user)
   end
 
