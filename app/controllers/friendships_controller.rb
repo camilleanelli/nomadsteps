@@ -18,6 +18,7 @@ class FriendshipsController < AuthenticatedController
       @friend.invite!
     end
     current_user.friends << @friend
+    flash[:notice] = "Your friend has been successfully added to your account"
     redirect_to trips_path
   end
 
@@ -34,7 +35,7 @@ class FriendshipsController < AuthenticatedController
          end
       end
     end
-
+    flash[:notice] = "Your friend has been removed from your account"
     redirect_to friendships_path(current_user)
   end
 
