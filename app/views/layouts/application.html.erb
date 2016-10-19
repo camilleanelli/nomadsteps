@@ -28,13 +28,14 @@
                   <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> TRIPS".html_safe, trips_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
+                  <%= link_to "Logout <i class='fa fa-times-circle-o' aria-hidden='true'></i>".html_safe, destroy_user_session_path, :method => :delete, class:"link-menu" %>
+                </li>
+                <li class="nav-item li-menu">
                   <%= link_to edit_profile_path, class:"link-menu" do %>
-                    <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.first_name %>
+                    <%= avatar_navbar %> <%= current_user.first_name %>
                   <% end %>
                 </li>
-                  <li class="nav-item li-menu">
-                    <%= link_to "Logout <i class='fa fa-times-circle-o' aria-hidden='true'></i>".html_safe, destroy_user_session_path, :method => :delete, class:"link-menu" %>
-                  </li>
+
                 </ul>
               <% else %>
               <li class="nav-item">
