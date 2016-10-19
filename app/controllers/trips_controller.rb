@@ -37,6 +37,7 @@ class TripsController < AuthenticatedController
 
   def destroy
     @trip.destroy
+    flash[:notice] = "Your trip has been successfully deleted"
     redirect_to trips_path
   end
 

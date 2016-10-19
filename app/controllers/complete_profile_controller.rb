@@ -8,6 +8,7 @@ skip_before_action :check_profile_user
   def update
     @user = current_user
     if @user.update(params_complete_profile)
+      flash[:notice] = "Your profile is completed !"
       redirect_to trips_path
     else
       render :complete_profile

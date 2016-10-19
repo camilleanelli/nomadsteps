@@ -24,9 +24,9 @@
                 <th>Start</th>
                 <th>Days</th>
                 <th>End</th>
-                <th>Transportation</th>
-                <th>Accomodation</th>
-                <th>Traveler(s)</th>
+                <th>Transportations</th>
+                <th>Accomodations</th>
+                <th>Travelers</th>
                 <th>
                 <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Add traveler(s)"></i>
                 </th>
@@ -146,10 +146,14 @@
                 </td>
                 <td>
                   <% if !current_user.friends.empty? %>
-                  <%= link_to edit_trip_path(trip) do %>
-                    <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Add a friend to share your trip !"></i>
+                    <%= link_to edit_trip_path(trip) do %>
+                      <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Add a friend to share your trip !"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to friendships_path do %>
+                      <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Add a friend to share your trip !"></i>
+                    <% end %>
                   <% end %>
-                <% end %>
                 </td>
                 <td>
                   <strong><%= trip.total_cost %> € </strong>
