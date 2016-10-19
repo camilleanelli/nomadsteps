@@ -7,6 +7,7 @@ class ProfileController < ApplicationController
   def update
     @user = current_user
     if @user.update(params_profile)
+      flash[:notice] = "Your profile has been successfully updated"
       redirect_to trips_path
     end
   end
@@ -14,6 +15,6 @@ class ProfileController < ApplicationController
   private
 
   def params_profile
-    params[:user].permit(:first_name, :last_name, :email, :nomadlist_username)
+    params[:user].permit(:first_name, :last_name, :email, :nomadlist_username, :filepicker_url)
   end
 end

@@ -128,9 +128,13 @@
                 <% end %>
                 </td>
                 <td>
-                <% trip.users.each do |us| %>
-                  <%= us.first_name %>
-                <% end %>
+                <% trip.users.each do |user| %>
+                    <% if user.filepicker_url? %>
+                      <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+                    <% else %>
+                      <%= image_tag("user.png") %> 
+                    <% end %>
+                  <% end %>
                 <% if !current_user.friends.empty? %>
                 <%= link_to edit_trip_path(trip) do %>
                   <i class='fa fa-user-plus' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Invite"></i>

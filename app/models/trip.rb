@@ -46,4 +46,6 @@ class Trip < ApplicationRecord
   def total_cost_per_traveler
     self.total_cost / self.users.count
   end
+
+
 end
