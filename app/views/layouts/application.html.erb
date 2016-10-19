@@ -28,7 +28,7 @@
                   <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> TRIPS".html_safe, trips_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
-                  <%= link_to edit_profile_path(current_user), class:"link-menu" do %>
+                  <%= link_to edit_profile_path, class:"link-menu" do %>
                     <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.first_name %>
                   <% end %>
                 </li>

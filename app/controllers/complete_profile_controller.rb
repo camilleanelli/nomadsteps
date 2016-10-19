@@ -17,6 +17,6 @@ skip_before_action :check_profile_user
 private
 
   def params_complete_profile
-    params[:user].permit(:first_name, :last_name, :nomadlist_username)
+    params[:user].permit(:first_name, :last_name, :nomadlist_username, :filepicker_url)
   end
 end
