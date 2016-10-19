@@ -6,7 +6,7 @@
         <% if current_user.filepicker_url? %>
           <%= filepicker_image_tag current_user.filepicker_url, {w: 100, h: 100, fit: 'crop'}, class:"img-circle" %>
         <% else %>
-          <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+          <%= image_tag("user128.png", width: 100) %>
         <% end %>
       </div>
       <div class="col-sm-9">
