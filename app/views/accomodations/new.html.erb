@@ -31,7 +31,7 @@
         <div class="card card-block">
           <%= f.input :link, label: "<i class='fa fa-link' aria-hidden='true'></i>  Web site :".html_safe, placeholder: "Ex:  https://www.airbnb.fr/" %>
           <%= f.input :price, label: "<i class='fa fa-money' aria-hidden='true'></i> Total cost :".html_safe, input_html: { style: 'width:100px', value: "00" } %>
-          <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Travelers :".html_safe, input_html: { style: 'width:100px', value: @trip.person_number } %>
+          <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Travelers :".html_safe, input_html: { style: 'width:100px', value: @trip.users.count } %>
         </div>
       </div>
       </div>
