@@ -9,7 +9,6 @@ RSpec.describe "create trip", @javascript, :type => :feature do
     fill_in "Password", with: "password"
     click_button "Validate"
     visit '/trips'
-    save_and_open_page
     click_link 'ADD MY FIRST TRIP'
     select "2016", :from => 'trip_start_date_1i'
     select "December", :from => 'trip_start_date_2i'
