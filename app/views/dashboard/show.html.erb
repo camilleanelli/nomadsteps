@@ -41,8 +41,8 @@
               <%= link_to "Add an accomodation", new_trip_accomodation_path(trip), style:"font-size:20px" %>
             <% else %>
               Accomodation :
-              <%= trip.accomodations.each do |acmd| %>
-                <%= link_to acmd.accomodation_type, trip_accomodation_path(trip) %>
+              <% trip.accomodations.each do |acmd| %>
+                <%= link_to acmd.accomodation_type, trip_accomodations_path(trip, acmd) %>
                 <%= acmd.address %>
               <% end %>
             <% end %>
@@ -53,8 +53,8 @@
               <%= link_to "Add transportation(s)", new_trip_transportation_path(trip), style:"font-size:20px" %>
             <% else %>
               Transportation(s) :
-              <%= trip.transportations.each do |transport| %>
-                <%= link_to transport.transportation_type, trip_transportation_path(trip) %>
+              <% trip.transportations.each do |transport| %>
+                <%= link_to transport.transportation_type, trip_transportations_path(trip, transport) %>
               <% end %>
             <% end %>
           </div>
@@ -116,8 +116,8 @@
             <% else %>
             <p>
               Accomodation :
-              <%= @next_trip.accomodations.each do |acmd| %>
-                <%= link_to acmd.accomodation_type, trip_accomodation_path(@next_trip) %>
+              <% @next_trip.accomodations.each do |acmd| %>
+                <%= link_to acmd.accomodation_type, trip_accomodations_path(@next_trip, acmd) %>
                 <%= acmd.address %>
               <% end %>
             <% end %>
@@ -131,8 +131,8 @@
             <% else %>
             <p>
               Transportation(s) :
-              <%= @next_trip.transportations.each do |transport| %>
-                <%= link_to transport.transportation_type, trip_transportation_path(@next_trip) %>
+              <% @next_trip.transportations.each do |transport| %>
+                <%= link_to transport.transportation_type, trip_transportations_path(@next_trip) %>
               <% end %>
             <% end %>
             </p>
