@@ -28,7 +28,6 @@
         <p>
           <%= link_to "Invite a friend before continue !", new_friendship_path %>
         </p>
-
       <% else %>
         <%= f.input :user_ids, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Who is coming with you ?".html_safe, collection: current_user.friends, label_method: :first_name, input_html: { multiple: true } %>
       <% end %>

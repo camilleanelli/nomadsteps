@@ -1,11 +1,11 @@
 <div class="row">
-  <h1>Add contact to your application</h1>
+  <h1>Invite a friend </h1>
 </div>
 <hr>
 <div class="row spacer-margin">
   <div class="col-sm-6">
     <%= simple_form_for @friend, url: friendships_path do |f| %>
-      <%= f.input :email %>
+      <%= f.input :email, label: "Invite with email address", placeholder: "ex: johndoe@gmail.com" %>
       <div class="form-actions">
         <%= f.button :submit, "Validate", class:"btn btn-primary" %>
       </div>
