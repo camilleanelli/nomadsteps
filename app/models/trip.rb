@@ -14,11 +14,6 @@ class Trip < ApplicationRecord
   end
 
 
-
- def full_destination
-   "#{destination}, #{country}"
- end
-
   def days_number
     (self.end_date - self.start_date).to_i
   end

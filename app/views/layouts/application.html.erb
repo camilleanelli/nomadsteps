@@ -25,6 +25,9 @@
                   <%= link_to "<i class='fa fa-users' aria-hidden='true'></i> FRIENDS".html_safe, friendships_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
+                  <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> DASHBOARD".html_safe, dashboard_path, class:"link-menu" %>
+                </li>
+                <li class="nav-item li-menu">
                   <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> TRIPS".html_safe, trips_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
@@ -35,8 +38,7 @@
                     <%= avatar_navbar %> <%= current_user.first_name %>
                   <% end %>
                 </li>
-
-                </ul>
+              </ul>
               <% else %>
               <li class="nav-item">
                 <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary " %>
@@ -49,7 +51,7 @@
       </div>
       </nav>
     </header>
-    <div class="container spacer-margin">
+    <div class="container spacer-margin spacer-bottom">
       <% if notice %>
       <div class="alert alert-success" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -66,6 +68,7 @@
       </div>
       <% end %>
       <%= yield %>
+
     </div>
   </body>
 </html>

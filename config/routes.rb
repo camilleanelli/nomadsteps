@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboard', to: 'dashboard#show', as: "dashboard"
+
   resources :friendships, except: [:show, :edit, :update]
 
   root :controller => 'static', :action => '/'

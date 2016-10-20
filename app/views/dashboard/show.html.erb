@@ -1,0 +1,158 @@
+<h1>Hi <%= @user.first_name %></h1>
+<hr>
+<% @current_trip.each do |trip| %>
+<div class="row spacer-margin" id="current_trip">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <h2>Current trip to: <%= trip.destination %></h2>
+      </div>
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-6">
+            <p><strong>Start date :</strong> <%= trip.start_date %></p>
+            <p>End date : <%= trip.end_date %></p>
+          </div>
+          <div class="col-sm-6">
+            <p>
+              Travelers:
+              <% trip.users.each do |user| %>
+              <li class="list-unstyled">
+                <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+                <%= user.first_name %>
+              </li>
+            <% end %>
+            </p>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <p>Total cost : <%= trip.total_cost %></p>
+          </div>
+          <div class="col-sm-6">
+            <p>Cost per traveler : <%= trip.total_cost_per_traveler %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <p>
+            <% if trip.accomodations.empty? %>
+              <%= link_to "Add an accomodation", new_trip_accomodation_path(trip), style:"font-size:20px" %>
+            <% else %>
+              Accomodation :
+              <%= trip.accomodations.each do |acmd| %>
+                <%= link_to acmd.accomodation_type, trip_accomodation_path(trip) %>
+                <%= acmd.address %>
+              <% end %>
+            <% end %>
+            </p>
+          </div>
+          <div class="col-sm-12">
+            <% if trip.transportations.empty? %>
+              <%= link_to "Add transportation(s)", new_trip_transportation_path(trip), style:"font-size:20px" %>
+            <% else %>
+              Transportation(s) :
+              <%= trip.transportations.each do |transport| %>
+                <%= link_to transport.transportation_type, trip_transportation_path(trip) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-12 text-xs-center" style="padding-top:20px">
+          <p>
+            <a href="#next-trip"> <i class="fa fa-plane" aria-hidden="true"></i> Next destination</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card card-block">
+      <div id="map" class="width-card">
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<hr>
+<div id="next-trip" class="row spacer-margin">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <h2> Next trip : <%= @next_trip.destination %></h2>
+      </div>
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>Star date : <%= @next_trip.start_date %></p>
+            <p>End date : <%= @next_trip.end_date %></p>
+          </div>
+          <div class="col-sm-6">
+            <p>
+              Traveler(s):
+              <li class="list-unstyled">
+                <% @next_trip.users.each do |user| %>
+                  <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+                  <%= user.first_name %>
+                <% end %>
+              </li>
+            </p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-6">
+            <p>Total cost : <%= @next_trip.total_cost %> </p>
+          </div>
+          <div class="col-sm-6">
+            <p>Cost per traveler : <%= @next_trip.total_cost_per_traveler %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <% if @next_trip.accomodations.empty? %>
+              <%= link_to "Add an accomodation", new_trip_accomodation_path(@next_trip), style:"font-size:20px" %>
+            <% else %>
+            <p>
+              Accomodation :
+              <%= @next_trip.accomodations.each do |acmd| %>
+                <%= link_to acmd.accomodation_type, trip_accomodation_path(@next_trip) %>
+                <%= acmd.address %>
+              <% end %>
+            <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <% if @next_trip.transportations.empty? %>
+              <%= link_to "Add transportation(s)", new_trip_transportation_path(@next_trip), style:"font-size:20px" %>
+            <% else %>
+            <p>
+              Transportation(s) :
+              <%= @next_trip.transportations.each do |transport| %>
+                <%= link_to transport.transportation_type, trip_transportation_path(@next_trip) %>
+              <% end %>
+            <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function initMap() {
+  var myLatLng = { lat: <%= @current_trip.first.latitude %>, lng: <%= @current_trip.first.longitude %> };
+  console.log(myLatLng)
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: myLatLng
+  });
+}
+ </script>
+ <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&callback=initMap">
+ </script>
