@@ -172,7 +172,8 @@ function initMap() {
       console.log(myLatLng)
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 3,
-        center: myLatLng
+        center: myLatLng,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
     });
     <% @trips_dashboard.each do |trip| %>
     <% next if trip.nil? %>
@@ -182,6 +183,20 @@ function initMap() {
       title: '<%= trip.destination unless trip.nil?%>'
     });
   <% end %>
+
+    var flightPlanCoordinates = [
+      {lat: <%= @current_trip.latitude %>, lng: <%= @current_trip.longitude %>},
+      {lat: <%= @next_trip.latitude %>, lng: <%= @next_trip.longitude %>}
+    ];
+    var flightPath = new google.maps.Polyline({
+      path: flightPlanCoordinates,
+      geodesic: true,
+      strokeColor: '#DB0A5B',
+      strokeOpacity: 0.5,
+      strokeWeight: 4
+    });
+
+    flightPath.setMap(map);
 <% end %>
 }
  </script>
