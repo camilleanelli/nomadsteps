@@ -57,7 +57,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
           api_key: 'key-aa033f061f4d6baeba94e832b582b0fd',
-          domain: 'sandboxf03341ea101d46da8b8b053501228eef.mailgun.org'
+          domain: 'staging.nomadsteps.com'
   }
 
   config.after_initialize do

@@ -3,11 +3,7 @@
   <div class="col-sm-8">
     <div class="row">
       <div class="col-sm-3 text-xs-left">
-        <% if current_user.filepicker_url? %>
-          <%= filepicker_image_tag current_user.filepicker_url, {w: 100, h: 100, fit: 'crop'}, class:"img-circle" %>
-        <% else %>
-          <%= image_tag("user128.png", width: 100) %>
-        <% end %>
+        <%= render "share/avatar" %>
       </div>
       <div class="col-sm-9">
         <h1> Hi <%= current_user.first_name.capitalize %> !</h1>

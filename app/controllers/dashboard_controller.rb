@@ -6,6 +6,8 @@ class DashboardController < ApplicationController
     current_trip
     next_trip
     @next_trip = @next_trips.first
+    last_trip
+    @last_trip = @last_trips.last
   end
 
   private
@@ -19,10 +21,36 @@ class DashboardController < ApplicationController
 
   def next_trip
     @next_trips = []
-    @trips.each do |trip|
-      if trip.start_date >= @current_trip.first.end_date
-        @next_trips << trip
+    if @current_trip.empty?
+      @trips.each do |trip|
+        if trip.start_date >= Date.today
+          @next_trips << trip
+        end
+      end
+    else
+      @trips.each do |trip|
+        if trip.start_date >= @current_trip.first.end_date
+          @next_trips << trip
+        end
       end
     end
   end
+
+  def last_trip
+    @last_trips = []
+    if @current_trip.empty?
+      @trips.each do |trip|
+        if trip.end_date <= Date.today
+          @last_trips << trip
+        end
+      end
+    else
+      @trips.each do |trip|
+        if trip.end_date <= @current_trip.start_date
+          @last_trips << trip
+        end
+      end
+    end
+  end
+
 end
