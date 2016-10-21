@@ -72,7 +72,10 @@
           </div>
         </div>
         <div class="row">
-          <%= link_to "Edit", edit_trip_path %>
+          <div class="col-xs-12  text-xs-right">
+              <%= link_to "Edit", edit_trip_path(@current_trip) %>
+          </div>
+
         </div>
       </div>
     </div>
@@ -146,6 +149,12 @@
               <% end %>
             <% end %>
             </p>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-xs-12 text-xs-right">
+            <%= link_to "Edit ", edit_trip_path(@next_trip) %>
+
           </div>
         </div>
       </div>
