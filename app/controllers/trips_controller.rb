@@ -6,12 +6,12 @@ class TripsController < AuthenticatedController
   end
 
   def edit
-    @place = Nomadlist::City.find(params[@trip.city_details]).result[0]
+    # @place = Nomadlist::City.find(params[@trip.city_details]).result[0]
   end
 
   def update
     @trip.update(params_trips)
-    @trip.users << current_user
+    @trip.users << current_user unless current_user.friends.empty?
     if @trip.save
       flash[:notice] = "Your trip has been successfully updated"
       redirect_to trips_path
