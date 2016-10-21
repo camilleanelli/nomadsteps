@@ -1,5 +1,20 @@
-<h1>Hi <%= @user.first_name %></h1>
+<div class="row">
+  <div class="col-sm-2 text-xs-right">
+    <%= render "share/avatar" %>
+  </div>
+  <div class="col-sm-10">
+      <h1>Hi <%= @user.first_name %> !</h1>
+  </div>
+</div>
 <hr>
+
+<% if @current_trip.empty? %>
+<div class="row spacer-margin">
+  <h2>You don't have current trip for the moment </h2>
+  <%= link_to "Change that !", new_trip_path %>
+</div>
+
+<% else %>
 <% @current_trip.each do |trip| %>
 <div class="row spacer-margin" id="current_trip">
   <div class="col-sm-6">
@@ -75,8 +90,13 @@
   </div>
 </div>
 <% end %>
+<% end %>
 <hr>
 <div id="next-trip" class="row spacer-margin">
+  <% if @next_trip == nil %>
+    <h2>You don't have next trip for the moment </h2>
+    <%= link_to "Change that !", new_trip_path %>
+  <% else %>
   <div class="col-sm-6">
     <div class="card">
       <div class="card-header">
@@ -141,11 +161,12 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">
 function initMap() {
-  var myLatLng = { lat: <%= @current_trip.first.latitude %>, lng: <%= @current_trip.first.longitude %> };
+  var myLatLng = { lat: <%=  @current_trip.first.latitude unless @current_trip.empty? %>, lng: <%= @current_trip.first.longitude unless @current_trip.empty? %> };
   console.log(myLatLng)
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
