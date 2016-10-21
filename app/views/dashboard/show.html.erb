@@ -69,11 +69,6 @@
             <% end %>
           </div>
         </div>
-        <!-- <div class="col-sm-12 text-xs-center" style="padding-top:20px">
-          <p>
-            <a href="#next-trip"> <i class="fa fa-plane" aria-hidden="true"></i> Next destination</a>
-          </p>
-        </div> -->
       </div>
     </div>
     <% end %>
@@ -148,7 +143,7 @@
         </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
   </div>
   <hr>
   </div>
@@ -162,7 +157,33 @@
 
 
 <script type="text/javascript">
+
 function initMap() {
+<% if @trips_dashboard.include?(nil) %>
+
+  <% unless @trips_dashboard == [nil, nil] %>
+    <% if @next_trip %>
+      var myLatLng =  { lat: <%= @next_trip.latitude %>, lng: <%= @next_trip.longitude %>}
+    <% else %>
+      var myLatLng =  { lat: <%= @current_trip.latitude %>, lng: <%= @current_trip.longitude %>}
+    <% end %>
+    console.log(myLatLng)
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 3,
+      center: myLatLng
+    });
+    <% @trips_dashboard.each do |trip| %>
+      <% next if trip.nil? %>
+        new google.maps.Marker({
+        position: { lat: <%= trip.latitude unless trip.nil? %>, lng: <%= trip.longitude unless trip.nil? %>},
+        map: map,
+        title: '<%= trip.destination unless trip.nil?%>'
+        });
+      <% end %>
+    <% end %>
+
+<% else %>
+
   <% unless @trips_dashboard == [nil, nil] %>
     <% if @next_trip %>
       var myLatLng =  { lat: <%= @next_trip.latitude %>, lng: <%= @next_trip.longitude %>}
@@ -172,34 +193,38 @@ function initMap() {
       console.log(myLatLng)
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 3,
-        center: myLatLng,
+        center: myLatLng
         mapTypeId: google.maps.MapTypeId.TERRAIN
-    });
+        });
+
     <% @trips_dashboard.each do |trip| %>
-    <% next if trip.nil? %>
-      new google.maps.Marker({
-      position: { lat: <%= trip.latitude unless trip.nil? %>, lng: <%= trip.longitude unless trip.nil? %>},
-      map: map,
-      title: '<%= trip.destination unless trip.nil?%>'
-    });
-  <% end %>
+      <% next if trip.nil? %>
+        new google.maps.Marker({
+          position: { lat: <%= trip.latitude unless trip.nil? %>, lng: <%= trip.longitude unless trip.nil? %>},
+          map: map,
+          title: '<%= trip.destination unless trip.nil?%>'
+        });
+    <% end %>
 
     var flightPlanCoordinates = [
-      {lat: <%= @current_trip.latitude %>, lng: <%= @current_trip.longitude %>},
-      {lat: <%= @next_trip.latitude %>, lng: <%= @next_trip.longitude %>}
+      {lat: <%= @current_trip.latitude if @current_trip %>, lng: <%= @current_trip.longitude if @current_trip %>},
+      {lat: <%= @next_trip.latitude if @next_trip %>, lng: <%= @next_trip.longitude if @next_trip %>}
     ];
-    var flightPath = new google.maps.Polyline({
-      path: flightPlanCoordinates,
-      geodesic: true,
-      strokeColor: '#DB0A5B',
-      strokeOpacity: 0.5,
-      strokeWeight: 4
-    });
 
-    flightPath.setMap(map);
+
+      var flightPath = new google.maps.Polyline({
+        path: flightPlanCoordinates,
+        geodesic: true,
+        strokeColor: '#DB0A5B',
+        strokeOpacity: 0.5,
+        strokeWeight: 4
+      });
+      flightPath.setMap(map);
+
+  <% end %>
 <% end %>
 }
- </script>
+</script>
  <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&callback=initMap">
  </script>
