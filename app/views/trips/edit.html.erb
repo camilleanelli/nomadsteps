@@ -10,9 +10,6 @@
     <h1>Trip : <%= @trip.destination %></h1>
 
   </div>
-  <!-- <p>
-    <%= @place.info.weather.type %>
-  </p> -->
 </div>
 <hr>
 <div class="col-sm-6 offset-sm-3">
@@ -29,11 +26,11 @@
               <% if current_user.friends.empty? %>
                 <p><i class='fa fa-user-plus' aria-hidden='true'></i> Add a traveler : </p>
                 <p>
-                  <%= link_to "You have to add friends to your account", new_friendship_path %>
+                  <%= link_to "Add friends to your account before continue", new_friendship_path %>
                 </p>
               <% else %>
-                <%= f.input :user_ids, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Add a traveler :".html_safe, collection: current_user.friends, label_method: :first_name, input_html: { multiple: true }, default: current_user %>
-                <% end %>
+                <%= f.input :user_ids, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Add a traveler :".html_safe, collection: current_user.friends, label_method: :first_name, input_html: { multiple: true } %>
+              <% end %>
             </div>
           </div>
           <br>

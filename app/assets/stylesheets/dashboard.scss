@@ -7,3 +7,11 @@
   padding: 10px;
   border-radius: 5px;
 }
+
+.link-map {
+  color: #373a3c;
+  &:hover {
+    text-decoration: none;
+    
+  }
+}
