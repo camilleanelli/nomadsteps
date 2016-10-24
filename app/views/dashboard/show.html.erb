@@ -30,7 +30,11 @@
               Travelers:
               <% @current_trip.users.each do |user| %>
               <li class="list-unstyled">
-                <%= render "share/small_avatar" %>
+              <% if user.filepicker_url %>
+                <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+              <% else %>
+                <%= image_tag("user.png") %>
+              <% end %>
                 <%= user.first_name %>
               </li>
             <% end %>
@@ -106,7 +110,11 @@
               Traveler(s):
               <li class="list-unstyled">
                 <% @next_trip.users.each do |user| %>
-                <%= render "share/small_avatar" %>
+                <% if user.filepicker_url %>
+                  <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+                <% else %>
+                  <%= image_tag("user.png") %>
+                <% end %>
                   <%= user.first_name %>
                 <% end %>
               </li>

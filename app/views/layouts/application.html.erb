@@ -35,7 +35,7 @@
                 </li>
                 <li class="nav-item li-menu">
                   <%= link_to edit_profile_path, class:"link-menu" do %>
-                    <%= avatar_navbar %> <%= current_user.first_name %>
+                    <%= render 'share/small_avatar' %> <%= current_user.first_name %>
                   <% end %>
                 </li>
               </ul>

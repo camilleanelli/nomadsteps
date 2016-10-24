@@ -18,7 +18,6 @@
       <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
         <i class='fa fa-check' aria-hidden='true'></i> Confirm your profile
       <% end %>
-      <!-- <%= f.button :submit, "<i class='fa fa-check' aria-hidden='true'></i> Confirm your modifications".html_safe, class:"btn btn-primary" %> -->
     </div>
   </div>
 </div>
@@ -40,8 +39,19 @@
     <div class="col-sm-6">
       <div class="card fadeIn">
         <div class="card-block">
-          <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
+          <%= link_to "<i class='fa fa-times-circle-o' aria-hidden='true'></i> Sign out ".html_safe, destroy_user_session_path, :method => :delete %>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card fadeIn">
+        <div class="card-block">
+          <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
+
+        </div>
+      </div>
+    </div>
+
   </div>

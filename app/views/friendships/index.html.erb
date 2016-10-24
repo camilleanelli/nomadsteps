@@ -10,7 +10,7 @@
 </div>
 
 <hr>
-<% if current_user.friends.empty? %>
+<% if current_user.friends.empty? && current_user.inverse_friends.empty? %>
 <h2>You don't have any friends to share your trips !</h2>
   <div class="row spacer-margin">
     <div class="row spacer-margin">
@@ -23,15 +23,19 @@
 <% else %>
   <div class="row spacer-margin">
     <% @friends.each do |friend| %>
-      <li><%= friend.first_name %> <%= friend.last_name %></li>
-      <%= link_to "Delete", friendship_path(friend), method: :delete, data: { confirm: "Confirm you want to delete your friend"} %>
+      <% if friend.invitation_accepted_at == nil %>
+        <li><%= friend.first_name == nil ? friend.email : friend.first_name %> |  Invitation pending </li>
+      <% else %>
+        <li><%= friend.first_name %> <%= friend.last_name %></li>
+        <%= link_to "Delete", friendship_path(friend), method: :delete, data: { confirm: "Confirm you want to delete your friend"} %>
+      <% end %>
     <% end %>
-    <% @inverse_friends.each do |friend| %>
-      <li><%= friend.first_name %> <%= friend.last_name %></li>
-      <hr>
-    <% end %>
-      <hr>
-
   </div>
-
+  <div class="row">
+    <% @inverse_friends.each do |inverse_friend| %>
+      <li><%= inverse_friend.first_name %> <%= inverse_friend.last_name %></li>
+      <%= link_to "Delete", friendship_path(inverse_friend), method: :delete, date: { confirm: "Are you sure ?"} %>
+    <% end %>
+  </div>
+    <hr>
 <% end %>
