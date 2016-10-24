@@ -13,7 +13,7 @@ class FriendshipsController < AuthenticatedController
     @friend = User.find_or_create_by(params_friend)
       @friend.invite!
       current_user.friends << @friend
-      flash[:notice] = "Your friend has been successfully added to your account"
+      flash[:notice] = "An invitation has been sent to your friend !"
       redirect_to trips_path
   end
 

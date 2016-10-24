@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
 
   has_many :transportations, dependent: :destroy
   has_many :accomodations, dependent: :destroy
-  has_and_belongs_to_many :users, dependent: :destroy
+  has_and_belongs_to_many :users
 
   validates :start_date, presence: true
   validates :end_date, presence: true
