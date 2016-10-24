@@ -1,10 +1,18 @@
-<div class="row text-xs-center">
-    <h1>Add a transportation for your trip to <%= @trip.destination %></h1>
-</div>
-<br>
-<br>
+<%= simple_form_for [@trip, @transportation] do |f| %>
+
 <div class="row">
-  <%= simple_form_for [@trip, @transportation] do |f| %>
+  <div class="col-sm-8">
+    <h1>Add a transportation for your trip to <%= @trip.destination %></h1>
+
+  </div>
+  <div class="col-sm-4 text-xs-right">
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+     <h5><i class="fa fa-thumbs-up" aria-hidden="true"></i> Confirm transportation</h5>
+    <% end %>
+  </div>
+</div>
+<hr>
+<div class="row spacer-margin">
   <div class="col-sm-5 offset-sm-1">
     <div class="card">
       <div class="card-block">
@@ -12,10 +20,11 @@
         <%= f.input :departure_datetime, label: "<i class='fa fa-calendar-check-o' aria-hidden='true'></i> <strong>Departure :</strong>".html_safe, default: @transportation.trip.start_date %>
         <%= f.input :arrival_datetime, label: "<i class='fa fa-calendar-check-o' aria-hidden='true'></i> <strong>Arrival : </strong>".html_safe, default: @transportation.trip.start_date %>
         <%= f.input :departure_city, label: "<i class=' fa fa-globe' aria-hidden='true'></i> <strong>Departure city :</strong>".html_safe, input_html: {id: :autocomplete}, placeholder: "Ex: Paris" %>
+
         <p>
           <p>
-            <button class="btn btn-primary collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Including return ?
+            <button class="btn btn-primary btn-sm collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa fa-undo" aria-hidden="true"></i> Including return the <%= (@trip.end_date).strftime("%d/%m/%Y")%> ?
             </button>
           </p>
           <div class="collapse" id="collapseExample">
@@ -38,11 +47,7 @@
     </div>
   </div>
 </div>
-<br>
-  <div class="row text-xs-center">
-    <%= link_to 'Cancel', trips_path, class:"btn btn-warning" %>
-    <%= f.button :submit, "Confirm", class:'btn btn-primary' %>
-  </div>
+
 <% end %>
 <script type="text/javascript">
 

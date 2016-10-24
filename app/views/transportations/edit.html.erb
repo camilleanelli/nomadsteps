@@ -1,24 +1,31 @@
-<div class="row text-xs-center">
-  <h1>Your travel in <%= @transportation.trip.destination %></h1>
-</div>
-<br>
-<br>
-<div class="row">
   <%= simple_form_for [@trip, @transportation] do |f| %>
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Your travel in <%= @transportation.trip.destination %></h1>
+  </div>
+  <div class="col-sm-4 text-xs-right">
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i> Confirm transportation
+    <% end %>
+  </div>
+
+</div>
+<hr>
+<div class="row spacer-margin">
+
   <div class="col-sm-5 offset-sm-1">
-    <div class="card card-outline-primary">
+    <div class="card">
       <div class="card-block">
         <%= f.input :transportation_type, label: "<strong>Transportation type</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
         <%= f.input :departure_datetime, label: "<strong>Départure</strong>".html_safe %>
         <%= f.input :arrival_datetime, label: "<strong>Arrival</strong>".html_safe %>
-        <%= f.input :departure_city, label: "<strong>Departure city</strong>".html_safe %>
 
         <p>
-          <button class="btn btn-primary collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <button class="btn btn-primary btn-sm collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <% if @transportation.return_date_departure? %>
               Returning journey
             <% else %>
-              Include return ?
+              Include return the <%= (@trip.end_date).strftime("%d/%m/%Y")%>?
             <% end %>
           </button>
         </p>
@@ -32,8 +39,9 @@
     </div>
   </div>
   <div class="col-sm-5">
-    <div class="card card-outline-primary text-xs-center width-card-acmd">
+    <div class="card">
       <div class="card-block">
+        <%= f.input :departure_city, label: "<strong>Departure city</strong>".html_safe %>
         <%= f.input :price, label: "<strong>Cost of booking : </strong>".html_safe %>
         <%= f.input :reference_number, label: "<strong>Booking number : </strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
         <%= f.input :company, label: "<strong>Company : </strong>".html_safe, placeholder: "Ex: THAI Arways" %>
@@ -42,9 +50,5 @@
     </div>
   </div>
 </div>
-<br>
-  <div class="row text-xs-center">
-    <%= link_to 'Cancel', trips_path, class:"btn btn-warning" %>
-    <%= f.button :submit, "Submit", class:"btn btn-success" %>
-  </div>
+
 <% end %>
