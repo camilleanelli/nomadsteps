@@ -20,8 +20,8 @@
           </p>
           <div class="collapse" id="collapseExample">
             <div class="card card-block">
-              <%= f.input :return_date_departure, label: "<strong>Departure :</strong>".html_safe, default: @transportation.trip.end_date %>
-              <%= f.input :return_date_arrival, label: "<strong>Arrival :</strong>".html_safe, default: @transportation.trip.end_date %>
+              <%= f.input :return_date_departure, label: "<strong>Departure :</strong>".html_safe, default: @transportation.trip.end_date, include_blank: true %>
+              <%= f.input :return_date_arrival, label: "<strong>Arrival :</strong>".html_safe, default: @transportation.trip.end_date, include_blank: true %>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@
       <p><i class="fa fa-globe" aria-hidden="true"></i> City of departure : <%= transportation.departure_city %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Departure : <%= (transportation.departure_datetime).strftime("%d/%m/%Y at %H:%M" ) %></p>
       <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrival : <%= (transportation.arrival_datetime).strftime("%d/%m/%Y at %H:%M" ) %> </p>
-        <% if transportation.return_date_departure? %>
+        <% unless transportation.return_date_departure == nil %>
           <p>
             <strong><i class="fa fa-undo" aria-hidden="true"></i> Return date : </strong>
             <br>
