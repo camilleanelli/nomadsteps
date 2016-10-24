@@ -10,8 +10,8 @@ class TripsController < AuthenticatedController
   end
 
   def update
-    @trip.update(params_trips)
-    @trip.users << current_user unless current_user.friends.empty?
+      @trip.update(params_trips)
+      @trip.users << current_user unless current_user.friends.empty?
     if @trip.save
       flash[:notice] = "Your trip has been successfully updated"
       redirect_to trips_path
@@ -27,9 +27,8 @@ class TripsController < AuthenticatedController
   def create
     params_trips["google_info"] = JSON.parse(params_trips["google_info"]) if params_trips["google_info"]
     @trip = Trip.new(params_trips)
-
+    @trip.users << current_user
     if @trip.save
-      current_user.trips << @trip
       flash[:notice] = "Your trip has been successfully created"
       redirect_to trips_path
     end
@@ -50,6 +49,5 @@ class TripsController < AuthenticatedController
   def params_trips
     params[:trip].permit(:start_date, :end_date, :destination, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details, :google_info, :country_name, :city_name, :user_ids => [])
   end
-
 
 end
