@@ -16,7 +16,7 @@ class TripsController < AuthenticatedController
       flash[:notice] = "Your trip has been successfully updated"
       redirect_to trips_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -31,6 +31,8 @@ class TripsController < AuthenticatedController
     if @trip.save
       flash[:notice] = "Your trip has been successfully created"
       redirect_to trips_path
+    else
+      render :new
     end
   end
 
