@@ -10,10 +10,10 @@
 <div class="row spacer-margin">
   <div class="col-sm-6">
   <% if !@current_trip %>
-    <h2>You don't have current trip for the moment </h2>
+    <h2 class="fadeIn">You don't have current trip for the moment </h2>
     <%= link_to "Change that !", new_trip_path %>
   <% else %>
-      <div class="card">
+      <div class="card fadeIn">
         <div class="card-header">
           <a href="#map" class="link-map">
             <h2>Current trip to: <%= @current_trip.destination %></h2>
@@ -89,11 +89,11 @@
 
 <div class="col-sm-6">
 <% if @next_trip == nil %>
-    <h2>You don't have next trip for the moment </h2>
+    <h2 class="fadeIn">You don't have next trip for the moment </h2>
     <%= link_to "Change that !", new_trip_path %>
   <% else %>
 
-    <div class="card">
+    <div class="card fadeIn">
       <div class="card-header">
         <a href="#map" class="link-map">
           <h2> Next trip : <%= @next_trip.destination %></h2>

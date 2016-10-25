@@ -1,5 +1,16 @@
 <%= simple_form_for [@trip, @accomodation] do |f| %>
-<div id="edit-accomodation" class="row">
+
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Your accomodation in <%= @trip.destination %></h1>
+
+  </div>
+  <div class="col-sm-4 text-xs-right">
+    <%= f.button :submit, "Confirm your accomodation", class: "btn btn-primary" %>
+  </div>
+</div>
+<hr>
+<div id="edit-accomodation" class="row spacer-margin">
   <div class="col-sm-4 offset-sm-2">
     <div class="card card-block width-card">
         <%= f.input :accomodation_type, label: "<i class='fa fa-home' aria-hidden='true'></i>
@@ -14,9 +25,9 @@
   <div class="col-sm-4">
     <div class="card card-block width-card">
       <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <a href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
           <i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Modify Contact
-        </button>
+        </a>
       </p>
       <div class="collapse" id="collapseExample">
         <div class="card card-block">
@@ -32,12 +43,6 @@
   </div>
 </div>
 
-<br>
-<br>
-<div class="row text-xs-center">
-  <%= link_to 'Back', :back, class:"btn btn-warning" %> |
-  <%= f.button :submit, "validate", class: "btn btn-primary" %>
-</div>
 <% end %>
 
 
