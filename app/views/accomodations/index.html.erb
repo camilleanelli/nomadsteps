@@ -10,18 +10,18 @@
 </div>
 <hr>
 
-<div class="row">
+<div class="row spacer-margin">
   <div class="col-md-6">
     <% @accomodations.each do |accomodation| %>
       <div class="card card-block">
-        <h4 class="card-title"> <i class="fa fa-home" aria-hidden="true"></i> You will stay in <%= accomodation.accomodation_type %> ! <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></h4>
+        <h4 class="card-title"> <i class="fa fa-home" aria-hidden="true"></i> <%= accomodation.accomodation_type %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></h4>
         <br>
         <p>
           <i class="fa fa-calendar" aria-hidden="true"></i> Check-in: <%= (accomodation.start_date).strftime("%b - %d - %Y" ) %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %><br>
           <i class="fa fa-calendar" aria-hidden="true"></i> Check-out : <%= (accomodation.end_date).strftime("%b - %d - %Y") %><br>
-          <%= accomodation.count_night %> Nights
+          <i class="fa fa-bed" aria-hidden="true"></i> <%= accomodation.count_night %> Nights
         </p>
-        <br>
+        <hr>
         <p>
           <i class="fa fa-map-marker" aria-hidden="true"></i> Address :
           <% if accomodation.address == "" %>
@@ -44,20 +44,26 @@
           <% end %>
         <% end %>
       </p>
-      <br>
-      <p>Price per traveler :
-        <% if accomodation.price > 0 %>
-          <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_personne, :unit => "€ ") %></span>
-        <% else %>
-          <%= link_to 'No price <i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
-        <% end %>
-      </p>
-      <% unless accomodation.price == 0 %>
-        <p>Price per night :
-          <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_person_per_night, :unit => "€ ") %></span>
-        </p>
-      <% end %>
-
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <p>Price per traveler :
+            <% if accomodation.price > 0 %>
+              <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_personne, :unit => "€ ") %></span>
+            <% else %>
+              <%= link_to 'No price <i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
+            <% end %>
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <% unless accomodation.price == 0 %>
+            <p>Price per night :
+              <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_person_per_night, :unit => "€ ") %></span>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      <hr>
       <div class="col-xs-6">
         <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Edit accomodation'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
       </div>
@@ -65,9 +71,11 @@
         <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i> Delete".html_safe, trip_accomodation_path(@trip, accomodation), method: :delete, data: { confirm: "Confirmez la suppression" } %>
       </div>
 
-      </div>
+    </div>
     <% end %>
   </div>
+
+  <!-- google map -->
   <div class="col-md-6">
     <div class="card card-block">
       <h4 class="card-title">Itinerary</h4>

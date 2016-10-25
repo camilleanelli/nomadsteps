@@ -32,7 +32,7 @@ class AccomodationsController < AuthenticatedController
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
     @accomodation.update(accomodation_params)
-    redirect_to trip_accomodation_path
+    redirect_to trip_accomodations_path
   end
 
   def destroy

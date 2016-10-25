@@ -11,8 +11,8 @@ class Accomodation < ApplicationRecord
   end
 
   def price_per_personne
-    @number = self.trip.users.count
-    self.price / @number unless @number == nil
+    @number = self.number_of_persons
+    self.price / @number 
   end
 
   def price_per_person_per_night
