@@ -5,9 +5,15 @@ class Trip < ApplicationRecord
   has_many :accomodations, dependent: :destroy
   has_and_belongs_to_many :users
 
+  validate :end_date_must_be_greater_than_start_date
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :destination, presence: true
+
+  def end_date_must_be_greater_than_start_date
+   errors.add(:end_date, 'must be greater than start date') if end_date <= start_date
+ end
+
 
   def set_city_details
     self.city_details = self.city_name + '-' + self.country_name
