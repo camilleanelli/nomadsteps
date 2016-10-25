@@ -1,5 +1,5 @@
 <% if current_user.filepicker_url? %>
-  <%= filepicker_image_tag current_user.filepicker_url, {w: 100, h: 100, fit: 'crop'}, class:"img-circle" %>
+  <%= filepicker_image_tag current_user.filepicker_url, {w: 100, h: 100, fit: 'crop'}, class:"img-circle avatar-circle" %>
 <% else %>
   <%= image_tag("user128.png", width: 100) %>
 <% end %>

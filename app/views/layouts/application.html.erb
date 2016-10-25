@@ -30,7 +30,7 @@
                 <li class="nav-item li-menu">
                   <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> TRIPS".html_safe, trips_path, class:"link-menu" %>
                 </li>
-                <li class="nav-item li-menu">
+                <li class="nav-item li-menu hidden-sm-up">
                   <%= link_to "Logout <i class='fa fa-times-circle-o' aria-hidden='true'></i>".html_safe, destroy_user_session_path, :method => :delete, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
@@ -38,7 +38,7 @@
                     <%= render 'share/small_avatar' %> <%= current_user.first_name %>
                   <% end %>
                 </li>
-              </ul>
+            </ul>
               <% else %>
               <li class="nav-item">
                 <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary " %>

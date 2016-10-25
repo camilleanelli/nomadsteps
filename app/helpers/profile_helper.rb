@@ -2,9 +2,9 @@ module ProfileHelper
 
   def button_upload_profile_picture
     if current_user.filepicker_url?
-      "Edit your picture <i class='fa fa-pencil' aria-hidden='true'></i>"
+      "Change your picture <i class='fa fa-camera' aria-hidden='true'></i>"
     else
-      "Upload a picture <i class='fa fa-upload' aria-hidden='true'></i> "
+      "Upload a picture <i class='fa fa-camera' aria-hidden='true'></i> "
     end
   end
 
