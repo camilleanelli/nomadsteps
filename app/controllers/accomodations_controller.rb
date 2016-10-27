@@ -16,8 +16,10 @@ class AccomodationsController < AuthenticatedController
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.new(accomodation_params)
     if @accomodation.save
+      flash[:notice] = 'Your accommodation has been add successfully'
       redirect_to trips_path
     else
+      flash[:alert] = 'Oups ! something is wrong'
       render :new
     end
   end
