@@ -1,9 +1,17 @@
 <%= simple_form_for [@trip, @transportation] do |f| %>
-
+  <% if @transportation.errors.any? %>
+   <div>
+     <h2> Oups ! </h2>
+     <ul>
+       <% @transportation.errors.full_messages.each do |msg| %>
+           <li style="color:red"><%= msg %></li>
+       <% end %>
+     </ul>
+   </div>
+<% end %>
 <div class="row">
   <div class="col-sm-8">
     <h1>Add a transportation for your trip to <%= @trip.destination %></h1>
-
   </div>
   <div class="col-sm-4 text-xs-right">
     <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
@@ -12,6 +20,8 @@
   </div>
 </div>
 <hr>
+
+
 <div class="row spacer-margin">
   <div class="col-sm-5 offset-sm-1">
     <div class="card">

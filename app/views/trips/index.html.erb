@@ -111,7 +111,7 @@
                         <% elsif transport.transportation_type == "Bus" %>
                           <i class='fa fa-bus color-bus' aria-hidden='true'></i>
                         <% else %>
-                          <%= link_to transport.transportation_type, trip_transportation_path(trip, transport), class:"color-link" %>
+                          <%= link_to "Other", trip_transportation_path(trip, transport), class:"color-link" %>
                         <% end  %>
                       <% end %>
                     <% end %>

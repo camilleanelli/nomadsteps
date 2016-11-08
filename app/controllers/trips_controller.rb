@@ -2,6 +2,7 @@ class TripsController < AuthenticatedController
   before_action :get_trip, only: [:edit, :update, :destroy]
 
   def index
+    @transportations = current_user.transportations.all
     @trips = current_user.trips.includes(:transportations, :accomodations, :users, :trips_users).order(start_date: :desc).page(params[:page])
   end
 
@@ -51,5 +52,7 @@ class TripsController < AuthenticatedController
   def params_trips
     params[:trip].permit(:start_date, :end_date, :destination, :longitude, :latitude, :cloudinary_id, :person_number, :image_trip, :city_details, :google_info, :country_name, :city_name, :user_ids => [])
   end
+
+
 
 end

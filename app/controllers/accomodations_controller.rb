@@ -16,10 +16,10 @@ class AccomodationsController < AuthenticatedController
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.new(accomodation_params)
     if @accomodation.save
-      flash[:notice] = 'Your accommodation has been add successfully'
+      flash[:notice] = 'Accommodation successfully created !'
       redirect_to trips_path
     else
-      flash[:alert] = 'Oups ! something is wrong'
+      flash[:alert] = 'Please correct your answers'
       render :new
     end
   end
@@ -34,14 +34,23 @@ class AccomodationsController < AuthenticatedController
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
     @accomodation.update(accomodation_params)
-    redirect_to trip_accomodations_path
+    if @accomodation.save
+      flash[:notice] = "Accomodation successfully updated !"
+      redirect_to trip_accomodations_path
+    else
+      render :new
+    end
   end
 
   def destroy
     @trip = current_user.trips.find(params[:trip_id])
     @accomodation = @trip.accomodations.find(params[:id])
-    @accomodation.destroy
-    redirect_to trips_path
+    if @accomodation.destroy
+      flash[:notice] = 'Accommodation successfully removed'
+      redirect_to trips_path
+    else
+      render :index
+    end
   end
 
   private
