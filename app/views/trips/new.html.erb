@@ -6,6 +6,18 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3 card card-block">
     <%= simple_form_for @trip do |f| %>
+    <% if @trip.errors.any? %>
+       <div>
+
+         <h2> Oups ! </h2>
+
+         <ul>
+           <% @trip.errors.full_messages.each do |msg| %>
+               <li style="color:red"><%= msg %></li>
+           <% end %>
+         </ul>
+       </div>
+   <% end %>
     <div class="col-sm-12">
       <%= f.input :start_date %>
     </div>

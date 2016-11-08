@@ -1,12 +1,21 @@
-<div class="row text-xs-center">
+<div class="row">
     <h1>Where do you stay in <%= @trip.destination %> ?</h1>
 </div>
-<br>
-<br>
+<hr>
+<%= simple_form_for [@trip, @accomodation] do |f| %>
+  <% if @accomodation.errors.any? %>
+   <div>
+     <h2> Oups ! </h2>
+     <ul>
+       <% @accomodation.errors.full_messages.each do |msg| %>
+           <li style="color:red"><%= msg %></li>
+       <% end %>
+     </ul>
+   </div>
+   <% end %>
 <div class="row">
   <div class="col-sm-4">
     <div class="card card-block">
-      <%= simple_form_for [@trip, @accomodation] do |f| %>
           <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i>
  Accomodation type".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Guest House", "Friends/family", "House Rental", "Other..."] %>
           <%= f.input :address, label: "<i class='fa fa-map-marker' aria-hidden='true'></i> Address".html_safe, input_html: {id: :autocomplete} %>

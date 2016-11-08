@@ -30,8 +30,12 @@
           </p>
         <% end %>
       </p>
-      <% if transportation.price? %>
-        <p><i class="fa fa-eur" aria-hidden="true"></i> Price : <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / per traveler </p>
+      <p>
+        <i class="fa fa-eur" aria-hidden="true"></i> Price :
+        <% if transportation.price? %>
+           <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / per traveler </p>
+        <% else %>
+          <span>Free </span>
       <% end %>
       <p>Booking n°: <%= transportation.reference_number %></p>
       <p>

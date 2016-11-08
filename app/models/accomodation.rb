@@ -1,10 +1,18 @@
 class Accomodation < ApplicationRecord
   belongs_to :trip
 
+
+  validate :end_date_must_be_greater_than_start_date
   validates :accomodation_type, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :contact_email, format: { with: /\A^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$\z/ , message: "It is not an email" }, allow_blank: true
   validates :number_of_persons, presence: true
+  validates :price, numericality: { greater_than_or_equal_to: 0, messsage: "It can't be a negativ number"}
+
+  def end_date_must_be_greater_than_start_date
+   errors.add(:end_date, ' must be greater than check-in date') if end_date <= start_date
+  end
 
   def count_night
     (self.end_date - self.start_date).to_i
@@ -12,7 +20,7 @@ class Accomodation < ApplicationRecord
 
   def price_per_personne
     @number = self.number_of_persons
-    self.price / @number 
+    self.price / @number
   end
 
   def price_per_person_per_night

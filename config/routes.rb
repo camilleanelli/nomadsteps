@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'complete_profile', to: "complete_profile#edit", as: "edit_complete_profile"
   patch 'complete_profile', to: "complete_profile#update", as: "complete_profile"
 
+  
   get 'profile', to: "profile#edit", as: "edit_profile"
   patch 'profile', to: "profile#update", as: "profile"
 

@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
     current_trip
     @current_trip = @current_trips.first
     next_trip
-    @next_trip = @next_trips.first
+    @next_trip = @next_trips.last
     last_trip
     @last_trip = @last_trips.last
     @trips_dashboard = [ @current_trip, @next_trip ]

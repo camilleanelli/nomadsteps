@@ -29,12 +29,14 @@ class TransportationsController < AuthenticatedController
 
   def create
     @trip = current_user.trips.find(params[:trip_id])
-    @transportation = @trip.transportations.new(params_transportation)
+    @transportation = @trip.transportations.create(params_transportation)
 
-    if @transportation.save!
+    if @transportation.save
+      flash[:notice] = "Transportation successfully created !"
       redirect_to trip_transportations_path(@trip)
     else
-      render :new
+      flash[:alert] = "Please correct your answers"
+      redirect_to new_trip_transportation_path(@trip)
     end
   end
 
