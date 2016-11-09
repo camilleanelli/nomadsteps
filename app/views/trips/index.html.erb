@@ -132,17 +132,18 @@
                 </td>
                 <td>
                 <% trip.users.each do |user| %>
+                  <%= link_to public_profile_path(user) do %>
                     <% if user.filepicker_url? %>
-                    <div class="d-inline" data-toggle="tooltip", data-placement="top", title="<%= user.first_name %>">
-                      <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
-                    </div>
+                      <div class="d-inline" data-toggle="tooltip", data-placement="top", title="<%= user.first_name %>">
+                        <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+                      </div>
                     <% else %>
-                    <div class="d-inline" data-toggle="tooltip", data-placement="top", title="<%= user.first_name %>">
-                      <%= image_tag("user.png") %>
-                    </div>
-
+                      <div class="d-inline" data-toggle="tooltip", data-placement="top", title="<%= user.first_name %>">
+                        <%= image_tag("user.png") %>
+                      </div>
                     <% end %>
                   <% end %>
+                <% end %>
                 </td>
                 <td>
                   <% if !current_user.friends.empty? %>

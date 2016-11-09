@@ -3,7 +3,7 @@
     <%= render "share/avatar" %>
   </div>
   <div class="col-sm-10">
-    <h1>Hi <%= @user.first_name %> !</h1>
+    <h1>Hi <%= current_user.first_name %> !</h1>
   </div>
 </div>
 <hr>
@@ -30,12 +30,14 @@
               Travelers:
               <% @current_trip.users.each do |user| %>
               <li class="list-unstyled">
-              <% if user.filepicker_url %>
-                <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
-              <% else %>
-                <%= image_tag("user.png") %>
-              <% end %>
-                <%= user.first_name %>
+                <%= link_to public_profile_path(user) do %>
+                  <% if user.filepicker_url %>
+                    <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+                  <% else %>
+                    <%= image_tag("user.png") %>
+                  <% end %>
+                  <%= user.first_name %>
+                <% end %>
               </li>
             <% end %>
             </p>
@@ -110,6 +112,7 @@
               Traveler(s):
               <li class="list-unstyled">
                 <% @next_trip.users.each do |user| %>
+                <%= link_to public_profile_path(user) do %>
                 <% if user.filepicker_url %>
                   <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
                 <% else %>
@@ -117,6 +120,7 @@
                 <% end %>
                   <%= user.first_name %>
                 <% end %>
+              <% end %>
               </li>
             </p>
           </div>
@@ -183,6 +187,7 @@
 <script type="text/javascript">
 
 function initMap() {
+
 <% if @trips_dashboard.include?(nil) %>
 
   <% unless @trips_dashboard == [nil, nil] %>
@@ -191,11 +196,16 @@ function initMap() {
     <% else %>
       var myLatLng =  { lat: <%= @current_trip.latitude %>, lng: <%= @current_trip.longitude %>}
     <% end %>
+
     console.log(myLatLng)
-    var map = new google.maps.Map(document.getElementById('map'), {
+
+    var mapOptions = {
       zoom: 3,
-      center: myLatLng
-    });
+      center: myLatLng,
+      styles: [{"featureType":"administrative.country","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#ff0000"}]}]
+ };
+      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
     <% @trips_dashboard.each do |trip| %>
       <% next if trip.nil? %>
         new google.maps.Marker({
@@ -215,11 +225,12 @@ function initMap() {
       var myLatLng =  { lat: <%= @current_trip.latitude %>, lng: <%= @current_trip.longitude %>}
     <% end %>
       console.log(myLatLng)
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var mapOptions = {
         zoom: 3,
-        center: myLatLng
-        // mapTypeId: google.maps.MapTypeId.TERRAIN
-        });
+        center: myLatLng,
+        styles: [{"featureType":"administrative.country","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#ff0000"}]}]
+   };
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     <% @trips_dashboard.each do |trip| %>
       <% next if trip.nil? %>

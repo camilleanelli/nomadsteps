@@ -3,7 +3,9 @@
   <div class="col-sm-8">
     <div class="row">
       <div class="col-sm-3 text-xs-left">
-        <%= render "share/avatar" %>
+        <%= link_to public_profile_path(@user) do %>
+          <%= render "share/avatar" %>
+        <% end %>
       </div>
       <div class="col-sm-9">
         <h1> Hi <%= current_user.first_name.capitalize %> !</h1>
@@ -39,7 +41,12 @@
     <div class="col-sm-6">
       <div class="card fadeIn">
         <div class="card-block">
-          <%= link_to "<i class='fa fa-times-circle-o' aria-hidden='true'></i> Sign out ".html_safe, destroy_user_session_path, :method => :delete %>
+          <div class="col-sm-6">
+            <%= link_to "<i class='fa fa-times-circle-o' aria-hidden='true'></i> Sign out ".html_safe, destroy_user_session_path, :method => :delete %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to "<i class='fa fa-user' aria-hidden='true'></i> My profile".html_safe, public_profile_path(@user) %>
+          </div>
         </div>
       </div>
     </div>
