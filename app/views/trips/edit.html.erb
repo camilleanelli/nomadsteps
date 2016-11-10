@@ -17,7 +17,7 @@
       <%= simple_form_for @trip do |f| %>
 
           <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Start date :".html_safe %>
-          <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> Start date :".html_safe %>
+          <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> End date :".html_safe %>
           <div class="row">
             <div class="col-sm-6">
               <%= f.input :destination, input_html: {id: :autocomplete}, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination :".html_safe %>
@@ -37,7 +37,7 @@
           <br>
           <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Retour".html_safe, trips_path, class:"btn btn-warning" %>
           <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-          <i class="fa fa-thumbs-up" aria-hidden="true"></i> Valider
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i> Validate
           <% end %>
         <% end %>
     </div>

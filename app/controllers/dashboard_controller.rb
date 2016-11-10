@@ -1,12 +1,14 @@
-class DashboardController < ApplicationController
+class DashboardController < AuthenticatedController
 
   def show
     @user = current_user
-    @trips = current_user.trips.all.includes(:trips_users, :users, :accomodations, :transportations)
-    current_trip
-    @current_trip = @current_trips.first
-    next_trip
-    @next_trip = @next_trips.last
+    @trips = current_user
+      .trips
+      .includes(:trips_users, :users, :accomodations, :transportations)
+      .order(:start_date)
+
+    @current_trip = current_trips.first
+    @next_trip = next_trips.first
     last_trip
     @last_trip = @last_trips.last
     @trips_dashboard = [ @current_trip, @next_trip ]
@@ -14,27 +16,31 @@ class DashboardController < ApplicationController
 
   private
 
-  def current_trip
-    @current_trips = []
+  def current_trips
+    # @trips.where('start_date < Date.today AND end_date > Date.today', start_date: params[:start_date], end_date: params[:end_date])
+    current_trips = []
     @trips.each do |trip|
-      @current_trips.push trip if trip.start_date < Date.today && trip.end_date > Date.today
+      current_trips.push trip if trip.start_date < Date.today && trip.end_date > Date.today
     end
+    current_trips
   end
 
-  def next_trip
-    @next_trips = []
+  def next_trips
+    next_trips = []
     if !@current_trip
       @trips.each do |trip|
         if trip.start_date >= Date.today
-          @next_trips << trip
+          next_trips << trip
         end
       end
+      next_trips
     else
       @trips.each do |trip|
         if trip.start_date >= @current_trip.end_date
-          @next_trips << trip
+          next_trips << trip
         end
       end
+      next_trips
     end
   end
 
