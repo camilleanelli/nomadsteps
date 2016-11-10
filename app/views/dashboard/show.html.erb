@@ -1,16 +1,16 @@
 <div class="row">
-  <div class="col-sm-2 text-xs-right">
+  <div class="col-xs-2 text-xs-right">
     <%= link_to public_profile_path(current_user) do %>
       <%= render "share/avatar" %>
     <% end %>
   </div>
-  <div class="col-sm-10">
-    <h1>My Dashboard </h1>
+  <div class="col-xs-10">
+    <h1>Dashboard </h1>
   </div>
 </div>
 <hr>
 <div class="row spacer-margin">
-  <div class="col-sm-6">
+  <div class="col-lg-6">
   <% if !@current_trip %>
     <h2 class="fadeIn">You don't have current trip for the moment </h2>
     <%= link_to "Change that !", new_trip_path %>
@@ -25,17 +25,17 @@
         <div class="row">
           <div class="col-sm-6">
             <dl class="row">
-              <dt class="col-sm-6">Start date </dt>
-              <dd class="col-sm-6"><%= (@current_trip.start_date).strftime("%d/%m/%Y") %></dd>
+              <dt class="col-xs-6">Start date </dt>
+              <dd class="col-xs-6"><%= (@current_trip.start_date).strftime("%d/%m/%Y") %></dd>
 
-              <dt class="col-sm-6">End date </dt>
-              <dd class="col-sm-6"> <%= (@current_trip.end_date).strftime("%d/%m/%Y")%></dd>
+              <dt class="col-xs-6">End date </dt>
+              <dd class="col-xs-6"> <%= (@current_trip.end_date).strftime("%d/%m/%Y")%></dd>
             </dl>
           </div>
           <div class="col-sm-6">
           <dl class="row">
-            <dt class="col-sm-4">Travelers</dt>
-            <dd class="col-sm-8">
+            <dt class="col-xs-4">Travelers</dt>
+            <dd class="col-xs-8">
               <% @current_trip.users.each do |user| %>
               <li class="list-unstyled">
                 <%= link_to public_profile_path(user) do %>
@@ -57,11 +57,11 @@
       <div class="row">
         <div class="col-sm-12">
           <dl class="row">
-            <dt class="col-sm-6">Total cost </dt>
-            <dd class="col-sm-6"><%= @current_trip.total_cost %></dd>
+            <dt class="col-xs-6">Total cost </dt>
+            <dd class="col-xs-6"><%= @current_trip.total_cost %></dd>
 
-            <dt class="col-sm-6">Cost per traveler</dt>
-            <dd class="col-sm-6"><%= @current_trip.total_cost_per_traveler %></dd>
+            <dt class="col-xs-6">Cost per traveler</dt>
+            <dd class="col-xs-6"><%= @current_trip.total_cost_per_traveler %></dd>
           </dl>
         </div>
       </div>
@@ -107,7 +107,7 @@
 </div>
 
 <!-- next_trip -->
-<div class="col-sm-6">
+<div class="col-lg-6">
 <% if @next_trip == nil %>
     <h2 class="fadeIn">You don't have next trip for the moment </h2>
     <%= link_to "Change that !", new_trip_path %>
@@ -123,18 +123,18 @@
         <div class="row">
           <div class="col-sm-6">
             <dl class="row">
-              <dt class="col-sm-6">Start date</dt>
-              <dd class="col-sm-6"><%= (@next_trip.start_date).strftime('%d/%m/%Y') %></dd>
+              <dt class="col-xs-6">Start date</dt>
+              <dd class="col-xs-6"><%= (@next_trip.start_date).strftime('%d/%m/%Y') %></dd>
 
-              <dt class="col-sm-6">End date</dt>
-              <dd class="col-sm-6"><%= @next_trip.end_date %></dd>
+              <dt class="col-xs-6">End date</dt>
+              <dd class="col-xs-6"><%= @next_trip.end_date %></dd>
             </dl>
 
           </div>
           <div class="col-sm-6">
             <dl class="row">
-              <dt class="col-sm-4">Travelers</dt>
-              <dd class="col-sm-8">
+              <dt class="col-xs-4">Travelers</dt>
+              <dd class="col-xs-8">
                 <% @next_trip.users.each do |user| %>
                     <li class="list-unstyled">
                   <%= link_to public_profile_path(user) do %>
@@ -156,11 +156,11 @@
         <div class="row">
           <div class="col-sm-12">
             <dl class="row">
-              <dt class="col-sm-6">Total cost</dt>
-              <dd class="col-sm-6"><%= @next_trip.total_cost %></dd>
+              <dt class="col-xs-6">Total cost</dt>
+              <dd class="col-xs-6"><%= @next_trip.total_cost %></dd>
 
-              <dt class="col-sm-6">Cost per traveler </dt>
-              <dd class="col-sm-6"><%= @next_trip.total_cost_per_traveler %></dd>
+              <dt class="col-xs-6">Cost per traveler </dt>
+              <dd class="col-xs-6"><%= @next_trip.total_cost_per_traveler %></dd>
             </dl>
         </div>
       </div>
@@ -206,8 +206,8 @@
   </div>
 
 </div>
-  <hr>
-  </div>
+<hr>
+
   <div class="row spacer-margin text-xs-center">
     <% unless @trips_dashboard == [nil, nil] %>
       <div class="col-xs-12 map-dashboard">
@@ -261,8 +261,7 @@ function initMap() {
       var mapOptions = {
         zoom: 3,
         center: myLatLng,
-        styles: [{"featureType":"all","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"},{"saturation":"-100"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40},{"visibility":"off"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"landscape","elementType":"geometry.stroke","stylers":[{"color":"#4d6059"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"lightness":21}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"poi","elementType":"geometry.stroke","stylers":[{"color":"#4d6059"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#7f8d89"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2b3638"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2b3638"},{"lightness":17}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#24282b"}]},{"featureType":"water","elementType":"geometry.stroke","stylers":[{"color":"#24282b"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.icon","stylers":[{"visibility":"off"}]}]
-
+        styles: [{"featureType":"landscape","stylers":[{"visibility":"simplified"},{"color":"#2b3f57"},{"weight":0.1}]},{"featureType":"administrative","stylers":[{"visibility":"on"},{"hue":"#ff0000"},{"weight":0.4},{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"labels.text","stylers":[{"weight":1.3},{"color":"#FFFFFF"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#f55f77"},{"weight":3}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#f55f77"},{"weight":1.1}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#f55f77"},{"weight":0.4}]},{},{"featureType":"road.highway","elementType":"labels","stylers":[{"weight":0.8},{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"color":"#ffffff"},{"weight":0.7}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"color":"#6c5b7b"}]},{"featureType":"water","stylers":[{"color":"#f3b191"}]},{"featureType":"transit.line","stylers":[{"visibility":"on"}]}]
       };
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 

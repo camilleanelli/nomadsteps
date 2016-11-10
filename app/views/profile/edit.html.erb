@@ -18,7 +18,7 @@
   <div class="col-sm-4 text-xs-right">
     <div class="form-actions">
       <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-        <i class='fa fa-check' aria-hidden='true'></i> Confirm your profile
+        <i class='fa fa-check' aria-hidden='true'></i> VALIDATE
       <% end %>
     </div>
   </div>
@@ -28,6 +28,7 @@
     <div class="col-sm-6">
       <div class="card fadeIn">
         <div class="card-block">
+          <h4>Edit informations</h4>
           <div class="form-inputs">
             <%= f.input :first_name, required: true %>
             <%= f.input :last_name, required: true %>

@@ -4,4 +4,8 @@ class PublicProfileController < ApplicationController
     @user = User.find(params[:user_id])
     @trips = @user.trips.order(start_date: :desc).includes(:trips_users, :users, :accomodations, :transportations)
   end
+
+  private
+
+  
 end
