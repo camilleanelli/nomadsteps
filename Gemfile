@@ -62,11 +62,11 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem "factory_girl_rails"
+  gem 'guard-rspec', '4.6.4'
 
 end
 
 group :development do
-
   gem "bullet"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
