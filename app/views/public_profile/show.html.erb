@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col-sm-2 text-xs-center">
+  <div class="col-xs-3 col-sm-2 text-xs-center">
     <% if @user.filepicker_url? %>
       <%= filepicker_image_tag @user.filepicker_url, {w: 100, h: 100, fit: 'crop'}, class:"img-circle avatar-circle" %>
     <% else %>
       <%= image_tag("user128.png", width: 100) %>
     <% end %>
   </div>
-  <div class="col-sm-10">
+  <div class="col-xs-9 col-sm-10">
     <h1><%= @user.first_name %> <%= @user.last_name %></h1>
     <%= @current_trip %>
   </div>
@@ -22,26 +22,26 @@
 
 <div class="row">
   <% @trips.each do |trip| %>
-  <div class="col-sm-4 spacer-margin">
+  <div class="col-lg-4 spacer-margin">
     <div class="card">
       <h3 class="card-header">
         <% if trip.image_trip == nil || trip.image_trip == "https://nomadlist.com/assets/img/cities/-100px.jpg" %>
-          <%= image_tag("image_trip.svg", class:"img-circle", width:100, height:100) %>
+          <%= image_tag("image_trip.svg", class:"img-circle", width:50, height:50) %>
         <% else %>
-          <%= image_tag(trip.image_trip, class:"img-circle", width:100, height:100) %>
+          <%= image_tag(trip.image_trip, class:"img-circle", width:50, height:50) %>
         <% end %>
         <%= trip.destination %></h3>
       <div class="card-block">
         <dl class="row">
-          <dt class="col-sm-4">Start </dt>
-          <dd class="col-sm-8"><%= (trip.start_date).strftime("%d/%m/%Y") %></dd>
-          <dt class="col-sm-4">End </dt>
-          <dd class="col-sm-8"><%= (trip.end_date).strftime("%d/%m/%Y") %></dd>
+          <dt class="col-xs-4">Start </dt>
+          <dd class="col-xs-8"><%= (trip.start_date).strftime("%d/%m/%Y") %></dd>
+          <dt class="col-xs-4">End </dt>
+          <dd class="col-xs-8"><%= (trip.end_date).strftime("%d/%m/%Y") %></dd>
         </dl>
         <hr>
         <dl class="row">
-          <dt class="col-sm-4">Travelers</dt>
-          <dd class="col-sm-8">
+          <dt class="col-xs-4">Travelers</dt>
+          <dd class="col-xs-8">
             <% trip.users.each do |user| %>
               <% if user.filepicker_url %>
                 <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
@@ -52,12 +52,12 @@
           <% end %>
           </dd>
 
-            <dt class="col-sm-4">Cost </dt>
-            <dd class="col-sm-8">
+            <dt class="col-xs-4">Cost </dt>
+            <dd class="col-xs-8">
               <% if trip.total_cost.to_i > 0 %>
                 <%= trip.total_cost %>
               <% else %>
-                Indefined
+                Indefined price
             <% end %>
           </dd>
         </dl>
