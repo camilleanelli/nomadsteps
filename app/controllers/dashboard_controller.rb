@@ -7,10 +7,10 @@ class DashboardController < AuthenticatedController
       .includes(:trips_users, :users, :accomodations, :transportations)
       .order(:start_date)
 
+    @last_trips = last_trips
     @current_trip = current_trips.first
+    @next_trips = next_trips
     @next_trip = next_trips.first
-    last_trip
-    @last_trip = @last_trips.last
     @trips_dashboard = [ @current_trip, @next_trip ]
   end
 
@@ -44,20 +44,22 @@ class DashboardController < AuthenticatedController
     end
   end
 
-  def last_trip
-    @last_trips = []
-    if !@current_trip
+  def last_trips
+    last_trips = []
+    if @current_trip == nil
       @trips.each do |trip|
-        if trip.end_date <= Date.today
-          @last_trips << trip
+        if trip.end_date < Date.today
+          last_trips << trip
         end
       end
+      last_trips
     else
       @trips.each do |trip|
-        if trip.end_date <= @current_trip.start_date
-          @last_trips << trip
+        if trip.end_date < @current_trip.start_date
+          last_trips << trip
         end
       end
+      last_trips
     end
   end
 

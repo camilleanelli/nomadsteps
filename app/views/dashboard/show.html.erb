@@ -5,10 +5,20 @@
     <% end %>
   </div>
   <div class="col-xs-10">
-    <h1>Dashboard </h1>
+    <h1>Hello <%= current_user.first_name %>, where are you today ? </h1>
   </div>
 </div>
 <hr>
+<% unless @trips_dashboard == [nil, nil] %>
+  <div class="row spacer-margin text-xs-center">
+    <div class="col-xs-12 map-dashboard">
+      <div id="map" style="width:100%;height:300px;"></div>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+
 <div class="row spacer-margin">
   <div class="col-lg-6">
   <% if !@current_trip %>
@@ -70,23 +80,20 @@
       <div class="row">
         <div class="col-sm-12">
           <dl class="row">
+            <dt class="col-sm-4">Accomodation</dt>
             <% if @current_trip.accomodations.empty? %>
-                <%= link_to "Add an accomodation", new_trip_accomodation_path(@current_trip), style:"font-size:20px" %>
-              <% else %>
-              <dt class="col-sm-4">Accomodation</dt>
-
-                <% @current_trip.accomodations.each do |acmd| %>
+              <dd class="col-sm-8"><%= link_to "Add", new_trip_accomodation_path(@current_trip), style:"font-size:20px" %></dd>
+            <% else %>
+              <% @current_trip.accomodations.each do |acmd| %>
                 <dd class="col-sm-8"><%= link_to acmd.accomodation_type, trip_accomodations_path(@current_trip, acmd) %></dd>
                 <dd class="col-sm-8 offset-sm-4"><%= acmd.address %></dd>
-                <% end %>
-
               <% end %>
-
-              <% if @current_trip.transportations.empty? %>
-                <%= link_to "Add transportation(s)", new_trip_transportation_path(@current_trip), style:"font-size:20px" %>
-              <% else %>
-                <dt class="col-sm-4">Transportation(s)</dt>
+            <% end %>
+              <dt class="col-sm-4">Transportation(s)</dt>
                 <dd class="col-sm-8">
+                  <% if @current_trip.transportations.empty? %>
+                    <%= link_to "Add", new_trip_transportation_path(@current_trip), style:"font-size:20px" %>
+                  <% else %>
                   <% @current_trip.transportations.each do |transport| %>
                     <%= link_to transport.transportation_type, trip_transportations_path(@current_trip, transport) %>
                   <% end %>
@@ -115,9 +122,10 @@
 
     <div class="card fadeIn">
       <div class="card-header">
-        <%= link_to edit_trip_path(@next_trip), class:"title-link" do %>
+        <a href="#<%= @next_trip.id %>" class="title-link">
           <h2> Next trip : <%= @next_trip.destination %></h2>
-        <% end %>
+        </a>
+
       </div>
       <div class="card-block">
         <div class="row">
@@ -168,21 +176,23 @@
         <div class="row">
           <div class="col-sm-12">
             <dl class="row">
-              <% if @next_trip.accomodations.empty? %>
-                <%= link_to "Add an accomodation", new_trip_accomodation_path(@next_trip), style:"font-size:20px" %>
-              <% else %>
+
 
                 <dt class="col-sm-4">Accomodation(s)</dt>
+                <% if @next_trip.accomodations.empty? %>
+                  <dd class="col-sm-8"><%= link_to "Add", new_trip_accomodation_path(@next_trip), style:"font-size:20px" %></dd>
+                <% else %>
                 <% @next_trip.accomodations.each do |acmd| %>
                   <dd class="col-sm-8"><%= link_to acmd.accomodation_type, trip_accomodations_path(@next_trip, acmd) %></dd>
                   <dd class="col-sm-8 offset-sm-4"><%= acmd.address %></dd>
                 <% end %>
               <% end %>
-              <% if @next_trip.transportations.empty? %>
-                <%= link_to "Add transportation(s)", new_trip_transportation_path(@next_trip), style:"font-size:20px" %>
-              <% else %>
+
                 <dt class="col-sm-4">Transportation(s) </dt>
                 <dd class="col-sm-8">
+                  <% if @next_trip.transportations.empty? %>
+                    <%= link_to "Add", new_trip_transportation_path(@next_trip), style:"font-size:20px" %>
+                  <% else %>
                   <% @next_trip.transportations.each do |transport| %>
                     <li class="list-unstyled">
                       <%= link_to transport.transportation_type, trip_transportations_path(@next_trip) %>
@@ -204,17 +214,38 @@
     </div>
   <% end %>
   </div>
-
 </div>
 <hr>
-
-  <div class="row spacer-margin text-xs-center">
-    <% unless @trips_dashboard == [nil, nil] %>
-      <div class="col-xs-12 map-dashboard">
-        <div id="map" style="width:100%;height:300px;"></div>
-      </div>
+<div class="row spacer-margin">
+  <div class="col-lg-6">
+    <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active">
+      Previous trips
+    </button>
+    <% @last_trips[-5..-1].each do |trip| %>
+    <button type="button" class="list-group-item list-group-item-action"><%= trip.destination %></button>
+    <% end %>
+    <% if @last_trips.length > 5 %>
+      <button type="button" class="list-group-item list-group-item-action"><%= link_to "See all trips", trips_path  %></button>
+    <% end %>
+  </div>
+</div>
+<div class="col-lg-6">
+  <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active">
+      Next trips
+    </button>
+  <% unless @next_trips.empty? %>
+    <% @next_trips[0..5].each do |trip| %>
+      <button type="button" class="list-group-item list-group-item-action"><%= trip.destination %></button>
+    <% end %>
+    <% if @next_trips.length > 5 %>
+      <button type="button" class="list-group-item list-group-item-action"><%= link_to "See all trips", trips_path  %></button>
+    <% end %>
   <% end %>
 </div>
+</div>
+
 
 
 <script type="text/javascript">
@@ -235,9 +266,11 @@ function initMap() {
     var mapOptions = {
       zoom: 3,
       center: myLatLng,
+      draggable: false,
       styles: [{"featureType":"all","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"},{"saturation":"-100"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40},{"visibility":"off"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"landscape","elementType":"geometry.stroke","stylers":[{"color":"#4d6059"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"lightness":21}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"poi","elementType":"geometry.stroke","stylers":[{"color":"#4d6059"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#7f8d89"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2b3638"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2b3638"},{"lightness":17}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#24282b"}]},{"featureType":"water","elementType":"geometry.stroke","stylers":[{"color":"#24282b"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.icon","stylers":[{"visibility":"off"}]}]
  };
       var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      var infowindow = new google.maps.InfoWindow();
 
     <% @trips_dashboard.each do |trip| %>
       <% next if trip.nil? %>
@@ -245,6 +278,11 @@ function initMap() {
         position: { lat: <%= trip.latitude unless trip.nil? %>, lng: <%= trip.longitude unless trip.nil? %>},
         map: map,
         title: '<%= trip.destination unless trip.nil?%>'
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent("<div class='infowindow'><h4><%= trip.destination %></h4>From <%= (trip.start_date).strftime('%d/%m/%Y') %> to <%= (trip.end_date).strftime('%d/%m/%Y') %></div>");
+          infowindow.open(map,marker);
         });
       <% end %>
     <% end %>
@@ -257,20 +295,30 @@ function initMap() {
     <% else %>
       var myLatLng =  { lat: <%= @current_trip.latitude %>, lng: <%= @current_trip.longitude %>}
     <% end %>
+
       console.log(myLatLng)
       var mapOptions = {
         zoom: 3,
+        scrollwheel: false,
         center: myLatLng,
         styles: [{"featureType":"landscape","stylers":[{"visibility":"simplified"},{"color":"#2b3f57"},{"weight":0.1}]},{"featureType":"administrative","stylers":[{"visibility":"on"},{"hue":"#ff0000"},{"weight":0.4},{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"labels.text","stylers":[{"weight":1.3},{"color":"#FFFFFF"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#f55f77"},{"weight":3}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#f55f77"},{"weight":1.1}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#f55f77"},{"weight":0.4}]},{},{"featureType":"road.highway","elementType":"labels","stylers":[{"weight":0.8},{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"color":"#ffffff"},{"weight":0.7}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"color":"#6c5b7b"}]},{"featureType":"water","stylers":[{"color":"#f3b191"}]},{"featureType":"transit.line","stylers":[{"visibility":"on"}]}]
       };
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      var infowindow = new google.maps.InfoWindow();
 
     <% @trips_dashboard.each do |trip| %>
       <% next if trip.nil? %>
-        new google.maps.Marker({
+
+        var marker = new google.maps.Marker({
           position: { lat: <%= trip.latitude unless trip.nil? %>, lng: <%= trip.longitude unless trip.nil? %>},
           map: map,
           title: '<%= trip.destination unless trip.nil?%>'
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent("<div id='<%= trip.id %>' class='infowindow'><h4><%= trip.destination %></h4>From <%= (trip.start_date).strftime('%d/%m/%Y') %> to <%= (trip.end_date).strftime('%d/%m/%Y') %></div>");
+          infowindow.open(map,marker);
+
         });
     <% end %>
 
