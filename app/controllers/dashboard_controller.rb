@@ -8,7 +8,7 @@ class DashboardController < AuthenticatedController
       .order(:start_date)
 
     @last_trips = last_trips
-    @current_trip = current_trips.first
+    @current_trip = current_user.current_trips.first
     @next_trips = next_trips
     @next_trip = next_trips.first
     @trips_dashboard = [ @current_trip, @next_trip ]
@@ -16,14 +16,6 @@ class DashboardController < AuthenticatedController
 
   private
 
-  def current_trips
-    # @trips.where('start_date < Date.today AND end_date > Date.today', start_date: params[:start_date], end_date: params[:end_date])
-    current_trips = []
-    @trips.each do |trip|
-      current_trips.push trip if trip.start_date < Date.today && trip.end_date > Date.today
-    end
-    current_trips
-  end
 
   def next_trips
     next_trips = []

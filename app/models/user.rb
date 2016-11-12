@@ -12,5 +12,12 @@ class User < ApplicationRecord
          :confirmable
 
 
+  def current_trips
+    current_trips = []
+    self.trips.each do |trip|
+      current_trips.push trip if trip.start_date < Date.today && trip.end_date > Date.today
+    end
+    current_trips
+  end
 
 end
