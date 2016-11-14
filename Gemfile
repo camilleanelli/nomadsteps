@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
-
+gem 'rack-mini-profiler'
+gem 'rails-footnotes', '~> 4.0'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -68,6 +69,7 @@ end
 
 group :development do
   gem "bullet"
+
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'

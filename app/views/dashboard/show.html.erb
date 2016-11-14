@@ -5,37 +5,33 @@
     <% end %>
   </div>
   <div class="col-xs-10">
-    <h1>Hello <%= current_user.first_name %>, where are you today ? </h1>
+    <h1>Hello <%= current_user.first_name %> </h1>
   </div>
 </div>
 <hr>
-<% unless @trips_dashboard == [nil, nil] %>
-  <div class="row spacer-margin text-xs-center">
-    <div class="col-xs-12 map-dashboard">
-      <div id="map" style="width:100%;height:300px;"></div>
+
+  <% if @trips.empty? %>
+    <div class="row spacer-margin">
+      Blank state
     </div>
-  </div>
-  <hr>
-<% end %>
-
-
-<div class="row spacer-margin">
-  <div class="col-lg-6">
-  <% if !@current_trip %>
-    <h2 class="fadeIn">You don't have current trip for the moment </h2>
-    <%= link_to "Change that !", new_trip_path %>
   <% else %>
-      <div class="card fadeIn">
-        <div class="card-header">
-          <%= link_to edit_trip_path(@current_trip), class:"title-link" do %>
-            <h2>Current trip to: <%= @current_trip.destination %></h2>
-          <% end %>
-        </div>
-        <div class="card-block">
-        <div class="row">
-          <div class="col-sm-6">
-            <dl class="row">
-              <dt class="col-xs-6">Start date </dt>
+  <div class="row spacer-margin">
+    <div class="col-lg-6">
+      <% if !@current_trip %>
+        <h2 class="fadeIn">You don't have current trip for the moment </h2>
+        <%= link_to "Change that !", new_trip_path %>
+      <% else %>
+        <div class="card fadeIn">
+          <div class="card-header">
+            <%= link_to edit_trip_path(@current_trip), class:"title-link" do %>
+              <h2>Current trip to: <%= @current_trip.destination %></h2>
+            <% end %>
+          </div>
+          <div class="card-block">
+          <div class="row">
+            <div class="col-sm-6">
+              <dl class="row">
+                <dt class="col-xs-6">Start date </dt>
               <dd class="col-xs-6"><%= (@current_trip.start_date).strftime("%d/%m/%Y") %></dd>
 
               <dt class="col-xs-6">End date </dt>
@@ -216,13 +212,25 @@
   </div>
 </div>
 <hr>
+
+<!-- map -->
+<% unless @trips_dashboard == [nil, nil] %>
+  <div class="row spacer-margin text-xs-center">
+    <div class="col-xs-12 map-dashboard">
+      <div id="map" style="width:100%;height:300px;"></div>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+<!-- previous trips and next trips -->
 <div class="row spacer-margin">
   <div class="col-lg-6">
     <div class="list-group">
     <button type="button" class="list-group-item list-group-item-action active">
       Previous trips
     </button>
-    <% @last_trips[-5..-1].each do |trip| %>
+    <% @last_trips[0..5].each do |trip| %>
     <button type="button" class="list-group-item list-group-item-action"><%= trip.destination %></button>
     <% end %>
     <% if @last_trips.length > 5 %>
@@ -245,6 +253,10 @@
   <% end %>
 </div>
 </div>
+<% end %>
+
+
+
 
 
 

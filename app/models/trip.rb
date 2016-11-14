@@ -8,6 +8,12 @@ class Trip < ApplicationRecord
   validates :end_date, presence: true
   validates :destination, presence: true
   # validates :city_name, presence: true
+  scope :current, -> {
+    where("start_date <= ? AND end_date >= ?", Date.today, Date.today).order(:end_date)
+  }
+  scope :next, -> { where("start_date > ?", Date.today).order(:start_date) }
+  scope :past, -> { where("end_date < ?", Date.today).order(:end_date)
+  }
 
   def end_date_must_be_greater_than_start_date
    errors.add(:end_date, ' must be greater than start date') if end_date <= start_date

@@ -11,13 +11,35 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  def current_trip
+    trips.current.first
+  end
 
-  def current_trips
-    current_trips = []
-    self.trips.each do |trip|
-      current_trips.push trip if trip.start_date < Date.today && trip.end_date > Date.today
+  def next_trips
+    trips.next
+  end
+
+  def last_trips
+    trips.past
+  end
+
+  def last_trips
+    last_trips = []
+    if @current_trip == nil
+      self.trips.each do |trip|
+        if trip.end_date < Date.today
+          last_trips << trip
+        end
+      end
+      last_trips
+    else
+      self.trips.each do |trip|
+        if trip.end_date < @current_trip.start_date
+          last_trips << trip
+        end
+      end
+      last_trips
     end
-    current_trips
   end
 
 end
