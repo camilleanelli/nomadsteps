@@ -1,18 +1,31 @@
 <div class="row">
-  <div class="col-xs-2 text-xs-right">
+  <div class="col-xs-12 col-md-4">
     <%= link_to public_profile_path(current_user) do %>
       <%= render "share/avatar" %>
     <% end %>
   </div>
-  <div class="col-xs-10">
-    <h1>Hello <%= current_user.first_name %> </h1>
+  <% unless @trips.empty? %>
+  <div class="col-xs-12 col-md-8 text-xs-right">
+    <% unless current_user.nomadlist_username == "" %>
+    <%= link_to "<i class='fa fa-upload'></i> Import from NomadList".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <% end %>
+    <%= link_to "<i class='fa fa-plus'></i> Add a travel".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
+  </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <%= link_to 'Edit profile', edit_profile_path(current_user) %>
   </div>
 </div>
 <hr>
 
   <% if @trips.empty? %>
     <div class="row spacer-margin">
-      Blank state
+      <% unless current_user.nomadlist_username == "" %>
+      <%= link_to "<i class='fa fa-upload'></i> Import from NomadList".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+      <% end %>
+      <%= link_to "<i class='fa fa-plus'></i> Add a travel".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
     </div>
   <% else %>
   <div class="row spacer-margin">

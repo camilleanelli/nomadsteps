@@ -8,16 +8,21 @@
   </div>
   <div class="col-xs-9 col-sm-10">
     <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-    <%= @current_trip %>
+    <p>
+      <i class="fa fa-map-pin" aria-hidden="true"></i> Now in : <%= @current_trip.destination %>
+    </p>
   </div>
 </div>
-<% if @user == current_user %>
+
 <div class="row">
-  <div class="col-sm-2 text-xs-center">
-    <%= link_to "Edit my profile", edit_profile_path %>
-  </div>
+
+    <div class="col-sm-2 text-xs-center">
+      <% if @user == current_user %>
+        <%= link_to "Edit my profile", edit_profile_path %>
+      <% end %>
+    </div>
 </div>
-<% end %>
+
 <hr>
 
 <div class="row">
