@@ -3,6 +3,8 @@ FactoryGirl.define do
     first_name "John"
     last_name  "Doe"
     email "johndoe@email.com"
-    admin false
+    password "password"
+    password_confirmation "password"
+    confirmed_at 2.days.ago
   end
 end

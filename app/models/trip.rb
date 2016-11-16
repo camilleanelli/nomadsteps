@@ -1,6 +1,4 @@
 class Trip < ApplicationRecord
-  before_create :set_city_details
-
   has_many :transportations, dependent: :destroy
   has_many :accomodations, dependent: :destroy
   has_and_belongs_to_many :users
@@ -9,14 +7,21 @@ class Trip < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :destination, presence: true
+  # validates :city_name, presence: true
+  scope :current, -> {
+    where("start_date <= ? AND end_date > ?", Date.today, Date.today).order(:end_date)
+  }
+  scope :next, -> { where("start_date > ?", Date.today).order(:start_date) }
+  scope :past, -> { where("end_date < ?", Date.today).order(:end_date)
+  }
 
   def end_date_must_be_greater_than_start_date
    errors.add(:end_date, ' must be greater than start date') if end_date <= start_date
  end
 
 
-  def set_city_details
-    self.city_details = self.city_name + '-' + self.country_name
+  def city_details
+    self.city_name + '-' + self.country_name
   end
 
 

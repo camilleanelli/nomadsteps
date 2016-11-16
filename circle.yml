@@ -1,0 +1,13 @@
+test:
+  pre:
+    - bundle exec rake db:drop db:create db:migrate RAILS_ENV=test
+  override:
+    - bundle exec rspec --color --require spec_helper spec --format documentation
+deployment:
+  staging:
+    branch: master
+    commands:
+      - heroku maintenance:on --app nomadsteps-staging
+      - git push git.heroku.com/nomadsteps-staging.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app nomadsteps-staging
+      - heroku maintenance:off --app nomadsteps-staging

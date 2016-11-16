@@ -1,41 +1,54 @@
 <div class="row">
-  <div class="col-xs-2 text-xs-right">
+  <div class="col-xs-12 col-md-2">
     <%= link_to public_profile_path(current_user) do %>
       <%= render "share/avatar" %>
     <% end %>
   </div>
-  <div class="col-xs-10">
-    <h1>Hello <%= current_user.first_name %>, where are you today ? </h1>
+  <div class="col-md-4">
+      <h2>Hi <%= @user.first_name %> !</h2>
+  </div>
+
+  <div class="col-xs-12 col-md-6 text-xs-right">
+    <% unless current_user.nomadlist_username == "" %>
+    <%= link_to "<i class='fa fa-upload'></i> IMPORT NOMADLIST TRIPS".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+    <% end %>
+    <%= link_to "<i class='fa fa-plus'></i> ADD A TRIP".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <%= link_to 'Edit profile', edit_profile_path(current_user) %>
   </div>
 </div>
 <hr>
-<% unless @trips_dashboard == [nil, nil] %>
-  <div class="row spacer-margin text-xs-center">
-    <div class="col-xs-12 map-dashboard">
-      <div id="map" style="width:100%;height:300px;"></div>
+
+  <% if @trips.empty? %>
+    <div class="row spacer-margin text-xs-center">
+      <i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>
+      <h2> No trips for the moment</h2>
+
     </div>
-  </div>
-  <hr>
-<% end %>
 
 
-<div class="row spacer-margin">
-  <div class="col-lg-6">
-  <% if !@current_trip %>
-    <h2 class="fadeIn">You don't have current trip for the moment </h2>
-    <%= link_to "Change that !", new_trip_path %>
   <% else %>
-      <div class="card fadeIn">
-        <div class="card-header">
-          <%= link_to edit_trip_path(@current_trip), class:"title-link" do %>
-            <h2>Current trip to: <%= @current_trip.destination %></h2>
-          <% end %>
-        </div>
-        <div class="card-block">
-        <div class="row">
-          <div class="col-sm-6">
-            <dl class="row">
-              <dt class="col-xs-6">Start date </dt>
+  <div class="row spacer-margin">
+    <div class="col-lg-6">
+      <% if !@current_trip %>
+        <h2 class="fadeIn">You don't have current trip for the moment </h2>
+        <%= link_to "Change that !", new_trip_path %>
+      <% else %>
+        <div class="card fadeIn">
+          <div class="card-header">
+            <%= link_to edit_trip_path(@current_trip), class:"title-link" do %>
+              <h2>Current trip to: <%= @current_trip.destination %></h2>
+            <% end %>
+          </div>
+          <div class="card-block">
+          <div class="row">
+            <div class="col-sm-6">
+              <dl class="row">
+                <dt class="col-xs-6">Start date </dt>
               <dd class="col-xs-6"><%= (@current_trip.start_date).strftime("%d/%m/%Y") %></dd>
 
               <dt class="col-xs-6">End date </dt>
@@ -135,7 +148,7 @@
               <dd class="col-xs-6"><%= (@next_trip.start_date).strftime('%d/%m/%Y') %></dd>
 
               <dt class="col-xs-6">End date</dt>
-              <dd class="col-xs-6"><%= @next_trip.end_date %></dd>
+              <dd class="col-xs-6"><%= (@next_trip.end_date).strftime("%d/%m/%Y") %></dd>
             </dl>
 
           </div>
@@ -216,13 +229,25 @@
   </div>
 </div>
 <hr>
+
+<!-- map -->
+<% unless @trips_dashboard == [nil, nil] %>
+  <div class="row spacer-margin text-xs-center">
+    <div class="col-xs-12 map-dashboard">
+      <div id="map" style="width:100%;height:300px;"></div>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+<!-- previous trips and next trips -->
 <div class="row spacer-margin">
   <div class="col-lg-6">
     <div class="list-group">
     <button type="button" class="list-group-item list-group-item-action active">
       Previous trips
     </button>
-    <% @last_trips[-5..-1].each do |trip| %>
+    <% @last_trips[0..5].each do |trip| %>
     <button type="button" class="list-group-item list-group-item-action"><%= trip.destination %></button>
     <% end %>
     <% if @last_trips.length > 5 %>
@@ -245,6 +270,10 @@
   <% end %>
 </div>
 </div>
+<% end %>
+
+
+
 
 
 
