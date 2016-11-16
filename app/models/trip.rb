@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
   validates :destination, presence: true
   # validates :city_name, presence: true
   scope :current, -> {
-    where("start_date <= ? AND end_date >= ?", Date.today, Date.today).order(:end_date)
+    where("start_date <= ? AND end_date > ?", Date.today, Date.today).order(:end_date)
   }
   scope :next, -> { where("start_date > ?", Date.today).order(:start_date) }
   scope :past, -> { where("end_date < ?", Date.today).order(:end_date)
