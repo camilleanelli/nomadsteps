@@ -7,9 +7,11 @@
     <% end %>
   </div>
   <div class="col-xs-9 col-sm-10">
-    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+    <h1><%= @user.full_name %></h1>
     <p>
-      <i class="fa fa-map-pin" aria-hidden="true"></i> Now in : <%= @current_trip.destination %>
+      <% unless @trips.empty? %>
+        <i class="fa fa-map-pin" aria-hidden="true"></i> Now in : <%= @current_trip.destination %>
+      <% end %>
     </p>
   </div>
 </div>
@@ -26,6 +28,9 @@
 <hr>
 
 <div class="row">
+  <% if @trips.empty? %>
+    <h2><%= @user.first_name_capitalize %> doesn't have trips for the moment ! </h2>
+  <% else %>
   <% @trips.each do |trip| %>
   <div class="col-lg-4 spacer-margin">
     <div class="card">
@@ -70,4 +75,5 @@
     </div>
   </div>
   <% end %>
+<% end %>
 </div>

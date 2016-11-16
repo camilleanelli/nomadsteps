@@ -11,6 +11,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  def full_name
+    self.first_name.capitalize + " " + self.last_name.capitalize
+  end
+
+  def first_name_capitalize
+    self.first_name.capitalize
+  end
+
   def current_trip
     trips.current.first
   end
