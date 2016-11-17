@@ -17,28 +17,39 @@
   <div class="row">
   <div class="col-sm-6">
     <div class="card card-block">
-          <h4 class="card-title">Details :</h4>
-      <p><i class="fa fa-globe" aria-hidden="true"></i> City of departure : <%= transportation.departure_city %></p>
-      <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Departure : <%= (transportation.departure_datetime).strftime("%d/%m/%Y at %H:%M" ) %></p>
-      <p><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrival : <%= (transportation.arrival_datetime).strftime("%d/%m/%Y at %H:%M" ) %> </p>
+      <h4 class="card-title">Details :</h4>
+      <hr>
+        <dl class="row">
+          <dt class="col-xs-6"><i class="fa fa-globe" aria-hidden="true"></i> City of departure</dt>
+          <dd class="col-xs-6"><%= transportation.departure_city %></dd>
+          <dt class="col-xs-6"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Departure</dt>
+          <dd class="col-xs-6"><%= (transportation.departure_datetime).strftime("%d/%m/%Y at %H:%M" ) %></dd>
+          <dt class="col-xs-6"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrival</dt>
+          <dd class="col-xs-6"><%= (transportation.arrival_datetime).strftime("%d/%m/%Y at %H:%M" ) %></dd>
+        </dl>
+
         <% unless transportation.return_date_departure == nil %>
-          <p>
-            <strong><i class="fa fa-undo" aria-hidden="true"></i> Return date : </strong>
-            <br>
-            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Departure : <%= (transportation.return_date_departure).strftime("%d/%m/%Y at %H:%M" ) %><br>
-            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrival : <%= (transportation.return_date_arrival).strftime("%d/%m/%Y at %H:%M" ) %>
-          </p>
+          <dl class="row">
+            <dt class="col-xs-6"><i class="fa fa-undo" aria-hidden="true"></i> Return date</dt>
+            <dd class="col-xs-6 offset-xs-6">Departure : <%= (transportation.return_date_departure).strftime("%d/%m/%Y at %H:%M" ) %></dd>
+            <dd class="col-xs-6 offset-xs-6">Arrival : <%= (transportation.return_date_arrival).strftime("%d/%m/%Y at %H:%M" ) %></dd>
+          </dl>
         <% end %>
-      </p>
-      <p>
-        <i class="fa fa-eur" aria-hidden="true"></i> Price :
-        <% if transportation.price? %>
-           <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / per traveler </p>
-        <% else %>
-          <span>Free </span>
-      <% end %>
-      <p>Booking n°: <%= transportation.reference_number %></p>
-      <p>
+        <hr>
+        <dl class="row">
+          <dt class="col-xs-6"><i class="fa fa-eur" aria-hidden="true"></i> Price </dt>
+          <dd class="col-xs-6">
+            <% if transportation.price? %>
+               <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / per traveler </p>
+            <% else %>
+              <span>Free </span>
+            <% end %>
+          </dd>
+          <dt class="col-xs-6"><p>Booking number</dt>
+          <dd class=col-xs-6><%= transportation.reference_number %></dd>
+        </dl>
+
+        <hr>
         <% if transportation.link? %>
           <%= link_to transportation.link, target: "_blank", class:"btn btn-primary btn-sm active" do %>
             <% if transportation.company? %>
@@ -56,7 +67,7 @@
           <%= link_to 'Edit', edit_trip_transportation_path(@trip, transportation), class:"btn btn-primary" %>
         </div>
         <div class="col-sm-4 text-xs-right">
-          <%= link_to "<i class='fa fa-trash-o fa-2x' aria-hidden='true'></i> Supprimer".html_safe, trip_transportation_path(@trip, transportation), method: :delete, data: { confirm: "Confirmez la suppression" } %>
+          <%= link_to "<i class='fa fa-trash-o fa-2x' aria-hidden='true'></i> Delete".html_safe, trip_transportation_path(@trip, transportation), method: :delete, data: { confirm: "Confirmez la suppression" } %>
         </div>
       </div>
     </div>
@@ -98,11 +109,13 @@
           <%= link_to ticket.filepicker_url do %>
             <%= filepicker_image_tag ticket.filepicker_url, w: 300, h: 300, fit: 'clip' %>
           <% end %>
-        <div class="col-xs-12 text-xs-center">
-          <%= link_to trip_transportation_ticket_path(@trip, transportation, ticket), method: :delete do %>
-            <i class='fa fa-trash-o fa-2x' aria-hidden='true'></i>
-          <% end %>
-        </div>
+          <div class="delete-ticket">
+            <%= link_to trip_transportation_ticket_path(@trip, transportation, ticket), method: :delete do %>
+              <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </div>
+
+
       </div>
       <% end %>
     </div>

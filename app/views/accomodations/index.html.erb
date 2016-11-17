@@ -14,63 +14,76 @@
   <div class="col-md-6">
     <% @accomodations.each do |accomodation| %>
       <div class="card card-block">
-        <h4 class="card-title"> <i class="fa fa-home" aria-hidden="true"></i> <%= accomodation.accomodation_type %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></h4>
-        <br>
-        <p>
-          <i class="fa fa-calendar" aria-hidden="true"></i> Check-in: <%= (accomodation.start_date).strftime("%b - %d - %Y" ) %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %><br>
-          <i class="fa fa-calendar" aria-hidden="true"></i> Check-out : <%= (accomodation.end_date).strftime("%b - %d - %Y") %><br>
-          <i class="fa fa-bed" aria-hidden="true"></i> <%= accomodation.count_night %> Nights
-        </p>
+        <div class="row">
+          <div class="col-xs-8">
+            <h4 class="card-title"> <i class="fa fa-home" aria-hidden="true"></i> <%= accomodation.accomodation_type %></h4>
+          </div>
+          <div class="col-xs-4 text-xs-right">
+            <%= link_to "Edit", edit_trip_accomodation_path(@trip, accomodation) %>
+          </div>
+        </div>
+
         <hr>
-        <p>
-          <i class="fa fa-map-marker" aria-hidden="true"></i> Address :
-          <% if accomodation.address == "" %>
-            <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Add an address'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
-          <% else %>
-            <%= accomodation.address %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
-          <% end %>
-      </p>
-      <p>
-        Contact : <%= accomodation.contact_name %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %><br>
-         <i class='fa fa-mobile' aria-hidden='true'></i>  <%=  accomodation.contact_phone %><br>
-        <i class='fa fa-at' aria-hidden='true'></i> <%= accomodation.contact_email %>
-      </p>
-      <p>
-        <% if accomodation.link == "" %>
-          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Add the link'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
-        <% else %>
-        <%= link_to accomodation.link, target: "_blank", class:"btn btn-outline-primary btn-sm"  do %>
-            <i class="fa fa-info-circle" aria-hidden="true"></i> Website
-          <% end %>
-        <% end %>
-      </p>
-      <hr>
-      <div class="row">
-        <div class="col-sm-6">
-          <p>Price per traveler :
-            <% if accomodation.price > 0 %>
-              <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_personne, :unit => "€ ") %></span>
+        <dl class="row">
+          <dt class="col-xs-4"><i class="fa fa-calendar" aria-hidden="true"></i> Check-in</dt>
+          <dd class="col-xs-8"><%= (accomodation.start_date).strftime("%b - %d - %Y" ) %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></dd>
+          <dt class="col-xs-4"><i class="fa fa-calendar" aria-hidden="true"></i> Check-out</dt>
+          <dd class="col-xs-8"><%= (accomodation.end_date).strftime("%b - %d - %Y" ) %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></dd>
+          <dt class="col-xs-4"><i class="fa fa-bed" aria-hidden="true"></i> Count nights</dt>
+          <dd class="col-xs-8"><%= accomodation.count_night %> Nights</dd>
+        </dl>
+        <hr>
+        <dl class="row">
+          <dt class="col-xs-4"><i class="fa fa-map-marker" aria-hidden="true"></i> Address </dt>
+          <dd class="col-xs-8">
+            <% if accomodation.address == "" %>
+              <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Add an address'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
             <% else %>
-              <%= link_to 'No price <i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
+              <%= accomodation.address %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
             <% end %>
-          </p>
-        </div>
-        <div class="col-sm-6">
-          <% unless accomodation.price == 0 %>
-            <p>Price per night :
-              <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_person_per_night, :unit => "€ ") %></span>
-            </p>
-          <% end %>
-        </div>
-      </div>
+          </dd>
+          <dt class="col-sm-4"><i class="fa fa-user-o" aria-hidden="true"></i> Contact</dt>
+          <dd class="col-sm-8">
+            <%= accomodation.contact_name %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %><br>
+          </dd>
+          <dd class="col-sm-8 offset-sm-4">
+            <i class='fa fa-mobile' aria-hidden='true'></i>  <%=  accomodation.contact_phone %>
+          </dd>
+          <dd class="col-sm-8 offset-sm-4">
+            <i class='fa fa-at' aria-hidden='true'></i> <%= accomodation.contact_email %>
+          </dd>
+          <dt class="col-xs-4"><i class="fa fa-link" aria-hidden="true"></i> Link </dt>
+          <dd class="col-xs-8">
+            <% if accomodation.link == "" %>
+              <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Add the link'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
+            <% else %>
+            <%= link_to accomodation.link, target: "_blank", class:"btn btn-outline-primary btn-sm"  do %>
+                <i class="fa fa-info-circle" aria-hidden="true"></i> Website
+              <% end %>
+            <% end %>
+          </dd>
+      </dl>
       <hr>
-      <div class="col-xs-6">
-        <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Edit accomodation'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
-      </div>
-      <div class="col-xs-6 text-xs-right">
+      <dl class="row">
+        <dt class="col-xs-4">Price per traveler </dt>
+        <dd class="col-xs-8">
+          <% if accomodation.price > 0 %>
+            <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_personne, :unit => "€ ") %></span>
+          <% else %>
+            <%= link_to 'Not defined <i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
+          <% end %>
+        </dd>
+        <% unless accomodation.price == 0 %>
+          <dt class="col-sm-4">Price per night</dt>
+          <dd class="col-sm-8">
+            <span class="tag tag-primary"><%= number_to_currency(accomodation.price_per_person_per_night, :unit => "€ ") %></span>
+          </dd>
+        <% end %>
+      </dl>
+      <hr>
+      <div class="row text-xs-right">
         <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i> Delete".html_safe, trip_accomodation_path(@trip, accomodation), method: :delete, data: { confirm: "Confirmez la suppression" } %>
       </div>
-
     </div>
     <% end %>
   </div>
@@ -95,7 +108,6 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: myLatLng,
-    styles: [{"featureType":"all","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"},{"saturation":"-100"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40},{"visibility":"off"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"landscape","elementType":"geometry.stroke","stylers":[{"color":"#4d6059"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"lightness":21}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#4d6059"}]},{"featureType":"poi","elementType":"geometry.stroke","stylers":[{"color":"#4d6059"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#7f8d89"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"#7f8d89"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#7f8d89"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2b3638"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2b3638"},{"lightness":17}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#24282b"}]},{"featureType":"water","elementType":"geometry.stroke","stylers":[{"color":"#24282b"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels.icon","stylers":[{"visibility":"off"}]}]
   });
   <% @accomodations.each do |acmd| %>
     <% next unless acmd.longitude && acmd.latitude %>

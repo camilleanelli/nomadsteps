@@ -6,6 +6,17 @@
 }
 
 .card-doc {
-  
+  position: relative;;
   padding: 5px;
+}
+
+.delete-ticket {
+  position: absolute;;
+  top: 0px;
+  right: 0px;
+}
+
+.size-btn {
+  width: 500px;
+  border-radius: 100px;
 }
