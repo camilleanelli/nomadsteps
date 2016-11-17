@@ -26,14 +26,24 @@
       <% if friend.invitation_accepted_at == nil %>
         <li><%= friend.first_name == nil ? friend.email : friend.first_name %> |  Invitation pending </li>
       <% else %>
-        <li><%= friend.first_name %> <%= friend.last_name %></li>
+      <li>
+        <%= link_to public_profile_path(friend), class:"title-link" do %>
+        <%= render "share/small_avatar", user: friend %>
+          <%= friend.full_name %>
+        <% end %>
+      </li>
         <%= link_to "Delete", friendship_path(friend), method: :delete, data: { confirm: "Confirm you want to delete your friend"} %>
       <% end %>
     <% end %>
   </div>
   <div class="row">
     <% @inverse_friends.each do |inverse_friend| %>
-      <li><%= inverse_friend.first_name %> <%= inverse_friend.last_name %></li>
+      <li>
+        <%= link_to public_profile_path(inverse_friend), class:"title-link" do %>
+          <%= render "share/small_avatar", user: inverse_friend %>
+          <%= inverse_friend.full_name %>
+        <% end %>
+      </li>
       <%= link_to "Delete", friendship_path(inverse_friend), method: :delete, date: { confirm: "Are you sure ?"} %>
     <% end %>
   </div>

@@ -26,7 +26,7 @@
                   <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> DASHBOARD".html_safe, dashboard_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
-                  <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i> TRIPS".html_safe, trips_path, class:"link-menu" %>
+                  <%= link_to "<i class='fa fa-plane' aria-hidden='true'></i> TRIPS".html_safe, trips_path, class:"link-menu" %>
                 </li>
                 <li class="nav-item li-menu">
                   <%= link_to "<i class='fa fa-users' aria-hidden='true'></i> FRIENDS".html_safe, friendships_path, class:"link-menu" %>
@@ -36,7 +36,7 @@
                 </li>
                 <li class="nav-item li-menu">
                   <%= link_to edit_profile_path, class:"link-menu" do %>
-                    <%= render 'share/small_avatar' %> <%= current_user.first_name %>
+                    <%= render 'share/small_avatar', user: current_user %> <%= current_user.first_name %>
                   <% end %>
                 </li>
             </ul>

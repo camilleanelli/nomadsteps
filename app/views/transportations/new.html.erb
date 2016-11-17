@@ -10,20 +10,13 @@
    </div>
 <% end %>
 <div class="row">
-  <div class="col-sm-8">
-    <h1>Add a transportation for your trip to <%= @trip.destination %></h1>
-  </div>
-  <div class="col-sm-4 text-xs-right">
-    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-     <h5><i class="fa fa-thumbs-up" aria-hidden="true"></i> Confirm transportation</h5>
-    <% end %>
-  </div>
+  <h1>Add a transportation for your trip to <%= @trip.destination %></h1>
 </div>
 <hr>
 
 
 <div class="row spacer-margin">
-  <div class="col-sm-5 offset-sm-1">
+  <div class="col-sm-6">
     <div class="card">
       <div class="card-block">
         <%= f.input :transportation_type, label: "<i class='fa fa-plane' aria-hidden='true'></i> <strong>Transportation type :</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
@@ -46,7 +39,7 @@
         </div>
     </div>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-6">
     <div class="card width-card-acmd">
       <div class="card-block">
         <%= f.input :price, label: "<i class='fa fa-money' aria-hidden='true'></i> <strong>Total price :</strong>".html_safe, input_html: { value: "00" } %>
@@ -55,6 +48,10 @@
         <%= f.input :link, label: "<i class='fa fa-link' aria-hidden='true'></i> <strong>Link :</strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
       </div>
     </div>
+  </div>
+  <div class="col-xs-12 text-xs-center spacer-margin">
+      <%= f.submit "Validate", class:"btn btn-primary size-btn" %>
+
   </div>
 </div>
 

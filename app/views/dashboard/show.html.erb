@@ -5,16 +5,16 @@
     <% end %>
   </div>
   <div class="col-md-4">
-      <h2>Hi <%= @user.first_name %> !</h2>
+      <h2>Hi <%= @user.first_name_capitalize %> !</h2>
   </div>
-
+<% unless @trips.empty? %>
   <div class="col-xs-12 col-md-6 text-xs-right">
     <% unless current_user.nomadlist_username == "" %>
-    <%= link_to "<i class='fa fa-upload'></i> IMPORT NOMADLIST TRIPS".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
-    <% end %>
-    <%= link_to "<i class='fa fa-plus'></i> ADD A TRIP".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
-  </div>
-
+        <%= link_to "<i class='fa fa-upload'></i> IMPORT NOMADLIST TRIPS".html_safe, import_nomad_lists_path, class:"btn btn-outline-primary" %>
+      <% end %>
+        <%= link_to "<i class='fa fa-plus'></i> ADD A TRIP".html_safe, new_trip_path, class:"btn btn-outline-primary" %>
+      </div>
+<% end %>
 </div>
 <div class="row">
   <div class="col-xs-12 col-md-4">
@@ -27,7 +27,22 @@
     <div class="row spacer-margin text-xs-center">
       <i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>
       <h2> No trips for the moment</h2>
-
+      <div class="col-md-8 offset-md-2">
+        <div class="col-md-6 text-xs-center padding-button">
+          <%= link_to new_trip_path, class: "btn btn-outline-primary" do %>
+            <i class="fa fa-plus" aria-hidden="true"></i> ADD MY FIRST TRIP
+          <% end %>
+        </div>
+          <div class="col-md-6 text-xs-center padding-button">
+            <% if current_user.nomadlist_username == "" %>
+              Create a <a href="https://nomadlist.com/">NOMADLIST</a> account, and <%= link_to "add your username", edit_profile_path(current_user) %> by editing your profile.
+            <% else %>
+              <%= link_to import_nomad_lists_path, class: "btn btn-outline-primary" do %>
+                <i class="fa fa-upload" aria-hidden="true"></i> IMPORT from NOMADLIST
+              <% end %>
+            <% end %>
+          </div>
+        </div>
     </div>
 
 

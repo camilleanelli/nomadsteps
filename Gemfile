@@ -36,7 +36,7 @@ gem 'filepicker-rails'
 
 gem 'jbuilder', '~> 2.5'
 
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
 # Use Redis adapter to run Action Cable in production
