@@ -21,6 +21,6 @@ RSpec.describe "login page", :type => :feature do
     fill_in "Email", with: "johndoe@email.com"
     fill_in "Password", with: "password"
     click_button "Validate"
-    expect(current_path).to eq trips_path
+    expect(current_path).to eq dashboard_path
   end
 end
