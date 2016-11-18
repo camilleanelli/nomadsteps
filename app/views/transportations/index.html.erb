@@ -9,13 +9,11 @@
   </div>
 </div>
 <hr>
-<br>
-<br>
 
 <% @transportations.each do |transportation| %>
   <!-- details of transportation -->
   <div class="row">
-  <div class="col-sm-6">
+  <div class="col-lg-6">
     <div class="card card-block">
       <h4 class="card-title">Details :</h4>
       <hr>
@@ -48,18 +46,20 @@
           <dt class="col-xs-6"><p>Booking number</dt>
           <dd class=col-xs-6><%= transportation.reference_number %></dd>
         </dl>
-
         <hr>
         <% if transportation.link? %>
+        <dl class="row">
           <%= link_to transportation.link, target: "_blank", class:"btn btn-primary btn-sm active" do %>
-            <% if transportation.company? %>
-              <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Open the link  <%= (transportation.company).capitalize %>
-            <% else %>
-              <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Check your booking on the company's website
+              <% if transportation.company? %>
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Open the link  <%= (transportation.company).capitalize %>
+              <% else %>
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Check your booking on the company's website
+              <% end %>
             <% end %>
-          <% end %>
+
+        </dl>
         <% end %>
-      </p>
+
 
       <div class="row">
         <div class="col-sm-8">
@@ -74,7 +74,7 @@
   </div>
 
   <!-- Billets -->
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="card card-block">
       <div class="row">
         <div class="col-sm-10">
@@ -114,12 +114,9 @@
               <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
             <% end %>
           </div>
-
-
-      </div>
+        </div>
       <% end %>
     </div>
-
   <% end %>
   </div>
 </div>
