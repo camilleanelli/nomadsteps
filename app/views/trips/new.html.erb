@@ -33,7 +33,7 @@
       <%= f.input :destination, label: "<i class='fa fa-globe' aria-hidden='true'></i> Where do you go ?".html_safe, input_html: {id: :autocomplete} %>
     </div>
     <div class="col-sm-6">
-      <% if current_user.friends.empty? %>
+      <% if current_user.friends.empty? && current_user.inverse_friends.empty? %>
         <p>
           <i class="fa fa-user-plus" aria-hidden="true"></i> Who is coming with you ?
         </p>
@@ -41,7 +41,7 @@
           <%= link_to "Invite a friend before continue !", new_friendship_path %>
         </p>
       <% else %>
-        <%= f.input :user_ids, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Who is coming with you ?".html_safe, collection: current_user.friends, label_method: :first_name, input_html: { multiple: true } %>
+        <%= f.input :user_ids, label: "<i class='fa fa-user-plus' aria-hidden='true'></i> Who is coming with you ?".html_safe, collection: @friends, label_method: :first_name, input_html: { multiple: true } %>
       <% end %>
     </div>
     <div class="col-sm-12">

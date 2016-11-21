@@ -22,10 +22,12 @@ class TripsController < AuthenticatedController
   end
 
   def new
+    @friends = current_user.friends + current_user.inverse_friends
     @trip = current_user.trips.new
   end
 
   def create
+    @friends = current_user.friends + current_user.inverse_friends
     params_trips["google_info"] = JSON.parse(params_trips["google_info"]) if params_trips["google_info"]
     @trip = Trip.new(params_trips)
     @trip.users << current_user
