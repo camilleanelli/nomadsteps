@@ -24,6 +24,7 @@ class TransportationsController < AuthenticatedController
 
   def new
     @trip = current_user.trips.find(params[:trip_id])
+    @users = @trip.users
     @transportation = @trip.transportations.new
   end
 
@@ -50,6 +51,6 @@ class TransportationsController < AuthenticatedController
   private
 
   def params_transportation
-    params[:transportation].permit(:transportation_type, :reference_number, :link, :departure_datetime, :departure_city, :company, :price, :arrival_datetime, :return_date_departure, :return_date_arrival)
+    params[:transportation].permit(:transportation_type, :reference_number, :link, :departure_datetime, :departure_city, :company, :price, :arrival_datetime, :return_date_departure, :return_date_arrival, :user_ids => [])
   end
 end

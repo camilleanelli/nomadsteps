@@ -19,12 +19,15 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-block">
-        <%= f.input :transportation_type, label: "<i class='fa fa-plane' aria-hidden='true'></i> <strong>Transportation type :</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+        <div class="col-xs-6">
+          <%= f.input :transportation_type, label: "<i class='fa fa-plane' aria-hidden='true'></i> <strong>Transportation type :</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+        </div>
+        <div class="col-xs-6">
+          <%= f.input :user_ids, label: "<i class='fa fa-user' aria-hidden='true'></i> For who ?".html_safe, collection: @users, label_method: :first_name, input_html: { multiple: true } %>
+        </div>
         <%= f.input :departure_datetime, label: "<i class='fa fa-calendar-check-o' aria-hidden='true'></i> <strong>Departure :</strong>".html_safe, default: @transportation.trip.start_date %>
         <%= f.input :arrival_datetime, label: "<i class='fa fa-calendar-check-o' aria-hidden='true'></i> <strong>Arrival : </strong>".html_safe, default: @transportation.trip.start_date %>
         <%= f.input :departure_city, label: "<i class=' fa fa-globe' aria-hidden='true'></i> <strong>Departure city :</strong>".html_safe, input_html: {id: :autocomplete}, placeholder: "Ex: Paris" %>
-
-        <p>
           <p>
             <button class="btn btn-primary btn-sm collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               <i class="fa fa-undo" aria-hidden="true"></i> Including return the <%= (@trip.end_date).strftime("%d/%m/%Y")%> ?
@@ -40,7 +43,7 @@
     </div>
   </div>
   <div class="col-sm-6">
-    <div class="card width-card-acmd">
+    <div class="card">
       <div class="card-block">
         <%= f.input :price, label: "<i class='fa fa-money' aria-hidden='true'></i> <strong>Total price :</strong>".html_safe, input_html: { value: "00" } %>
         <%= f.input :reference_number, label: "<strong>Reservation number :</strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
@@ -51,7 +54,6 @@
   </div>
   <div class="col-xs-12 text-xs-center spacer-margin">
       <%= f.submit "Validate", class:"btn btn-primary size-btn" %>
-
   </div>
 </div>
 

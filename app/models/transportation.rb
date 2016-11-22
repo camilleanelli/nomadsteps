@@ -1,6 +1,7 @@
 class Transportation < ApplicationRecord
   belongs_to :trip
   has_many :tickets, dependent: :destroy
+  has_and_belongs_to_many :users
 
   validate :end_date_must_be_greater_than_start_date
   validates :transportation_type, presence: true
@@ -14,6 +15,6 @@ class Transportation < ApplicationRecord
   end
 
   def price_per_personne
-    self.price / self.trip.users.count
+    self.price / self.users.count
   end
 end
