@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_and_belongs_to_many :trips
-  has_many :transportations, through: :trips
+  has_and_belongs_to_many :transportations
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
