@@ -21,6 +21,7 @@ gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'devise'
 gem 'devise_invitable'
 
+gem "select2-rails"
 gem 'mailgun_rails'
 
 gem 'simple_form'
