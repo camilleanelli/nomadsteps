@@ -23,5 +23,7 @@
 
 
 $(document).on('ready', function() {
-    $('select').select2();
+    $('select').select2({
+      placeholder: 'Select a contact'
+    });
 });
