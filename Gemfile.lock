@@ -163,6 +163,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nenv (0.3.0)
@@ -320,6 +322,7 @@ DEPENDENCIES
   launchy
   listen (~> 3.0.5)
   mailgun_rails
+  momentjs-rails (>= 2.9.0)
   nokogiri
   nomadlist
   pg

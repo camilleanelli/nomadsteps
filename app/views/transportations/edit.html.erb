@@ -1,54 +1,93 @@
   <%= simple_form_for [@trip, @transportation] do |f| %>
 <div class="row">
-  <div class="col-sm-8">
-    <h1>Your travel in <%= @transportation.trip.destination %></h1>
+  <div class="col-sm-9">
+    <h2><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update your transportation in <%= @transportation.trip.destination %></h2>
   </div>
-  <div class="col-sm-4 text-xs-right">
+  <div class="col-sm-3 text-xs-right">
     <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i> Confirm transportation
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i> <strong>Validate</strong>
     <% end %>
   </div>
 
 </div>
 <hr>
 <div class="row spacer-margin">
-
-  <div class="col-sm-5 offset-sm-1">
+  <div class="col-sm-6 offset-sm-3">
     <div class="card">
       <div class="card-block">
-        <%= f.input :transportation_type, label: "<strong>Transportation type</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
-        <%= f.input :departure_datetime, label: "<strong>Départure</strong>".html_safe %>
-        <%= f.input :arrival_datetime, label: "<strong>Arrival</strong>".html_safe %>
-
-        <p>
-          <button class="btn btn-primary btn-sm collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <% if @transportation.return_date_departure? %>
-              Returning journey
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.input :transportation_type, label: "<strong>Transportation type :</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
+          </div>
+          <div class="col-sm-6">
+            <% if @users.count > 1 %>
+              <%= f.input :user_ids, label: "<i class='fa fa-users' aria-hidden='true'></i><strong> Travelers :</strong>".html_safe, collection: @users, label_method: :first_name, input_html: { multiple: true, class:"select" } %>
             <% else %>
-              Include return the <%= (@trip.end_date).strftime("%d/%m/%Y")%>?
+              <%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i> Add a traveler !".html_safe, edit_trip_path(@trip) %>
             <% end %>
-          </button>
-        </p>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-block">
-            <%= f.input :return_date_departure, label: "Departure", include_blank: true %>
-            <%= f.input :return_date_arrival, label: "Arrival", include_blank: true %>
           </div>
         </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.input :departure_datetime, label: "<strong>Départure :</strong>".html_safe, as: :string, input_html: { class:"datetimepicker" }  %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :arrival_datetime, label: "<strong>Arrival time :</strong>".html_safe,  as: :string, input_html: { class:"datetimepicker" }  %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-xs-center">
+            <button class="btn btn-primary btn-sm collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <% if @transportation.return_date_departure? %>
+                Returning journey
+              <% else %>
+                Include return the <%= (@trip.end_date).strftime("%d/%m/%Y")%>?
+              <% end %>
+            </button>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-block">
+              <div class="col-sm-6">
+                <%= f.input :return_date_departure, label: "Departure :", include_blank: true,  as: :string, input_html: { class:"datetimepicker" }  %>
+              </div>
+              <div class="col-sm-6">
+                <%= f.input :return_date_arrival, label: "Arrival time :", include_blank: true,  as: :string, input_html: { class:"datetimepicker" }  %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.input :departure_city, label: "<strong>Departure city :</strong>".html_safe %>
+
+        </div>
+        <div class="col-sm-6">
+          <%= f.input :reference_number, label: "<strong>Booking number : </strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <%= f.input :price, label: "<strong> Price : </strong>".html_safe %>
+
+        </div>
+        <div class="col-sm-9">
+          <%= f.input :link, label: "<strong>Link : </strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
+        </div>
+      </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-5">
-    <div class="card">
-      <div class="card-block">
-        <%= f.input :departure_city, label: "<strong>Departure city</strong>".html_safe %>
-        <%= f.input :price, label: "<strong>Cost of booking : </strong>".html_safe %>
-        <%= f.input :reference_number, label: "<strong>Booking number : </strong>".html_safe, placeholder: "Ex: YY1TWJ" %>
-        <%= f.input :company, label: "<strong>Company : </strong>".html_safe, placeholder: "Ex: THAI Arways" %>
-        <%= f.input :link, label: "<strong>Link to the company web site : </strong>".html_safe, placeholder: "Ex: http://www.thaiairways.com/" %>
-      </div>
-    </div>
-  </div>
+
 </div>
 
 <% end %>
+
+<script type="text/javascript">
+$('.datetimepicker').datetimepicker({
+  format: "YYYY-MM-DD HH:mm"
+});
+</script>

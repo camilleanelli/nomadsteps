@@ -12,6 +12,7 @@ class TransportationsController < AuthenticatedController
 
   def edit
     @trip = current_user.trips.find(params[:trip_id])
+    @users = @trip.users
     @transportation = @trip.transportations.find(params[:id])
   end
 

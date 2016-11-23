@@ -7,17 +7,21 @@
     <% end %>
   </div>
   <div class="col-sm-10">
-    <h1>Trip : <%= @trip.destination %></h1>
-
+    <h2>Trip : <%= @trip.destination %></h2>
   </div>
 </div>
 <hr>
 <div class="col-sm-6 offset-sm-3">
   <div class="card card-block text-xs-center">
       <%= simple_form_for @trip do |f| %>
-
-          <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Start date :".html_safe %>
-          <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> End date :".html_safe %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Start date :".html_safe,  as: :string, input_html: { class:"datetimepicker" } %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :end_date, label:"<i class='fa fa-calendar' aria-hidden='true'></i> End date :".html_safe,  as: :string, input_html: { class:"datetimepicker" } %>
+          </div>
+        </div>
           <div class="row">
             <div class="col-sm-6">
               <%= f.input :destination, input_html: {id: :autocomplete}, label: "<i class='fa fa-globe' aria-hidden='true'></i> Destination :".html_safe %>
@@ -60,7 +64,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete"
     async defer>
     </script>
-
     <script type="text/javascript">
-      $('select').select2();
+    $('.datetimepicker').datetimepicker({
+      format: "YYYY-MM-DD"
+    });
     </script>
