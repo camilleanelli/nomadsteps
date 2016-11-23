@@ -18,12 +18,8 @@
          </ul>
        </div>
    <% end %>
-    <div class="col-sm-12">
-      <%= f.input :start_date %>
-    </div>
-    <div class="col-sm-12">
-      <%= f.input :end_date %>
-    </div>
+    <%= f.input :start_date, as: :string, input_html: { class:"datetimepicker" } %>
+    <%= f.input :end_date, as: :string, input_html: { class:"datetimepicker" }  %>
 
     <%= f.input :longitude, as: :hidden %>
     <%= f.input :latitude, as: :hidden %>
@@ -51,8 +47,6 @@
       <%= link_to "<i class='fa fa-undo' aria-hidden='true'></i> Back".html_safe, trips_path, class:"btn btn-warning" %>
       <% end %>
     </div>
-
-
   </div>
 </div>
 
@@ -83,7 +77,8 @@ function initAutocomplete() {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete&language=en"
   async defer>
   </script>
-
-    <script type="text/javascript">
-    $('select').select2();
+  <script type="text/javascript">
+  $('.datetimepicker').datetimepicker({
+    format: "YYYY-MM-DD"
+  });
   </script>

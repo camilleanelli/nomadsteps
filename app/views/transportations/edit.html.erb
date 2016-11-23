@@ -17,8 +17,8 @@
     <div class="card">
       <div class="card-block">
         <%= f.input :transportation_type, label: "<strong>Transportation type</strong>".html_safe, default: "Avion", collection: ["Avion", "Train", "Bus", "Voiture", "Bateau", "Autre..."] %>
-        <%= f.input :departure_datetime, label: "<strong>Départure</strong>".html_safe %>
-        <%= f.input :arrival_datetime, label: "<strong>Arrival</strong>".html_safe %>
+        <%= f.input :departure_datetime, label: "<strong>Départure</strong>".html_safe, as: :string, input_html: { class:"datetimepicker" }  %>
+        <%= f.input :arrival_datetime, label: "<strong>Arrival</strong>".html_safe,  as: :string, input_html: { class:"datetimepicker" }  %>
 
         <p>
           <button class="btn btn-primary btn-sm collapsed-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -31,8 +31,8 @@
         </p>
         <div class="collapse" id="collapseExample">
           <div class="card card-block">
-            <%= f.input :return_date_departure, label: "Departure", include_blank: true %>
-            <%= f.input :return_date_arrival, label: "Arrival", include_blank: true %>
+            <%= f.input :return_date_departure, label: "Departure", include_blank: true,  as: :string, input_html: { class:"datetimepicker" }  %>
+            <%= f.input :return_date_arrival, label: "Arrival", include_blank: true,  as: :string, input_html: { class:"datetimepicker" }  %>
           </div>
         </div>
       </div>
@@ -52,3 +52,9 @@
 </div>
 
 <% end %>
+
+<script type="text/javascript">
+$('.datetimepicker').datetimepicker({
+  format: "YYYY-MM-DD HH:mm"
+});
+</script>
