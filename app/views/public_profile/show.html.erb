@@ -10,7 +10,9 @@
     <h1><%= @user.full_name %></h1>
     <p>
       <% unless @trips.empty? %>
-        <i class="fa fa-map-pin" aria-hidden="true"></i> Now in : <%= @current_trip.destination %>
+        <% unless !@current_trip %>
+          <i class="fa fa-map-pin" aria-hidden="true"></i> Now in : <%= @current_trip.destination %>
+        <% end %>
       <% end %>
     </p>
   </div>
@@ -40,9 +42,18 @@
         <% else %>
           <%= image_tag(trip.image_trip, class:"img-circle", width:50, height:50) %>
         <% end %>
-        <%= trip.destination %></h3>
+        <%= trip.city_name %>
+      </h3>
+
       <div class="card-block">
+        <div class="row">
+          <div class="col-xs-12">
+            <p><%= trip.country_name %></p>
+            
+          </div>
+        </div>
         <dl class="row">
+
           <dt class="col-xs-4">Start </dt>
           <dd class="col-xs-8"><%= (trip.start_date).strftime("%d/%m/%Y") %></dd>
           <dt class="col-xs-4">End </dt>

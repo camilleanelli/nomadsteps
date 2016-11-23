@@ -1,10 +1,10 @@
 <%= simple_form_for [@trip, @accomodation] do |f| %>
 <div class="row">
-  <div class="col-sm-8">
-    <h1>Your accomodation in <%= @trip.destination %></h1>
+  <div class="col-sm-9">
+    <h2>Update your accommodation in <%= @trip.destination %></h2>
   </div>
-  <div class="col-sm-4 text-xs-right">
-    <%= f.button :submit, "Confirm your accomodation", class: "btn btn-primary" %>
+  <div class="col-sm-3 text-xs-right">
+    <%= f.button :submit, "SUBMIT", class: "btn btn-primary" %>
   </div>
 </div>
 <hr>
@@ -16,12 +16,12 @@
         <%= f.input :address, label: "<i class='fa fa-map-marker' aria-hidden='true'></i> Address :".html_safe, input_html: { id: :autocomplete } %>
         <%= f.input :longitude, as: :hidden %>
         <%= f.input :latitude, as: :hidden %>
-        <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-in :".html_safe, default:  @trip.start_date %>
-        <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-out :".html_safe, default:  @trip.end_date %>
+        <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-in :".html_safe, as: :string, input_html: { class:"datetimepicker" } %>
+        <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-out :".html_safe, as: :string, input_html: { class:"datetimepicker" } %>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="card card-block width-card">
+    <div class="card card-block">
       <p>
         <a href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
           <i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Modify Contact
@@ -35,12 +35,11 @@
         </div>
       </div>
       <%= f.input :link, label: "<i class='fa fa-link' aria-hidden='true'></i> Link :".html_safe, placeholder: "Ex:  https://www.airbnb.fr/" %>
-      <%= f.input :price, label: "Cost of booking :", input_html: { style: 'width:100px' } %>
-      <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Nombre de personnes".html_safe, input_html: { style: 'width:100px' } %>
+      <%= f.input :price, label: "Price :", input_html: { style: 'width:100px' } %>
+      <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Travelers".html_safe, input_html: { style: 'width:100px' } %>
     </div>
   </div>
 </div>
-
 <% end %>
 
 
@@ -65,4 +64,9 @@ function initAutocomplete() {
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete"
   async defer>
+  </script>
+  <script type="text/javascript">
+  $('.datetimepicker').datetimepicker({
+    format: "YYYY-MM-DD"
+  });
   </script>
