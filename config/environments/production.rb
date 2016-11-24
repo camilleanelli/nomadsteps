@@ -71,12 +71,12 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { host: 'nomadsteps-staging.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: ENV["MAIL_DOMAIN"] }
 
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-          api_key: 'key-aa033f061f4d6baeba94e832b582b0fd',
-          domain:  'staging.nomadsteps.com'
+          api_key: ENV["MAILGUN_API_KEY"],
+          domain:  ENV["MAIL_DOMAIN"]
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
