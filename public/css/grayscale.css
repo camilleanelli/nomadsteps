@@ -12,8 +12,15 @@ body {
 
 
 .icon-landingpage {
-  width: 200px;
-  height: 200px;
+  width: 30%;
+  height: 30%;
+}
+
+@media (max-width: 767px) {
+  .icon-landingpage {
+    width: 30%;
+    height: 30%;
+  }
 }
 
 .spacer-margin {
@@ -30,6 +37,11 @@ body {
   color: #F62459;
 }
 
+.hr-homepage {
+  height: 3px;
+  background-color: #F62459;
+  width: 30%;
+}
 
 .call-to-action:hover {
   background-color:  #F62459;
@@ -264,9 +276,10 @@ a:focus {
 .download-section {
   width: 100%;
   padding: 50px 0;
-  color: white;
+  color: grey;
   /*background: url(../img/downloads-bg.jpg) no-repeat center center scroll;*/
-  background-color: black;
+
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
