@@ -34,6 +34,7 @@ body {
   border: 2px solid #F62459;
   border-radius: 5px;
   font-size: 26px;
+  text-transform: uppercase;
   color: #F62459;
 }
 
@@ -108,7 +109,7 @@ a:focus {
 .navbar-custom {
   margin-bottom: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  text-transform: uppercase;
+
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: black;
 }
@@ -122,7 +123,7 @@ a:focus {
   outline: none;
 }
 .navbar-custom .navbar-brand {
-  font-weight: 700;
+  font-family: "lobster", cursive;
 }
 .navbar-custom .navbar-brand:focus {
   outline: none;
@@ -190,9 +191,14 @@ a:focus {
 }
 .intro .intro-body .brand-heading {
   font-size: 40px;
+  font-family: "lobster", cursive;
 }
 .intro .intro-body .intro-text {
-  font-size: 18px;
+  font-size: 24px;
+}
+
+.intro-text {
+  text-shadow: 2px 2px 2px grey;
 }
 @media (min-width: 768px) {
   .intro {
@@ -200,10 +206,10 @@ a:focus {
     padding: 0;
   }
   .intro .intro-body .brand-heading {
-    font-size: 80px;
+    font-size: 100px;
   }
   .intro .intro-body .intro-text {
-    font-size: 26px;
+    font-size: 34px;
   }
 }
 .btn-circle {
@@ -303,8 +309,8 @@ a:focus {
   }
 }
 .btn {
-  text-transform: uppercase;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  font-family: "lobster", cursive;
   font-weight: 400;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;

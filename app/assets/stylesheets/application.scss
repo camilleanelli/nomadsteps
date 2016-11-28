@@ -24,7 +24,7 @@
  @import "font-awesome";
 
 body {
-  background-color: #f7f7f9;
+  background-color: #EEEEEE;
 }
 
 .title-pages {
@@ -32,7 +32,7 @@ body {
 }
 
 .link-menu {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .spacer-margin {
@@ -41,4 +41,8 @@ body {
 
 .spacer-bottom {
   padding-bottom: 100px;
+}
+
+.size-brand {
+  font-family: "lobster", cursive;
 }

@@ -33,9 +33,10 @@
             <%= f.input :first_name, required: true %>
             <%= f.input :last_name, required: true %>
             <%= f.input :nomadlist_username, label: button_nomadlist_username, placeholder: "ex: #{current_user.first_name}#{current_user.last_name}" %>
-            <%= f.input :email %>
+
           </div>
           <% end %>
+          <%= link_to "Change email / password", edit_user_registration_path(@user) %>
         </div>
       </div>
     </div>
