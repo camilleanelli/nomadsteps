@@ -15,15 +15,35 @@
   <div class="row spacer-margin">
   <div class="col-lg-6">
     <div class="card card-block">
-      <h4 class="card-title">Details :</h4>
+      <div class="row">
+        <div class="col-sm-6">
+          <h4 class="card-title"><%= transportation.transportation_type %>
+          </h4>
+        </div>
+        <div class="col-sm-6 text-xs-right">
+          <%  transportation.users.each do |user| %>
+            <% if user.filepicker_url? %>
+              <%= filepicker_image_tag user.filepicker_url, {w: 25, h: 25, fit: 'crop'}, class:"img-circle" %>
+            <% else %>
+              <%= image_tag("user.png") %>
+            <% end %>
+            <strong><%= user.first_name %></h4></strong>
+          <% end %>
+        </div>
+      </div>
+
       <hr>
+
         <dl class="row">
-          <dt class="col-xs-6"><i class="fa fa-globe" aria-hidden="true"></i> City of departure</dt>
-          <dd class="col-xs-6"><%= transportation.departure_city %></dd>
+
+          <dt class="col-xs-6"><i class="fa fa-globe" aria-hidden="true"></i> City of departure :</dt>
+          <dd class="col-xs-6">
+            <%= transportation.departure_city %></dd>
           <dt class="col-xs-6"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Departure</dt>
           <dd class="col-xs-6"><%= (transportation.departure_datetime).strftime("%d/%m/%Y at %H:%M" ) %></dd>
           <dt class="col-xs-6"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Arrival</dt>
           <dd class="col-xs-6"><%= (transportation.arrival_datetime).strftime("%d/%m/%Y at %H:%M" ) %></dd>
+
         </dl>
 
         <% unless transportation.return_date_departure == nil %>
@@ -31,34 +51,41 @@
             <dt class="col-xs-6"><i class="fa fa-undo" aria-hidden="true"></i> Return date</dt>
             <dd class="col-xs-6 offset-xs-6">Departure : <%= (transportation.return_date_departure).strftime("%d/%m/%Y at %H:%M" ) %></dd>
             <dd class="col-xs-6 offset-xs-6">Arrival : <%= (transportation.return_date_arrival).strftime("%d/%m/%Y at %H:%M" ) %></dd>
+
           </dl>
         <% end %>
         <hr>
         <dl class="row">
-          <dt class="col-xs-6"><i class="fa fa-eur" aria-hidden="true"></i> Price </dt>
+          <dt class="col-xs-6"><i class="fa fa-eur" aria-hidden="true"></i> Price :</dt>
           <dd class="col-xs-6">
             <% if transportation.price? %>
                <%= number_to_currency(transportation.price_per_personne, unit: "€") %> / per traveler </p>
             <% else %>
-              <span>Free </span>
+              <span>Not defined </span>
             <% end %>
           </dd>
-          <dt class="col-xs-6"><p>Booking number</dt>
-          <dd class=col-xs-6><%= transportation.reference_number %></dd>
+          <dt class="col-xs-6"><p>Booking number :</dt>
+          <dd class=col-xs-6>
+            <% if transportation.reference_number? %>
+              <%= transportation.reference_number %>
+            <% else %>
+              Not defined
+            <% end %>
+          </dd>
         </dl>
         <hr>
-        <% if transportation.link? %>
-        <dl class="row">
-          <%= link_to transportation.link, target: "_blank", class:"btn btn-primary btn-sm active" do %>
-              <% if transportation.company? %>
-                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Open the link  <%= (transportation.company).capitalize %>
-              <% else %>
-                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Check your booking on the company's website
-              <% end %>
-            <% end %>
 
+        <dl class="row">
+          <dt class="col-xs-6">Link :</dt>
+          <dd class="col-xs-6">
+            <% if transportation.link? %>
+              <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Check the website
+            <% else %>
+              Not defined
+            <% end %>
+          </dd>
         </dl>
-        <% end %>
+  
 
 
       <div class="row">

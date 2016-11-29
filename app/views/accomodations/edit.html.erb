@@ -1,7 +1,7 @@
 <%= simple_form_for [@trip, @accomodation] do |f| %>
 <div class="row">
   <div class="col-sm-9">
-    <h2>Update your accommodation in <%= @trip.destination %></h2>
+    <h2><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update your accommodation in <%= @trip.destination %></h2>
   </div>
   <div class="col-sm-3 text-xs-right">
     <%= f.button :submit, "SUBMIT", class: "btn btn-primary" %>
@@ -9,34 +9,45 @@
 </div>
 <hr>
 <div id="edit-accomodation" class="row spacer-margin">
-  <div class="col-sm-4 offset-sm-2">
-    <div class="card card-block width-card">
-        <%= f.input :accomodation_type, label: "<i class='fa fa-home' aria-hidden='true'></i>
-        Accomodation type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Friends/family", "House Rental", "Guest House", "Other..."] %>
-        <%= f.input :address, label: "<i class='fa fa-map-marker' aria-hidden='true'></i> Address :".html_safe, input_html: { id: :autocomplete } %>
-        <%= f.input :longitude, as: :hidden %>
-        <%= f.input :latitude, as: :hidden %>
-        <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-in :".html_safe, as: :string, input_html: { class:"datetimepicker" } %>
-        <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-out :".html_safe, as: :string, input_html: { class:"datetimepicker" } %>
-    </div>
-  </div>
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <div class="card card-block">
-      <p>
-        <a href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          <i class='fa fa-mobile' aria-hidden='true'></i> <i class='fa fa-at' aria-hidden='true'></i> Modify Contact
-        </a>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-          <%= f.input :contact_name, label: "Name :" %>
-          <%= f.input :contact_phone, label: "Phone Number :" %>
-          <%= f.input :contact_email, label: "Email :" %>
+      <div class="row">
+        <div class="col-sm-5">
+          <%= f.input :accomodation_type, label: "<i class='fa fa-home' aria-hidden='true'></i> Type :".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Friends/family", "House Rental", "Guest House", "Other..."] %>
+        </div>
+        <div class="col-sm-7">
+          <%= f.input :address, label: "<i class='fa fa-map-marker' aria-hidden='true'></i> Address :".html_safe, input_html: { id: :autocomplete } %>
+          <%= f.input :longitude, as: :hidden %>
+          <%= f.input :latitude, as: :hidden %>
         </div>
       </div>
-      <%= f.input :link, label: "<i class='fa fa-link' aria-hidden='true'></i> Link :".html_safe, placeholder: "Ex:  https://www.airbnb.fr/" %>
-      <%= f.input :price, label: "Price :", input_html: { style: 'width:100px' } %>
-      <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Travelers".html_safe, input_html: { style: 'width:100px' } %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.input :start_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-in :".html_safe, as: :string, input_html: { class:"datetimepicker" } %>
+        </div>
+        <div class="col-sm-6">
+          <%= f.input :end_date, label: "<i class='fa fa-calendar' aria-hidden='true'></i> Check-out :".html_safe, as: :string, input_html: { class:"datetimepicker" } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.input :contact_name, label: "Contact name :" %>
+        </div>
+          <div class="col-sm-6">
+            <%= f.input :contact_phone, label: "Phone :" %>
+          </div>
+          <div class="col-xs-12">
+            <%= f.input :contact_email, label: "Email :" %>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <%= f.input :link, label: "<i class='fa fa-link' aria-hidden='true'></i> Link :".html_safe, placeholder: "Ex:  https://www.airbnb.fr/" %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.input :price, label: "Price :"%>
+        </div>
+      </div>
     </div>
   </div>
 </div>

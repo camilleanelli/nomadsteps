@@ -62,7 +62,7 @@
       <hr>
       <div class="row">
         <div class="col-sm-6">
-          <%= f.input :departure_city, label: "<strong>Departure city :</strong>".html_safe %>
+          <%= f.input :departure_city, label: "<strong>Departure city :</strong>".html_safe, input_html: {id: :autocomplete} %>
 
         </div>
         <div class="col-sm-6">
@@ -85,7 +85,28 @@
 </div>
 
 <% end %>
+<script>
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
 
+
+var autocomplete;
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+    {types: ['geocode']});
+    autocomplete.addListener('place_changed', function(){
+      var place = autocomplete.getPlace();
+      var longitude = place.geometry.location.lng()
+      var latitude = place.geometry.location.lat()
+      console.log(longitude);
+      console.log(latitude);
+    });
+  }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy571-vdMT7D7BaAY1vTYm1n97WNhJFI0&signed_in=true&libraries=places&callback=initAutocomplete&language=en"
+  async defer>
+  </script>
 <script type="text/javascript">
 $('.datetimepicker').datetimepicker({
   format: "YYYY-MM-DD HH:mm"
