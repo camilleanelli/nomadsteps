@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
 
   get 'dashboard', to: 'dashboard#show', as: "dashboard"
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'public_profile/:user_id', to: "public_profile#show", as: "public_profile"
   resources :trips, except: [:show] do
-    resources :transportations do
+    resources :transportations, except: [:show] do
       resources :tickets, only: [:new, :create, :destroy]
     end
     resources :accomodations
