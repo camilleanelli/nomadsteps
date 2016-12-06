@@ -9,6 +9,7 @@ class AccomodationsController < AuthenticatedController
 
   def new
     @trip = current_user.trips.find(params[:trip_id])
+    @users = @trip.users
     @accomodation = @trip.accomodations.new
   end
 
@@ -26,6 +27,7 @@ class AccomodationsController < AuthenticatedController
 
   def edit
     @trip = current_user.trips.find(params[:trip_id])
+    @users = @trip.users
     @accomodation = @trip.accomodations.find(params[:id])
 
   end
@@ -56,6 +58,6 @@ class AccomodationsController < AuthenticatedController
   private
 
   def accomodation_params
-    params[:accomodation].permit(:accomodation_type, :start_date, :end_date, :price, :link, :number_of_persons, :trip_id, :contact, :address, :longitude, :latitude, :contact_phone, :contact_email, :contact_name)
+    params[:accomodation].permit(:accomodation_type, :start_date, :end_date, :price, :link, :number_of_persons, :trip_id, :contact, :address, :longitude, :latitude, :contact_phone, :contact_email, :contact_name, :user_ids => [])
   end
 end
