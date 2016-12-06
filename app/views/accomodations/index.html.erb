@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm-9">
-    <h2>Your accomodation(s) in <%= @trip.destination %> </h2>
+    <h2>Your accommodation(s) in <%= @trip.destination %> </h2>
   </div>
   <div class="col-sm-3 text-xs-right">
     <%= link_to  new_trip_accomodation_path, class:"btn btn-outline-primary" do %>
-      <i class="fa fa-plus" aria-hidden="true"></i> Add an accomodation
+      <i class="fa fa-plus" aria-hidden="true"></i> Add an accommodation
     <% end %>
   </div>
 </div>
@@ -25,16 +25,16 @@
 
         <hr>
         <dl class="row">
-          <dt class="col-xs-4"><i class="fa fa-calendar" aria-hidden="true"></i> Check-in</dt>
+          <dt class="col-xs-4"><i class="fa fa-calendar" aria-hidden="true"></i> Check-in :</dt>
           <dd class="col-xs-8"><%= (accomodation.start_date).strftime("%b - %d - %Y" ) %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></dd>
-          <dt class="col-xs-4"><i class="fa fa-calendar" aria-hidden="true"></i> Check-out</dt>
+          <dt class="col-xs-4"><i class="fa fa-calendar" aria-hidden="true"></i> Check-out :</dt>
           <dd class="col-xs-8"><%= (accomodation.end_date).strftime("%b - %d - %Y" ) %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %></dd>
-          <dt class="col-xs-4"><i class="fa fa-bed" aria-hidden="true"></i> Count nights</dt>
+          <dt class="col-xs-4"><i class="fa fa-bed" aria-hidden="true"></i> Night :</dt>
           <dd class="col-xs-8"><%= accomodation.count_night %> Nights</dd>
         </dl>
         <hr>
         <dl class="row">
-          <dt class="col-xs-4"><i class="fa fa-map-marker" aria-hidden="true"></i> Address </dt>
+          <dt class="col-xs-4"><i class="fa fa-map-marker" aria-hidden="true"></i> Address :</dt>
           <dd class="col-xs-8">
             <% if accomodation.address == "" %>
               <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Add an address'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %>
@@ -46,12 +46,16 @@
           <dd class="col-xs-8">
             <%= accomodation.contact_name %> <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_trip_accomodation_path(@trip, accomodation) %><br>
           </dd>
-          <dd class="col-sm-8 offset-sm-4">
-            <i class='fa fa-mobile' aria-hidden='true'></i>  <%=  accomodation.contact_phone %>
-          </dd>
-          <dd class="col-sm-8 offset-sm-4">
-            <i class='fa fa-at' aria-hidden='true'></i> <%= accomodation.contact_email %>
-          </dd>
+          <% unless accomodation.contact_phone == "" %>
+            <dd class="col-sm-8 offset-sm-4">
+              <i class='fa fa-mobile' aria-hidden='true'></i>  <%=  accomodation.contact_phone %>
+            </dd>
+          <% end %>
+          <% unless accomodation.contact_email == "" %>
+            <dd class="col-sm-8 offset-sm-4">
+              <i class='fa fa-at' aria-hidden='true'></i> <%= accomodation.contact_email %>
+            </dd>
+          <% end %>
           <dt class="col-xs-4"><i class="fa fa-link" aria-hidden="true"></i> Link </dt>
           <dd class="col-xs-8">
             <% if accomodation.link == "" %>
