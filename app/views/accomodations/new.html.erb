@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <h2>What is your accommodation <%= @trip.destination %> ?</h2>  
+    <h2>What is your accommodation <%= @trip.destination %> ?</h2>
   </div>
 </div>
 <hr>
@@ -21,7 +21,7 @@
       <div class="card-block">
         <div class="row">
           <div class="col-sm-6">
-            <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i> Accomodation type".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Guest House", "Friends/family", "House Rental", "Other..."] %>
+            <%= f.input :accomodation_type, default: "AirBnB", label: "<i class='fa fa-home' aria-hidden='true'></i> Accommodation type".html_safe, collection: ["AirBnB", "Hostel", "Hotel room", "Guest House", "Friends/family", "House Rental", "Other..."] %>
           </div>
           <div class="col-sm-6">
             <%= f.input :number_of_persons, label: "<i class='fa fa-users' aria-hidden='true'></i> Travelers :".html_safe, input_html: { style: 'width:100px', value: @trip.users.count } %>

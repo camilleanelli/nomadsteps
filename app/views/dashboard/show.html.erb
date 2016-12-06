@@ -108,7 +108,7 @@
       <div class="row">
         <div class="col-sm-12">
           <dl class="row">
-            <dt class="col-sm-4">Accomodation</dt>
+            <dt class="col-sm-4">Accommodation</dt>
             <% if @current_trip.accomodations.empty? %>
               <dd class="col-sm-8"><%= link_to "Add", new_trip_accomodation_path(@current_trip), style:"font-size:20px" %></dd>
             <% else %>
@@ -206,7 +206,7 @@
             <dl class="row">
 
 
-                <dt class="col-sm-4">Accomodation(s)</dt>
+                <dt class="col-sm-4">Accommodation(s)</dt>
                 <% if @next_trip.accomodations.empty? %>
                   <dd class="col-sm-8"><%= link_to "Add", new_trip_accomodation_path(@next_trip), style:"font-size:20px" %></dd>
                 <% else %>
