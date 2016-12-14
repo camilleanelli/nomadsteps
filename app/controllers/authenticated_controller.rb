@@ -1,4 +1,5 @@
 class AuthenticatedController < ApplicationController
+  
   before_action :check_profile_user
 
   def check_profile_user
@@ -8,5 +9,5 @@ class AuthenticatedController < ApplicationController
       end
     end
   end
-  
+
 end

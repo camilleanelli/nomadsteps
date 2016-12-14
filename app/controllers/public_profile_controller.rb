@@ -1,5 +1,6 @@
-class PublicProfileController < ApplicationController
+class PublicProfileController < AuthenticatedController
   skip_before_action :authenticate_user!
+  skip_before_action :check_profile_user
 
   def show
     @user = User.find(params[:user_id])
