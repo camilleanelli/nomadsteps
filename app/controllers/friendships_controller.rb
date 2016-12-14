@@ -1,4 +1,5 @@
 class FriendshipsController < AuthenticatedController
+
   def index
     @friends = current_user.friends
     @inverse_friends = current_user.inverse_friends

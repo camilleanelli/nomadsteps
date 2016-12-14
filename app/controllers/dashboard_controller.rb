@@ -1,5 +1,6 @@
 class DashboardController < AuthenticatedController
 
+
   def show
     @user = current_user
     @trips = @user.trips.includes(:transportations, :accomodations, :users, :trips_users)

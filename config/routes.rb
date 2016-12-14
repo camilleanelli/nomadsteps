@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   get 'dashboard', to: 'dashboard#show', as: "dashboard"
 
   resources :friendships, except: [:show, :edit, :update]
@@ -15,6 +16,10 @@ Rails.application.routes.draw do
 
   get 'profile', to: "profile#edit", as: "edit_profile"
   patch 'profile', to: "profile#update", as: "profile"
+
+  namespace :admin do
+    resources :users
+  end
 
   get 'public_profile/:user_id', to: "public_profile#show", as: "public_profile"
   resources :trips, except: [:show] do
