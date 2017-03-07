@@ -17,11 +17,11 @@ class Trip < ApplicationRecord
 
   def end_date_must_be_greater_than_start_date
    errors.add(:end_date, ' must be greater than start date') if end_date <= start_date
- end
+  end
 
 
-  def city_details
-    self.city_name + '-' + self.country_name
+  def destination
+    "#{self.city_name}, #{self.country_name}"
   end
 
 
