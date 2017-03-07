@@ -13,5 +13,4 @@ class ImportNomadListsController < AuthenticatedController
     end
     redirect_to trips_path
   end
-
 end
