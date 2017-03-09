@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
 
   get 'dashboard', to: 'dashboard#show', as: "dashboard"
 
