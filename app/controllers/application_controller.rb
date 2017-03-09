@@ -19,5 +19,4 @@ protect_from_forgery with: :exception
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nomadlist_username, :filepicker_url])
   end
 
-
 end

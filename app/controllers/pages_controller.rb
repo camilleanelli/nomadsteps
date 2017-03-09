@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
-	 def letsencrypt
-      # use your code here, not mine
-      render text: ENV['LETSENCRYPT']
-    end
+	skip_before_action :authenticate_user!
+	
+	def letsencrypt
+    render text: ENV['LETSENCRYPT']
+  end
 end
